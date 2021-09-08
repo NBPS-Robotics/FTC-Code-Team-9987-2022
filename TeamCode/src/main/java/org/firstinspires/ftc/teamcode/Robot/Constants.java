@@ -1,6 +1,10 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
 public class Constants {
+    /*
+    Declare all constants in this class to be used globally
+     */
+
     public static final double baseVoltage = 13.5; //EDIT THIS TO CHANGE THE BASE VOLTAGE
     public static double speed = 1; //Speed Control
     public static double targetShooterPower = 0.46;    //EDIT THIS TO CHANGE THE POWER OF THE SHOOTER
