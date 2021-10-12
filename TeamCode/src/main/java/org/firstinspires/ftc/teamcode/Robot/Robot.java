@@ -23,10 +23,8 @@ public class Robot {
     private static void init(HardwareMap hardwareMap, Telemetry telemetry) {
         tele = telemetry; //assign the telemetry object
         Drivetrain.init(hardwareMap); //initialize the drivetrain
-        Shooter.init(hardwareMap); //initialize the shooter
         Intake.init(hardwareMap); //initialize the intake
-        Arm.init(hardwareMap); //initialize the arm
-        Hopper.init(hardwareMap); //initialize the hopper
+        Claw.init(hardwareMap); //initialize the arm
         VoltageSensor.init(hardwareMap); //initialize the voltage sensor
         drive = new MyMecanumDrive(hardwareMap); //assign the drivetrain object for Road Runner
         myLocalizer = new StandardTrackingWheelLocalizer(hardwareMap); //assign the localizer object for Road Runner
@@ -40,8 +38,7 @@ public class Robot {
     public static void initAuto(HardwareMap hardwareMap, Telemetry telemetry){
         Camera.init(hardwareMap, telemetry); //initialize the camera
         init(hardwareMap, telemetry); //initialize the robot
-        Hopper.back(); //bring the hopper back to its position
-        Arm.close(); //close the arm grippers
+        Claw.close(); //close the arm grippers
         Camera.out(); //bring the camera out
         drive.setPoseEstimate(Coordinates.start); //set initial position for Road Runner
         myLocalizer.setPoseEstimate(Coordinates.start); //set initial position for Road Runner
@@ -59,8 +56,7 @@ public class Robot {
         init(hardwareMap, telemetry); //initialize the robot
         drive.setPoseEstimate(Coordinates.end); //set the initial position for Road Runner
         myLocalizer.setPoseEstimate(Coordinates.end); //set the initial position for Road Runner
-        Hopper.back(); //bring the hopper back to its position
-        Arm.open(); // open the arm grippers
+        Claw.open(); // open the arm grippers
         telemetry.addLine();
         telemetry.addData(">", "Press Play to start op mode"); //telemetry confirmation
         telemetry.update();
@@ -73,8 +69,7 @@ public class Robot {
      */
     public static void initTest(HardwareMap hardwareMap, Telemetry telemetry){
         init(hardwareMap, telemetry); //initialize the robot
-        Hopper.back(); //bring the hopper back to its position
-        Arm.close(); //close the arm grippers
+        Claw.close(); //close the arm grippers
         drive.setPoseEstimate(Coordinates.start); //set the initial position for Road Runner
         myLocalizer.setPoseEstimate(Coordinates.start); //set the initial position for Road Runner
         telemetry.addLine();
@@ -105,7 +100,6 @@ public class Robot {
         telemetry.update(); //update the telemetry
         Robot.drive.update(); //update the robot's position
         Robot.myLocalizer.update(); //update the localizer position
-        Hopper.back(); //bring the hopper back
         Drivetrain.reportPose(); //report the current robot position to telemetry
     }
 }

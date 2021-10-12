@@ -8,11 +8,10 @@ import com.acmerobotics.roadrunner.trajectory.constraints.MinVelocityConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationConstraint;
 
 import org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants;
-import org.firstinspires.ftc.teamcode.Robot.Arm;
-import org.firstinspires.ftc.teamcode.Robot.Constants;
+import org.firstinspires.ftc.teamcode.Robot.Claw;
 import org.firstinspires.ftc.teamcode.Robot.Intake;
+import org.firstinspires.ftc.teamcode.Robot.Lift;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
-import org.firstinspires.ftc.teamcode.Robot.Shooter;
 
 import java.util.Arrays;
 
@@ -27,14 +26,11 @@ public class Navigation {
                                 new MecanumVelocityConstraint(35, DriveConstants.TRACK_WIDTH)
                         )
                 ), new ProfileAccelerationConstraint(DriveConstants.MAX_ACCEL))
-                .addTemporalMarker(0.6, () -> Arm.moveDown(1))
-                .addTemporalMarker(1.4, () -> Arm.moveDown(0.3))
-                .addTemporalMarker(3, Arm::stop)
+                .addTemporalMarker(0.6, () -> Lift.moveDown(1))
+                .addTemporalMarker(1.4, () -> Lift.moveDown(0.3))
+                .addTemporalMarker(3, Lift::stop)
                 .build();
-        Shooter.on(Constants.powerConstant);
         Robot.drive.followTrajectory(trajectory);
-        Shooter.shootThree();
-        Shooter.off();
     }
     public static void shootStack(int state){//1 is B, 4 is C (in A there is no stack)
         //drive.setPoseEstimate(Coordinates.shoot);
@@ -57,16 +53,13 @@ public class Navigation {
                                 )
                         ), new ProfileAccelerationConstraint(DriveConstants.MAX_ACCEL))
                         .build();
-                Shooter.on(Constants.powerConstant);
                 Robot.drive.followTrajectory(trajectory);
                 Robot.wait(500);
                 Robot.drive.followTrajectory(trajectory1);
                 Robot.wait(200);
                 Intake.succOut(0.4);
                 Robot.wait(300);
-                Shooter.shootOne();
                 Intake.stop();
-                Shooter.off();
                 break;
             case 4:
                 Trajectory trajectory2 = Robot.drive.trajectoryBuilder(Coordinates.shoot)
@@ -85,16 +78,13 @@ public class Navigation {
                                 )
                         ), new ProfileAccelerationConstraint(DriveConstants.MAX_ACCEL))
                         .build();
-                Shooter.on(Constants.powerConstant);
                 Robot.drive.followTrajectory(trajectory2);
                 Robot.wait(500);
                 Robot.drive.followTrajectory(trajectory3);
                 Robot.wait(200);
                 Intake.succOut(0.4);
                 Robot.wait(300);
-                Shooter.shootThree();
                 Intake.stop();
-                Shooter.off();
                 break;
         }
     }
@@ -109,30 +99,30 @@ public class Navigation {
                                         new MecanumVelocityConstraint(15, DriveConstants.TRACK_WIDTH)
                                 )
                         ), new ProfileAccelerationConstraint(DriveConstants.MAX_ACCEL))
-                        .addTemporalMarker(0, () -> Arm.moveDown(1))
-                        .addTemporalMarker(1.5, Arm::stop)
+                        .addTemporalMarker(0, () -> Lift.moveDown(1))
+                        .addTemporalMarker(1.5, Lift::stop)
                         .build();
                 Robot.drive.followTrajectory(trajectory);
                 break;
             case 1://B
                 Trajectory trajectory1 = Robot.drive.trajectoryBuilder(Coordinates.shoot)
                         .splineTo(new Vector2d(Coordinates.b.getX(), Coordinates.b.getY()), Coordinates.b.getHeading())
-                        .addTemporalMarker(0, () -> Arm.moveDown(1))
-                        .addTemporalMarker(1.5, Arm::stop)
+                        .addTemporalMarker(0, () -> Lift.moveDown(1))
+                        .addTemporalMarker(1.5, Lift::stop)
                         .build();
                 Robot.drive.followTrajectory(trajectory1);
                 break;
             case 4://C
                 Trajectory trajectory2 = Robot.drive.trajectoryBuilder(Coordinates.shoot)
                         .splineTo(new Vector2d(Coordinates.c.getX(), Coordinates.c.getY()), Coordinates.c.getHeading())
-                        .addTemporalMarker(0, () -> Arm.moveDown(1))
-                        .addTemporalMarker(1.5, Arm::stop)
+                        .addTemporalMarker(0, () -> Lift.moveDown(1))
+                        .addTemporalMarker(1.5, Lift::stop)
                         .build();
                 Robot.drive.followTrajectory(trajectory2);
                 break;
             }
             Robot.wait(800);
-            Arm.open();
+            Claw.open();
 
 
     }
@@ -173,7 +163,7 @@ public class Navigation {
             break;
         }
         Robot.wait(500);
-        Arm.close();
+        Claw.close();
         Robot.wait(500);
     }
     public static void bringWobble(int state){//0 is A, 1 is B, 4 is C
@@ -198,7 +188,7 @@ public class Navigation {
             Robot.drive.followTrajectory(trajectory2);
             break;
         }
-        Arm.open();
+        Claw.open();
         Robot.wait(500);
     }
     public static void goToLine(int state){

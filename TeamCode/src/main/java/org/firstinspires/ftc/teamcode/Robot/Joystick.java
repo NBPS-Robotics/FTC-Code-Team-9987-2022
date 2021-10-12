@@ -13,9 +13,9 @@ public class Joystick {
         //drive the robot
         Drivetrain.fieldCentricDrive(gamepad1.right_stick_x* Constants.turnPower, gamepad1.right_stick_y, gamepad1.left_trigger, gamepad1.right_trigger);
 
-        if (gamepad1.y) Shooter.on(Constants.powerConstant); //shooter control
+        if (gamepad1.y)  //shooter control
 
-        if (gamepad1.a) Shooter.off(); //shooter control
+        if (gamepad1.a)  //shooter control
 
         if (gamepad1.left_bumper) Drivetrain.speedControl(0.4); //drivetrain speed control
 
@@ -25,21 +25,20 @@ public class Joystick {
             //when at shooting position, reset the pose to eliminate the error over time
             Robot.myLocalizer.setPoseEstimate(Coordinates.shoot);
             Robot.drive.setPoseEstimate(Coordinates.shoot);
-            Shooter.shootThree();
         }
         if(gamepad1.b) Drivetrain.alignToShoot(); //align to the shooting position
 
-        if (gamepad1.right_bumper)Shooter.powerShot(); //score the powershot targets
+        if (gamepad1.right_bumper)//score the powershot targets
 
-        if (gamepad1.dpad_down) Arm.moveUp(1); //arm up
+        if (gamepad1.dpad_down) Lift.moveUp(1); //arm up
 
-        else if (gamepad1.dpad_up) Arm.moveDown(1); //arm down
+        else if (gamepad1.dpad_up) Lift.moveDown(1); //arm down
 
-        else Arm.stop();
+        else Lift.stop();
 
-        if (gamepad1.dpad_right) Arm.close(); //close the grabbers
+        if (gamepad1.dpad_right) Claw.close(); //close the grabbers
 
-        if (gamepad1.dpad_left) Arm.open(); //open the grabbers
+        if (gamepad1.dpad_left) Claw.open(); //open the grabbers
 
         Intake.succIn(gamepad1.left_stick_y); //intake control
     }
@@ -61,12 +60,12 @@ public class Joystick {
         Drivetrain.rightRear.setPower(RX);
 
         //check the arm
-        if(gamepad1.dpad_up) Arm.down();
-        if(gamepad1.dpad_down )Arm.up();
+        if(gamepad1.dpad_up)
+        if(gamepad1.dpad_down )
 
         //check the grabber
-        if(gamepad1.dpad_left) Arm.open();
-        if(gamepad1.dpad_right )Arm.close();
+        if(gamepad1.dpad_left) Claw.open();
+        if(gamepad1.dpad_right ) Claw.close();
 
         //if(gamepad1.dpad_left) Robot.MArm.setPower(1);
         //if(gamepad1.dpad_right )Robot.MIntake.setPower(1);
