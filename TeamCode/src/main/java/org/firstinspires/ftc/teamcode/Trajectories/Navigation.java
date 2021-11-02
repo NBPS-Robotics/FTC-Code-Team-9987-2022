@@ -9,8 +9,7 @@ import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationCon
 
 import org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.Robot.Claw;
-import org.firstinspires.ftc.teamcode.Robot.Intake;
-import org.firstinspires.ftc.teamcode.Robot.Lift;
+import org.firstinspires.ftc.teamcode.Robot.Arm;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
 import java.util.Arrays;
@@ -26,15 +25,15 @@ public class Navigation {
                                 new MecanumVelocityConstraint(35, DriveConstants.TRACK_WIDTH)
                         )
                 ), new ProfileAccelerationConstraint(DriveConstants.MAX_ACCEL))
-                .addTemporalMarker(0.6, () -> Lift.moveDown(1))
-                .addTemporalMarker(1.4, () -> Lift.moveDown(0.3))
-                .addTemporalMarker(3, Lift::stop)
+                //.addTemporalMarker(0.6, () -> Lift.moveDown(1))
+                //.addTemporalMarker(1.4, () -> Lift.moveDown(0.3))
+                //.addTemporalMarker(3, Lift::stop)
                 .build();
         Robot.drive.followTrajectory(trajectory);
     }
     public static void shootStack(int state){//1 is B, 4 is C (in A there is no stack)
         //drive.setPoseEstimate(Coordinates.shoot);
-        Intake.succIn(0.6);
+        //Arm.succIn(0.6);
         switch (state) {
             case 1:
                 Trajectory trajectory = Robot.drive.trajectoryBuilder(Coordinates.shoot)
@@ -57,9 +56,9 @@ public class Navigation {
                 Robot.wait(500);
                 Robot.drive.followTrajectory(trajectory1);
                 Robot.wait(200);
-                Intake.succOut(0.4);
+                //Arm.succOut(0.4);
                 Robot.wait(300);
-                Intake.stop();
+                Arm.stop();
                 break;
             case 4:
                 Trajectory trajectory2 = Robot.drive.trajectoryBuilder(Coordinates.shoot)
@@ -82,9 +81,9 @@ public class Navigation {
                 Robot.wait(500);
                 Robot.drive.followTrajectory(trajectory3);
                 Robot.wait(200);
-                Intake.succOut(0.4);
+                //Arm.succOut(0.4);
                 Robot.wait(300);
-                Intake.stop();
+                Arm.stop();
                 break;
         }
     }
@@ -99,24 +98,24 @@ public class Navigation {
                                         new MecanumVelocityConstraint(15, DriveConstants.TRACK_WIDTH)
                                 )
                         ), new ProfileAccelerationConstraint(DriveConstants.MAX_ACCEL))
-                        .addTemporalMarker(0, () -> Lift.moveDown(1))
-                        .addTemporalMarker(1.5, Lift::stop)
+                        //.addTemporalMarker(0, () -> Lift.moveDown(1))
+                        //.addTemporalMarker(1.5, Lift::stop)
                         .build();
                 Robot.drive.followTrajectory(trajectory);
                 break;
             case 1://B
                 Trajectory trajectory1 = Robot.drive.trajectoryBuilder(Coordinates.shoot)
                         .splineTo(new Vector2d(Coordinates.b.getX(), Coordinates.b.getY()), Coordinates.b.getHeading())
-                        .addTemporalMarker(0, () -> Lift.moveDown(1))
-                        .addTemporalMarker(1.5, Lift::stop)
+                        //.addTemporalMarker(0, () -> Lift.moveDown(1))
+                        //.addTemporalMarker(1.5, Lift::stop)
                         .build();
                 Robot.drive.followTrajectory(trajectory1);
                 break;
             case 4://C
                 Trajectory trajectory2 = Robot.drive.trajectoryBuilder(Coordinates.shoot)
                         .splineTo(new Vector2d(Coordinates.c.getX(), Coordinates.c.getY()), Coordinates.c.getHeading())
-                        .addTemporalMarker(0, () -> Lift.moveDown(1))
-                        .addTemporalMarker(1.5, Lift::stop)
+                        //.addTemporalMarker(0, () -> Lift.moveDown(1))
+                        //.addTemporalMarker(1.5, Lift::stop)
                         .build();
                 Robot.drive.followTrajectory(trajectory2);
                 break;

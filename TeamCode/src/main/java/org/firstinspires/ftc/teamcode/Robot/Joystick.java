@@ -30,17 +30,16 @@ public class Joystick {
 
         if (gamepad1.right_bumper)//score the powershot targets
 
-        if (gamepad1.dpad_down) Lift.moveUp(1); //arm up
+        if (gamepad1.dpad_down) Arm.moveUp(1); //arm up
 
-        else if (gamepad1.dpad_up) Lift.moveDown(1); //arm down
+        else if (gamepad1.dpad_up) Arm.moveDown(1); //arm down
 
-        else Lift.stop();
+        else Arm.stop();
 
         if (gamepad1.dpad_right) Claw.close(); //close the grabbers
 
         if (gamepad1.dpad_left) Claw.open(); //open the grabbers
 
-        Intake.succIn(gamepad1.left_stick_y); //intake control
     }
     /**
      * This function processes all the outputs of the gamepad in order to control the robot during the Testing OpMode.

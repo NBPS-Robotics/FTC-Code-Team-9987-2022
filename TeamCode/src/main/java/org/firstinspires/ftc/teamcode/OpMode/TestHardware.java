@@ -5,7 +5,7 @@ package org.firstinspires.ftc.teamcode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Robot.Intake;
+import org.firstinspires.ftc.teamcode.Robot.Arm;
 import org.firstinspires.ftc.teamcode.Robot.Joystick;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
@@ -18,7 +18,6 @@ public class TestHardware extends LinearOpMode {
         waitForStart();
             while (opModeIsActive()) {
                 Joystick.testControl(gamepad1);
-                Intake.succIn(1);
             }
     }
 }

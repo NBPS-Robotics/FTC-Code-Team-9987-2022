@@ -8,7 +8,7 @@ public class Claw {
     public static Servo m_claw;
 
     public static void init(HardwareMap hardwareMap){
-        m_claw = hardwareMap.servo.get("IntakeClaw");
+        m_claw = hardwareMap.servo.get("ArmClaw");
     }
 
     public static void close(){
