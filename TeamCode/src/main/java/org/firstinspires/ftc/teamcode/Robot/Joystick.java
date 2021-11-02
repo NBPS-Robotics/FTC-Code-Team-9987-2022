@@ -13,10 +13,6 @@ public class Joystick {
         //drive the robot
         Drivetrain.fieldCentricDrive(gamepad1.right_stick_x* Constants.turnPower, gamepad1.right_stick_y, gamepad1.left_trigger, gamepad1.right_trigger);
 
-        if (gamepad1.y)  //shooter control
-
-        if (gamepad1.a)  //shooter control
-
         if (gamepad1.left_bumper) Drivetrain.speedControl(0.4); //drivetrain speed control
 
         else Drivetrain.speedControl(1);
@@ -28,7 +24,7 @@ public class Joystick {
         }
         if(gamepad1.b) Drivetrain.alignToShoot(); //align to the shooting position
 
-        if (gamepad1.right_bumper)//score the powershot targets
+        if(gamepad1.a) Spinner.spin(0.6);
 
         if (gamepad1.dpad_down) Arm.moveUp(1); //arm up
 
@@ -39,6 +35,8 @@ public class Joystick {
         if (gamepad1.dpad_right) Claw.close(); //close the grabbers
 
         if (gamepad1.dpad_left) Claw.open(); //open the grabbers
+
+        Arm.step(gamepad1.left_stick_y);
 
     }
     /**
@@ -60,7 +58,7 @@ public class Joystick {
 
         //check the arm
         if(gamepad1.dpad_up)
-        if(gamepad1.dpad_down )
+        if(gamepad1.dpad_down)
 
         //check the grabber
         if(gamepad1.dpad_left) Claw.open();

@@ -23,8 +23,9 @@ public class Robot {
     private static void init(HardwareMap hardwareMap, Telemetry telemetry) {
         tele = telemetry; //assign the telemetry object
         Drivetrain.init(hardwareMap); //initialize the drivetrain
-        Arm.init(hardwareMap); //initialize the intake
-        Claw.init(hardwareMap); //initialize the arm
+        Arm.init(hardwareMap); //initialize the arm
+        Claw.init(hardwareMap); //initialize the claw
+        Spinner.init(hardwareMap); //initialize the spinner
         VoltageSensor.init(hardwareMap); //initialize the voltage sensor
         drive = new MyMecanumDrive(hardwareMap); //assign the drivetrain object for Road Runner
         myLocalizer = new StandardTrackingWheelLocalizer(hardwareMap); //assign the localizer object for Road Runner

@@ -13,13 +13,14 @@ public class Arm {
      */
     public static void init(HardwareMap hardwareMap){
         mArm = hardwareMap.dcMotor.get("mArm"); //arm motor assignment
-        //mArm2 = hardwareMap.dcMotor.get("mArm2"); //arm motor assignment
+        mArm2 = hardwareMap.dcMotor.get("mArm2"); //arm motor assignment
     }
     /**
      * This function stops the intake from running.
      */
     public static void stop(){
         mArm.setPower(0); //set the intake motor to power 0
+        mArm2.setPower(0); //set the intake motor to power 0
     }
     /**
      * This function runs the intake at a set power.
@@ -41,5 +42,9 @@ public class Arm {
      */
     public static void moveDown(double value){
         move(value);
+    }
+
+    public static void step(double value){
+        mArm2.setPower(value);
     }
 }
