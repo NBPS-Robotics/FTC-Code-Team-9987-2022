@@ -37,6 +37,7 @@ public class Joystick {
         if (gamepad1.dpad_left) Claw.open(); //open the grabbers
 
         Arm.step(gamepad1.left_stick_y);
+        //Arm.moveEncoder();
 
     }
     /**
