@@ -10,7 +10,7 @@ public class VoltageSensor {
      * @param hardwareMap HardwareMap object used to initialize the hardware of the robot.
      */
     public static void init(HardwareMap hardwareMap){
-    voltageSensor = hardwareMap.voltageSensor.get("Expansion Hub 2"); //Voltage sensor assignment
+    voltageSensor = hardwareMap.voltageSensor.get("Expansion Hub"); //Voltage sensor assignment
     }
     /**
      * This function return the voltage of the battery from the voltage sensor.
