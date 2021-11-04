@@ -10,10 +10,10 @@ import org.firstinspires.ftc.teamcode.Robot.Robot;
 
 @TeleOp(name = "PidTest", group = "OpModes")
 public class PidTest extends LinearOpMode {
-    int kP = 0;
-    int kI = 0;
-    int kD = 0;
-    int kF = 0;
+    double kP = 0.5;
+    double kI = 0.1;
+    double kD = 0.01;
+    double kF = 0.05;
     PIDFController pidf = new PIDFController(kP, kI, kD, kF);
 
     @Override
