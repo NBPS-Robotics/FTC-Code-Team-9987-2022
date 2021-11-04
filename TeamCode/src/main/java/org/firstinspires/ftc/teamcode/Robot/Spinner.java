@@ -24,6 +24,6 @@ public class Spinner {
      * @param value power at which the spinner will run
      */
     public static void spin(double value){
-        mSpinner.setPower(value);
+        mSpinner.setPower(-value);
     }
 }

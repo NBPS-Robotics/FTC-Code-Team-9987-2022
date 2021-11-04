@@ -9,7 +9,7 @@ public class Joystick {
      * This function processes all the outputs of the gamepad in order to control the robot during the TeleOp OpMode.
      * @param gamepad1 the gamepad object
      */
-    public static void teleopControl(Gamepad gamepad1){
+    public static void teleopControl(Gamepad gamepad1, boolean OpMode){
         //drive the robot
         Drivetrain.fieldCentricDrive(gamepad1.right_stick_x* Constants.turnPower, gamepad1.right_stick_y, gamepad1.left_trigger, gamepad1.right_trigger);
 
@@ -26,19 +26,16 @@ public class Joystick {
 
         if(gamepad1.a) Spinner.spin(0.6);
 
-        if (gamepad1.dpad_down) Arm.moveUp(1); //arm up
+        if (gamepad1.dpad_down) Arm.moveArm(10, OpMode); //arm up
 
-        else if (gamepad1.dpad_up) Arm.moveDown(1); //arm down
-
-        else Arm.stop();
+        else if (gamepad1.dpad_up) Arm.moveElbow(-10, OpMode); //arm down
 
         if (gamepad1.dpad_right) Claw.close(); //close the grabbers
 
         if (gamepad1.dpad_left) Claw.open(); //open the grabbers
 
-        Arm.step(gamepad1.left_stick_y);
-        //Arm.moveEncoder();
-
+        Arm.correctArm(OpMode);
+        Arm.correctElbow(OpMode);
     }
     /**
      * This function processes all the outputs of the gamepad in order to control the robot during the Testing OpMode.
