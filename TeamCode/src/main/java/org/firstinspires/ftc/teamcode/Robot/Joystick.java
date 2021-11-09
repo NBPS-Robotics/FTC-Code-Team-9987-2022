@@ -2,14 +2,12 @@ package org.firstinspires.ftc.teamcode.Robot;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.Trajectories.Coordinates;
-
 public class Joystick {
     /**
      * This function processes all the outputs of the gamepad in order to control the robot during the TeleOp OpMode.
      * @param gamepad1 the gamepad object
      */
-    public static void teleopControl(Gamepad gamepad1, boolean OpMode){
+    public static void teleopControl(Gamepad gamepad1){
         //drive the robot
         Drivetrain.fieldCentricDrive(gamepad1.right_stick_x* Constants.turnPower, gamepad1.right_stick_y, gamepad1.left_trigger, gamepad1.right_trigger);
 
@@ -17,25 +15,31 @@ public class Joystick {
 
         else Drivetrain.speedControl(1);
 
-        if(gamepad1.x){
+        if(gamepad1.y){
             //when at shooting position, reset the pose to eliminate the error over time
-            Robot.myLocalizer.setPoseEstimate(Coordinates.shoot);
-            Robot.drive.setPoseEstimate(Coordinates.shoot);
+            //Robot.myLocalizer.setPoseEstimate(Coordinates.shoot);
+            //Robot.drive.setPoseEstimate(Coordinates.shoot);
+            Arm.setElbow(10);
         }
-        if(gamepad1.b) Drivetrain.alignToShoot(); //align to the shooting position
 
-        if(gamepad1.a) Spinner.spin(0.6);
+        if(gamepad1.a) {
+            //Drivetrain.alignToShoot(); //align to the shooting position
+            Arm.setElbow(-10);
+        }
 
-        if (gamepad1.dpad_down) Arm.moveArm(10, OpMode); //arm up
 
-        else if (gamepad1.dpad_up) Arm.moveElbow(-10, OpMode); //arm down
+        if(gamepad1.b) Spinner.spin(0.6);
+
+        if (gamepad1.dpad_down) Arm.setArm(-10); //arm up
+
+        else if (gamepad1.dpad_up) Arm.setArm(10); //arm down
 
         if (gamepad1.dpad_right) Claw.close(); //close the grabbers
 
         if (gamepad1.dpad_left) Claw.open(); //open the grabbers
 
-        Arm.correctArm(OpMode);
-        Arm.correctElbow(OpMode);
+        Arm.correctArm();
+        Arm.correctElbow();
     }
     /**
      * This function processes all the outputs of the gamepad in order to control the robot during the Testing OpMode.

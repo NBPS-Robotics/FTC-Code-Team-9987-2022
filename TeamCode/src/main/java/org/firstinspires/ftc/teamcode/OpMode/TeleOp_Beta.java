@@ -16,7 +16,7 @@ public class TeleOp_Beta extends LinearOpMode {
         waitForStart();
             while (opModeIsActive()) {
                 Robot.update(telemetry);
-                Joystick.teleopControl(gamepad1, opModeIsActive());
+                Joystick.teleopControl(gamepad1);
             }
     }
 }

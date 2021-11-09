@@ -6,12 +6,13 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Arm {
     //initialize the intake motor object
-    public static DcMotor mArm;
-    public static DcMotor mElbow;
-    public static int currentPose;
-    public static int armPose;
-    public static int elbowPose;
+    static DcMotor mArm;
+    static DcMotor mElbow;
+    static int armPose = 0;
+    static int elbowPose = 0;
 
+    static PIDFController armPid = new PIDFController(Constants.kP_arm, Constants.kI_arm, Constants.kD_arm, Constants.kF_arm);
+    static PIDFController elbowPid = new PIDFController(Constants.kP_elbow, Constants.kI_elbow, Constants.kD_elbow, Constants.kF_elbow);
     /**
      * This function initializes all components of the Arm subsystem, including all motors and sensors.
      * @param hardwareMap HardwareMap object used to initialize the hardware of the robot.
@@ -33,52 +34,26 @@ public class Arm {
         mElbow.setPower(0); //set the intake motor to power 0
     }
     /**
-     * This function runs the intake at a set power.
-     * @param value power at which the intake will run
-     */
-    public static void moveEncoder(int value, double power, DcMotor motor, boolean OpMode){
-        motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motor.setTargetPosition(value);
-        motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motor.setPower(power);
-    }
-    /**
      * This function runs the intake INWARDS ONLY at a set power.
      * @param value power at which the intake will run INWARDS
      */
-    public static void moveArm(int value, boolean OpMode){
-        moveEncoder(value, 1, mArm, OpMode);
-        armPose = mArm.getCurrentPosition();
+    public static void setArm(int targetPose){
+        armPose += targetPose;
     }
     /**
      * This function runs the intake OUTWARDS ONLY at a set power.
      * @param value power at which the intake will run OUTWARDS
      */
-    public static void moveElbow(int value, boolean OpMode){
-        moveEncoder(value, 1 , mElbow, OpMode);
-        elbowPose = mElbow.getCurrentPosition();
+    public static void setElbow(int targetPose){
+        elbowPose += targetPose;
     }
 
-    public static void correctEncoder(int targetPose, double power, DcMotor motor, boolean OpMode){
-        currentPose = motor.getCurrentPosition();
-        if(currentPose != targetPose & OpMode) {
-            motor.setTargetPosition(currentPose - targetPose);
-            motor.setPower(power);
-        }
-            else{
-            motor.setPower(0);
-            motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            }
-
+    public static void correctArm(){
+        mArm.setPower(armPid.calculate(mArm.getCurrentPosition(),armPose));
     }
 
-    public static void correctArm(boolean OpMode){
-        correctEncoder(armPose, 1, mArm, OpMode);
-    }
-
-    public static void correctElbow(boolean OpMode){
-        correctEncoder(elbowPose, 1, mElbow, OpMode);
+    public static void correctElbow(){
+        mElbow.setPower(elbowPid.calculate(mElbow.getCurrentPosition(),elbowPose));
     }
 
 }

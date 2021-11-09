@@ -52,8 +52,8 @@ public class Drivetrain {
     public static void fieldCentricDrive(double RX, double RY, double LT, double RT){
         Robot.drive.setWeightedDrivePower(
                 new Pose2d(
-                        -RY*Constants.speed,
                         (LT-RT)*Constants.speed,
+                        -RY*Constants.speed,
                         (-RX)*Constants.speed
                 )
         );
