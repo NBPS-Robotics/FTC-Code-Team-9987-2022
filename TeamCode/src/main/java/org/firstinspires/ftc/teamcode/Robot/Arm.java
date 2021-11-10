@@ -27,6 +27,8 @@ public class Arm {
 
         mArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         mElbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armPose = 0;
+        elbowPose = 0;
     }
 
     public static void update(Telemetry telemetry){
@@ -49,10 +51,9 @@ public class Arm {
      */
     public static void setArm(int targetPose){
         armPose += targetPose;
-        if(armPose< -1000) elbowPose = armPose;
-        else elbowPose = -armPose - 2000;
+        //if(armPose< -1000) elbowPose = armPose;
+        //else elbowPose = -armPose - 2000;
     }
-
     /**
      * This function runs the intake OUTWARDS ONLY at a set power.
      * @param targetPose power at which the intake will run OUTWARDS
@@ -61,6 +62,15 @@ public class Arm {
         elbowPose += targetPose;
     }
 
+    public static void pickUp(){
+        armPose = -20;
+        elbowPose = -5;
+    }
+
+    public static void score(){
+        armPose = -2000;
+        elbowPose = -540;
+    }
     public static int getArmPose(){
         return mArm.getCurrentPosition();
     }

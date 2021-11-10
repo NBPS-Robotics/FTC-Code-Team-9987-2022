@@ -24,8 +24,8 @@ public class Constants {
     public static double KF_arm = 0;
 
     //Elbow Motor PIDF
-    public static double KP_elbow = 0.07;
-    public static double KD_elbow = 0.01;
+    public static double KP_elbow = 0.003;
+    public static double KD_elbow = 0.000;
     public static double KI_elbow = 0.0001;
     public static double KF_elbow = 0.0008;
 

@@ -26,6 +26,10 @@ public class Joystick {
         if (gamepad1.dpad_right) Claw.close(); //close the grabbers
 
         if (gamepad1.dpad_left) Claw.open(); //open the grabbers
+
+        if(gamepad1.a) Arm.pickUp();
+
+        if(gamepad1.y) Arm.score();
     }
     /**
      * This function processes all the outputs of the gamepad in order to control the robot during the Testing OpMode.
