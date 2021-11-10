@@ -4,6 +4,8 @@ import com.arcrobotics.ftclib.controller.PIDFController;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 public class Arm {
     //initialize the intake motor object
     static DcMotor mArm;
@@ -11,8 +13,8 @@ public class Arm {
     static int armPose = 0;
     static int elbowPose = 0;
 
-    static PIDFController armPid = new PIDFController(Constants.kP_arm, Constants.kI_arm, Constants.kD_arm, Constants.kF_arm);
-    static PIDFController elbowPid = new PIDFController(Constants.kP_elbow, Constants.kI_elbow, Constants.kD_elbow, Constants.kF_elbow);
+    static PIDFController armPid = new PIDFController(Constants.KP_arm, Constants.KI_arm, Constants.KD_arm, Constants.KF_arm);
+    static PIDFController elbowPid = new PIDFController(Constants.KP_elbow, Constants.KI_elbow, Constants.KD_elbow, Constants.KF_elbow);
     /**
      * This function initializes all components of the Arm subsystem, including all motors and sensors.
      * @param hardwareMap HardwareMap object used to initialize the hardware of the robot.
@@ -26,6 +28,14 @@ public class Arm {
         mArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         mElbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
+
+    public static void update(Telemetry telemetry){
+        correctArm();
+        correctElbow();
+        telemetry.addData("Arm", Arm.getArmPose());
+        telemetry.addData("Elbow", Arm.getElbowPose());
+        telemetry.update();
+    }
     /**
      * This function stops the intake from running.
      */
@@ -35,25 +45,37 @@ public class Arm {
     }
     /**
      * This function runs the intake INWARDS ONLY at a set power.
-     * @param value power at which the intake will run INWARDS
+     * @param  targetPose at which the intake will run INWARDS
      */
     public static void setArm(int targetPose){
         armPose += targetPose;
+        if(armPose< -1000) elbowPose = armPose;
+        else elbowPose = -armPose - 2000;
     }
+
     /**
      * This function runs the intake OUTWARDS ONLY at a set power.
-     * @param value power at which the intake will run OUTWARDS
+     * @param targetPose power at which the intake will run OUTWARDS
      */
     public static void setElbow(int targetPose){
         elbowPose += targetPose;
     }
 
+    public static int getArmPose(){
+        return mArm.getCurrentPosition();
+    }
+
+    public static int getElbowPose(){
+        return (int) (mElbow.getCurrentPosition()*Constants.CPR_multiplier);
+    }
+
+
     public static void correctArm(){
-        mArm.setPower(armPid.calculate(mArm.getCurrentPosition(),armPose));
+        mArm.setPower(armPid.calculate(getArmPose(),armPose));
     }
 
     public static void correctElbow(){
-        mElbow.setPower(elbowPid.calculate(mElbow.getCurrentPosition(),elbowPose));
+        mElbow.setPower(elbowPid.calculate(getElbowPose(),elbowPose));
     }
 
 }

@@ -53,7 +53,7 @@ public class Drivetrain {
         Robot.drive.setWeightedDrivePower(
                 new Pose2d(
                         (LT-RT)*Constants.speed,
-                        -RY*Constants.speed,
+                        RY*Constants.speed,
                         (-RX)*Constants.speed
                 )
         );

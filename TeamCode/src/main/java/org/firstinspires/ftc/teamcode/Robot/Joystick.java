@@ -15,31 +15,17 @@ public class Joystick {
 
         else Drivetrain.speedControl(1);
 
-        if(gamepad1.y){
-            //when at shooting position, reset the pose to eliminate the error over time
-            //Robot.myLocalizer.setPoseEstimate(Coordinates.shoot);
-            //Robot.drive.setPoseEstimate(Coordinates.shoot);
-            Arm.setElbow(10);
-        }
+        if(gamepad1.right_bumper) Spinner.spin(0.6);
 
-        if(gamepad1.a) {
-            //Drivetrain.alignToShoot(); //align to the shooting position
-            Arm.setElbow(-10);
-        }
+        else Spinner.spin(0);
 
+        if (gamepad1.dpad_down) Arm.setArm(10); //arm up
 
-        if(gamepad1.b) Spinner.spin(0.6);
-
-        if (gamepad1.dpad_down) Arm.setArm(-10); //arm up
-
-        else if (gamepad1.dpad_up) Arm.setArm(10); //arm down
+        else if (gamepad1.dpad_up) Arm.setArm(-10); //arm down
 
         if (gamepad1.dpad_right) Claw.close(); //close the grabbers
 
         if (gamepad1.dpad_left) Claw.open(); //open the grabbers
-
-        Arm.correctArm();
-        Arm.correctElbow();
     }
     /**
      * This function processes all the outputs of the gamepad in order to control the robot during the Testing OpMode.

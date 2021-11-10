@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
+import com.acmerobotics.dashboard.config.Config;
+
+@Config
 public class Constants {
     /*
     Declare all constants in this class to be used globally
@@ -15,15 +18,19 @@ public class Constants {
     public static final double powerShotTurn = 5.5;
 
     //Arm Motor PIDF
-    public static double kP_arm = 0.07;
-    public static double kD_arm = 0.01;
-    public static double kI_arm = 0;
-    public static double kF_arm = 0.0001;
+    public static double KP_arm = 0.002;
+    public static double KD_arm = 0.0001;
+    public static double KI_arm = 0.0001;
+    public static double KF_arm = 0;
 
     //Elbow Motor PIDF
-    public static double kP_elbow = 0.03;
-    public static double kD_elbow = 0.001;
-    public static double kI_elbow = 0;
-    public static double kF_elbow = 0.0008;
+    public static double KP_elbow = 0.07;
+    public static double KD_elbow = 0.01;
+    public static double KI_elbow = 0.0001;
+    public static double KF_elbow = 0.0008;
 
+    //ticks per revolution
+    public static double armCPR = 4200;
+    public static double elbowCPR = 288;
+    public static double CPR_multiplier = armCPR/elbowCPR;
 }
