@@ -15,6 +15,16 @@ import org.firstinspires.ftc.teamcode.Robot.Robot;
 import java.util.Arrays;
 
 public class Navigation {
+    public static void moveLeft(){
+        Trajectory trajectory = Robot.drive.trajectoryBuilder(Coordinates.shoot)
+                .strafeLeft(25, new MinVelocityConstraint(
+                        Arrays.asList(
+                                new AngularVelocityConstraint(DriveConstants.MAX_ANG_VEL),
+                                new MecanumVelocityConstraint(15, DriveConstants.TRACK_WIDTH)
+                        )
+                ), new ProfileAccelerationConstraint(DriveConstants.MAX_ACCEL))
+                .build();
+    }
     public static void goToShoot(){
         Robot.drive.setPoseEstimate(Coordinates.start);
         Trajectory trajectory = Robot.drive.trajectoryBuilder(Coordinates.start)

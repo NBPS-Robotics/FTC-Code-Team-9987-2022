@@ -29,6 +29,8 @@ public class Arm {
         mElbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armPose = 0;
         elbowPose = 0;
+        setArm(0);
+        setElbow(0);
     }
 
     public static void update(Telemetry telemetry){

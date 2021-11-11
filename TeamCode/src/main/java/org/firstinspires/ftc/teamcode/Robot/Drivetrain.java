@@ -46,13 +46,12 @@ public class Drivetrain {
      * The triggers are used for strafing instead of the other joystick.
      * @param RX x-axis of the right joystick
      * @param RY y-axis of the right joystick
-     * @param LT left trigger value
-     * @param RT right trigger value
+     * @param LX left trigger value
      */
-    public static void fieldCentricDrive(double RX, double RY, double LT, double RT){
+    public static void fieldCentricDrive(double RX, double RY, double LX){
         Robot.drive.setWeightedDrivePower(
                 new Pose2d(
-                        (LT-RT)*Constants.speed,
+                        (LX)*Constants.speed*0.6,
                         RY*Constants.speed,
                         (-RX)*Constants.speed
                 )

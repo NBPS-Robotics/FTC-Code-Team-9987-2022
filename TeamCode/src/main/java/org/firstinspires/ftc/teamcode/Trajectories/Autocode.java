@@ -5,6 +5,9 @@ import org.firstinspires.ftc.teamcode.Robot.Drivetrain;
 import org.firstinspires.ftc.teamcode.Vision.Camera;
 
 public class Autocode {
+    public static void moveLeft(){
+        Navigation.moveLeft();
+    }
     public static void a(Telemetry telemetry){
         telemetry.addData("Target Zone", "A");
         telemetry.update();

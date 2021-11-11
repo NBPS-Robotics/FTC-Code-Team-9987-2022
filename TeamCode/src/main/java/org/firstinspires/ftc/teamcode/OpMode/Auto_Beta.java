@@ -18,17 +18,7 @@ public class Auto_Beta extends LinearOpMode {
    public void runOpMode(){
         Robot.initAuto(hardwareMap, telemetry);
         waitForStart();
-        switch (Camera.getHeight()) {
-            case ZERO:
-                Autocode.a(telemetry);
-                break;
-            case ONE:
-                Autocode.b(telemetry);
-                break;
-            case FOUR:
-                Autocode.c(telemetry);
-                break;
-            }
+        Autocode.moveLeft();
     }
 }
 
