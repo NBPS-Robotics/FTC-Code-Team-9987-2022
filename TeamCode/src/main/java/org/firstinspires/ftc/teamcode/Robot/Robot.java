@@ -37,10 +37,10 @@ public class Robot {
      * @param telemetry Telemetry object used to initialize the telemetry to debug the code
      */
     public static void initAuto(HardwareMap hardwareMap, Telemetry telemetry){
-        Camera.init(hardwareMap, telemetry); //initialize the camera
+        //Camera.init(hardwareMap, telemetry); //initialize the camera
         init(hardwareMap, telemetry); //initialize the robot
         Claw.close(); //close the arm grippers
-        Camera.out(); //bring the camera out
+        //Camera.out(); //bring the camera out
         drive.setPoseEstimate(Coordinates.start); //set initial position for Road Runner
         myLocalizer.setPoseEstimate(Coordinates.start); //set initial position for Road Runner
         telemetry.addLine();
@@ -57,7 +57,7 @@ public class Robot {
         init(hardwareMap, telemetry); //initialize the robot
         drive.setPoseEstimate(Coordinates.end); //set the initial position for Road Runner
         myLocalizer.setPoseEstimate(Coordinates.end); //set the initial position for Road Runner
-        Claw.open(); // open the arm grippers
+        Claw.close(); // open the arm grippers
         telemetry.addLine();
         telemetry.addData(">", "Press Play to start op mode"); //telemetry confirmation
         telemetry.update();

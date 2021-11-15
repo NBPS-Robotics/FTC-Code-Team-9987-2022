@@ -18,7 +18,7 @@ public class Auto_Beta extends LinearOpMode {
    public void runOpMode(){
         Robot.initAuto(hardwareMap, telemetry);
         waitForStart();
-        Autocode.moveLeft();
+        //Autocode.moveLeft();
     }
 }
 

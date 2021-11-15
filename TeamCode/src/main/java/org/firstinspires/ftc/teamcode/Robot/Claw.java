@@ -12,10 +12,10 @@ public class Claw {
     }
 
     public static void close(){
-        m_claw.setPosition(0);
+        m_claw.setPosition(1);
     }
 
     public static void open(){
-        m_claw.setPosition(1);
+        m_claw.setPosition(0);
     }
 }

@@ -15,7 +15,7 @@ public class Joystick {
 
         else Drivetrain.speedControl(1);
 
-        if(gamepad1.right_bumper) Spinner.spin(0.6);
+        if(gamepad1.right_bumper) Spinner.spin(-0.6);
 
         else Spinner.spin(0);
 

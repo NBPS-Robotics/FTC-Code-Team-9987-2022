@@ -24,6 +24,8 @@ public class Navigation {
                         )
                 ), new ProfileAccelerationConstraint(DriveConstants.MAX_ACCEL))
                 .build();
+
+        Robot.drive.followTrajectory(trajectory);
     }
     public static void goToShoot(){
         Robot.drive.setPoseEstimate(Coordinates.start);

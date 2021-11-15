@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.Robot.Drivetrain;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 import org.firstinspires.ftc.teamcode.Trajectories.Autocode;
 import org.firstinspires.ftc.teamcode.Vision.Camera;
@@ -17,8 +18,11 @@ public class MainAuto extends LinearOpMode {
     public void runOpMode(){
         Robot.initAuto(hardwareMap, telemetry);
         waitForStart();
-        Autocode.moveLeft();
+        //Autocode.moveLeft();
+        Drivetrain.fieldCentricDrive(0,0.5,0);
+        Robot.wait(3000);
 
+        Drivetrain.stop();
     }
 }
 
