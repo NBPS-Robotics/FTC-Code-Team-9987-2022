@@ -6,7 +6,6 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Mecanum_Drive.MyMecanumDrive;
 import org.firstinspires.ftc.teamcode.Mecanum_Drive.StandardTrackingWheelLocalizer;
 import org.firstinspires.ftc.teamcode.Trajectories.Coordinates;
-import org.firstinspires.ftc.teamcode.Vision.Camera;
 
 public class Robot {
     //create the Mecanum Drive object for Road Runner
@@ -103,6 +102,7 @@ public class Robot {
         Robot.myLocalizer.update(); //update the localizer position
         Drivetrain.reportPose(); //report the current robot position to telemetry
         Arm.update(telemetry);
+        Claw.update();
     }
 }
 
