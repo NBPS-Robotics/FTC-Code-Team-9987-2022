@@ -26,6 +26,7 @@ public class Joystick {
         if (gamepad1.dpad_right) Claw.close(); //close the grabbers
 
         if (gamepad1.dpad_left) Claw.open(); //open the grabbers
+        else Claw.idle();
 
         if(gamepad1.a) Arm.pickUp();
 

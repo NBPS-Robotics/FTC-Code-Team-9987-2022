@@ -16,6 +16,9 @@ public class Claw {
     }
 
     public static void open(){
-        m_claw.setPower(-0.5);
+        m_claw.setPower(-1);
     }
+
+    public static void idle(){m_claw.setPower(0);}
+
 }
