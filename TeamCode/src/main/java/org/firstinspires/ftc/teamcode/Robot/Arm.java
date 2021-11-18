@@ -70,7 +70,7 @@ public class Arm {
     }
 
     public static void score(){
-        armPose = -2700;
+        armPose = -2600;
         elbowPose = 700;
     }
     public static int getArmPose(){

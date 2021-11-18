@@ -12,10 +12,10 @@ public class Claw {
     }
 
     public static void close(){
-        m_claw.setPower(1);
+        m_claw.setPower(0.5);
     }
 
     public static void open(){
-        m_claw.setPower(-1);
+        m_claw.setPower(-0.5);
     }
 }
