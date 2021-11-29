@@ -16,6 +16,7 @@ public class Constants {
     public static final double powerConstant = baseVoltage*targetShooterPower;
     public static final double shotConstant = baseVoltage*targetShotPower;
     public static final double powerShotTurn = 5.5;
+    public static final double spinnerSpeed = 0.5;
 
     //Arm Motor PIDF
     public static double KP_arm = 0.002;
