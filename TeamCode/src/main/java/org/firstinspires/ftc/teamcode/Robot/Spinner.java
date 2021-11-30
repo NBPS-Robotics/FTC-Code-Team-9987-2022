@@ -2,10 +2,14 @@ package org.firstinspires.ftc.teamcode.Robot;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.arcrobotics.ftclib.controller.PIDFController;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Spinner {
     //initialize the intake motor object
     public static DcMotor mSpinner;
+    static PIDFController spinnerPid = new PIDFController(Constants.KP_spinner, Constants.KI_spinner, Constants.KD_spinner, Constants.KF_spinner);
     /**
      * This function initializes all components of the Spinner subsystem, including all motors and sensors.
      * @param hardwareMap HardwareMap object used to initialize the hardware of the robot.
@@ -21,9 +25,8 @@ public class Spinner {
     }
     /**
      * This function runs the spinner at a set power.
-     * @param value power at which the spinner will run
      */
-    public static void spin(double value){
-        mSpinner.setPower(-value);
+    public static void spin(){
+        mSpinner.setPower(Constants.shotConstant/VoltageSensor.getVoltage());
     }
 }

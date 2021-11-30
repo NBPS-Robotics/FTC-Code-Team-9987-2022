@@ -22,7 +22,7 @@ public class Claw {
     }
 
     public static void update(){
-        if(clawPose) m_claw.setPower(0.5);
+        if(clawPose) m_claw.setPower(-0.5);
         else m_claw.setPower(0.3);
     }
 
