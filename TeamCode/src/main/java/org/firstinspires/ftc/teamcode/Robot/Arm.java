@@ -38,7 +38,6 @@ public class Arm {
         correctElbow();
         telemetry.addData("Arm", Arm.getArmPose());
         telemetry.addData("Elbow", Arm.getElbowPose());
-        telemetry.update();
     }
     /**
      * This function stops the intake from running.

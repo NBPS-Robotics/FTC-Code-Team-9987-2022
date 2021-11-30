@@ -36,6 +36,12 @@ public class Constants {
     public static double KI_spinner = 0;
     public static double KF_spinner = 0;
 
+    //Spinner Motor PIDF
+    public static double KP_claw = 0.005;
+    public static double KD_claw = 0;
+    public static double KI_claw = 0;
+    public static double KF_claw = 0;
+
     //ticks per revolution
     public static double armCPR = 4200;
     public static double elbowCPR = 288;

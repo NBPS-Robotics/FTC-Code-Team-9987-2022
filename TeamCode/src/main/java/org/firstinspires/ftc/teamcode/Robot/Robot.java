@@ -102,7 +102,7 @@ public class Robot {
         Robot.myLocalizer.update(); //update the localizer position
         Drivetrain.reportPose(); //report the current robot position to telemetry
         Arm.update(telemetry);
-        Claw.update();
+        Claw.update(telemetry);
     }
 }
 
