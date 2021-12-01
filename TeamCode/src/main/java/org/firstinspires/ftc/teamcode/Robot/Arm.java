@@ -69,8 +69,8 @@ public class Arm {
     }
 
     public static void score(){
-        armPose = -2600;
-        elbowPose = 700;
+        armPose = -2650;
+        elbowPose = 650;
     }
     public static int getArmPose(){
         return mArm.getCurrentPosition();
