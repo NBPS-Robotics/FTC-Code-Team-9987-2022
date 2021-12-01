@@ -1,5 +1,17 @@
 package org.firstinspires.ftc.teamcode.Mecanum_Drive;
 
+import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.MAX_ACCEL;
+import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.MAX_ANG_ACCEL;
+import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.MAX_ANG_VEL;
+import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.MOTOR_VELO_PID;
+import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.RUN_USING_ENCODER;
+import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.TRACK_WIDTH;
+import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.encoderTicksToInches;
+import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.kA;
+import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.kStatic;
+import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.kV;
+
 import androidx.annotation.NonNull;
 
 import com.acmerobotics.dashboard.FtcDashboard;
@@ -24,6 +36,7 @@ import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationCon
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAccelerationConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
 import com.acmerobotics.roadrunner.util.NanoClock;
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -39,18 +52,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-
-import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.MAX_ACCEL;
-import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.MAX_ANG_ACCEL;
-import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.MAX_ANG_VEL;
-import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.MAX_VEL;
-import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.MOTOR_VELO_PID;
-import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.TRACK_WIDTH;
-import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.encoderTicksToInches;
-import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.kA;
-import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.kStatic;
-import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.kV;
 
 /*
  * Simple mecanum drive hardware implementation for REV hardware.
@@ -94,7 +95,7 @@ public class MyMecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDri
     private final DcMotorEx rightRear;
     private final DcMotorEx rightFront;
     private final List<DcMotorEx> motors;
-    //private BNO055IMU imu;
+    private BNO055IMU imu;
 
     private final VoltageSensor batteryVoltageSensor;
 
@@ -171,7 +172,7 @@ public class MyMecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDri
         rightRear.setDirection(DcMotor.Direction.REVERSE);
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
-        setLocalizer(new StandardTrackingWheelLocalizer(hardwareMap));
+        //setLocalizer(new StandardTrackingWheelLocalizer(hardwareMap));
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
@@ -398,6 +399,10 @@ public class MyMecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDri
     @Override
     public double getRawExternalHeading() {
 
-        return 0;
+        return imu.getAngularOrientation().firstAngle;
+    }
+
+    public Double getExternalHeadingVelocity(){
+        return (double) imu.getAngularVelocity().zRotationRate;
     }
 }

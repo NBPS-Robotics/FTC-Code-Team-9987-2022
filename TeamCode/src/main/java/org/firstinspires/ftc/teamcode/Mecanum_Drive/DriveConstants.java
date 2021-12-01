@@ -45,8 +45,8 @@ public class DriveConstants {
      * convenience. Make sure to exclude any gear ratio included in MOTOR_CONFIG from GEAR_RATIO.
      */
     public static double WHEEL_RADIUS = 2; // in
-    public static double GEAR_RATIO = 0.95; // output (wheel) speed / input (motor) speed
-    public static double TRACK_WIDTH = 10.25; // in
+    public static double GEAR_RATIO = 1; // output (wheel) speed / input (motor) speed
+    public static double TRACK_WIDTH = 12; // in
 
     /*
      * These are the feedforward parameters used to model the drive motor behavior. If you are using
@@ -99,8 +99,8 @@ public class DriveConstants {
      
      */
 
-    public static double MAX_VEL = 42; //TODO: TRY A LOWER VELOCITY AND SEE IF IT MAKES SPLINES BETTER
-    public static double MAX_ACCEL = 35;
+    public static double MAX_VEL = 30; //TODO: TRY A LOWER VELOCITY AND SEE IF IT MAKES SPLINES BETTER
+    public static double MAX_ACCEL = 30;
     public static double MAX_ANG_VEL = 4; //TODO: TRY A LOWER VELOCITY AND SEE IF IT MAKES SPLINES BETTER
     public static double MAX_ANG_ACCEL = 4;
 

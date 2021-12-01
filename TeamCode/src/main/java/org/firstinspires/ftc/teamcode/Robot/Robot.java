@@ -4,14 +4,11 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Mecanum_Drive.MyMecanumDrive;
-import org.firstinspires.ftc.teamcode.Mecanum_Drive.StandardTrackingWheelLocalizer;
 import org.firstinspires.ftc.teamcode.Trajectories.Coordinates;
 
 public class Robot {
     //create the Mecanum Drive object for Road Runner
     public static MyMecanumDrive drive;
-    //create the Tracking Wheel localizer object for Road Runner
-    public static StandardTrackingWheelLocalizer myLocalizer;
     //create the telemetry object to use for debugging with telemetry
     public static Telemetry tele;
     /**
@@ -27,7 +24,6 @@ public class Robot {
         Spinner.init(hardwareMap); //initialize the spinner
         VoltageSensor.init(hardwareMap); //initialize the voltage sensor
         drive = new MyMecanumDrive(hardwareMap); //assign the drivetrain object for Road Runner
-        myLocalizer = new StandardTrackingWheelLocalizer(hardwareMap); //assign the localizer object for Road Runner
     }
     /**
      * This function initializes all parts of the robot for Autonomous OpMode by configuring the HardwareMap and making necessary object assignments.
@@ -41,7 +37,6 @@ public class Robot {
         Claw.close(); //close the arm grippers
         //Camera.out(); //bring the camera out
         drive.setPoseEstimate(Coordinates.start); //set initial position for Road Runner
-        myLocalizer.setPoseEstimate(Coordinates.start); //set initial position for Road Runner
         telemetry.addLine();
         telemetry.addData(">", "Press Play to start op mode"); //telemetry confirmation
         telemetry.update();
@@ -55,7 +50,6 @@ public class Robot {
     public static void initTeleOp(HardwareMap hardwareMap, Telemetry telemetry){
         init(hardwareMap, telemetry); //initialize the robot
         drive.setPoseEstimate(Coordinates.end); //set the initial position for Road Runner
-        myLocalizer.setPoseEstimate(Coordinates.end); //set the initial position for Road Runner
         Claw.close(); // open the arm grippers
         telemetry.addLine();
         telemetry.addData(">", "Press Play to start op mode"); //telemetry confirmation
@@ -71,7 +65,6 @@ public class Robot {
         init(hardwareMap, telemetry); //initialize the robot
         Claw.close(); //close the arm grippers
         drive.setPoseEstimate(Coordinates.start); //set the initial position for Road Runner
-        myLocalizer.setPoseEstimate(Coordinates.start); //set the initial position for Road Runner
         telemetry.addLine();
         telemetry.addData(">", "Press Play to start op mode"); //telemetry confirmation
         telemetry.update();
@@ -99,7 +92,6 @@ public class Robot {
     public static void update(Telemetry telemetry){
         telemetry.update(); //update the telemetry
         Robot.drive.update(); //update the robot's position
-        Robot.myLocalizer.update(); //update the localizer position
         Drivetrain.reportPose(); //report the current robot position to telemetry
         Arm.update(telemetry);
         Claw.update(telemetry);
