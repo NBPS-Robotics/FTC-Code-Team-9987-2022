@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
-import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -61,22 +59,22 @@ public class Drivetrain {
      * This function uses navigation to move the robot to the shooting position.
      * Keep in mind that the position of the robot has to be updated after the function runs in order to reduce error over time.
      */
-    public static void alignToShoot(){
+    /*ublic static void alignToShoot(){
         Trajectory trajectory = Robot.drive.trajectoryBuilder(Robot.myLocalizer.getPoseEstimate())
                 .splineTo(new Vector2d(Coordinates.shoot.getX(), Coordinates.shoot.getY()), Coordinates.shoot.getHeading())
                 .build();
         Robot.drive.followTrajectory(trajectory);
 
-    }
+    }*/
     /**
      * This function reports the current position of the robot on the field to the telemetry.
      */
     public static void reportPose(){
-        Pose2d myPose = Robot.myLocalizer.getPoseEstimate();
+        /*Pose2d myPose = Robot.myLocalizer.getPoseEstimate();
 
         Robot.tele.addData("x", myPose.getX());
         Robot.tele.addData("y", myPose.getY());
-        Robot.tele.addData("heading", myPose.getHeading());
+        Robot.tele.addData("heading", myPose.getHeading());*/
     }
     /**
      * This function saves the final position of the robot in Autonomous OpMode in order to use it in TeleOp OpMode.
