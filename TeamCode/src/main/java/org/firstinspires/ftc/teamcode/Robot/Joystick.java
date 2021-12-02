@@ -15,9 +15,7 @@ public class Joystick {
 
         else Drivetrain.speedControl(1);
 
-        if(gamepad1.right_bumper) Spinner.spin();
-
-        else Spinner.stop();
+        Spinner.spin(-gamepad1.left_trigger+gamepad1.right_trigger);
 
         if (gamepad1.dpad_down) Arm.setArm(10); //arm up
 
@@ -56,7 +54,5 @@ public class Joystick {
         if(gamepad1.dpad_left) Claw.open();
         if(gamepad1.dpad_right ) Claw.close();
 
-        //if(gamepad1.dpad_left) Robot.MArm.setPower(1);
-        //if(gamepad1.dpad_right )Robot.MIntake.setPower(1);
     }
 }

@@ -26,7 +26,7 @@ public class Spinner {
     /**
      * This function runs the spinner at a set power.
      */
-    public static void spin(){
-        mSpinner.setPower(Constants.shotConstant/VoltageSensor.getVoltage());
+    public static void spin(double value){
+        mSpinner.setPower(Constants.spinnerConstant/VoltageSensor.getVoltage() * value);
     }
 }

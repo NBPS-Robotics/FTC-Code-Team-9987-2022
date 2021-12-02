@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Mecanum_Drive.MyMecanumDrive;
 import org.firstinspires.ftc.teamcode.Trajectories.Coordinates;
+import org.firstinspires.ftc.teamcode.Vision.Camera;
 
 public class Robot {
     //create the Mecanum Drive object for Road Runner
@@ -32,10 +33,9 @@ public class Robot {
      * @param telemetry Telemetry object used to initialize the telemetry to debug the code
      */
     public static void initAuto(HardwareMap hardwareMap, Telemetry telemetry){
-        //Camera.init(hardwareMap, telemetry); //initialize the camera
+        Camera.init(hardwareMap, telemetry); //initialize the camera
         init(hardwareMap, telemetry); //initialize the robot
         Claw.close(); //close the arm grippers
-        //Camera.out(); //bring the camera out
         drive.setPoseEstimate(Coordinates.start); //set initial position for Road Runner
         telemetry.addLine();
         telemetry.addData(">", "Press Play to start op mode"); //telemetry confirmation

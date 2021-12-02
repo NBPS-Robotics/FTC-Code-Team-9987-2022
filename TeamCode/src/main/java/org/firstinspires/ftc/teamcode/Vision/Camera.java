@@ -35,7 +35,7 @@ public class Camera {
 
         UGContourRingPipeline.Config.setHORIZON(HORIZON); //set the horizon
 
-        camera.openCameraDeviceAsync(() -> camera.startStreaming(CAMERA_WIDTH, CAMERA_HEIGHT, OpenCvCameraRotation.UPRIGHT)); //set up camera stream
+        //camera.openCameraDeviceAsync(() -> camera.startStreaming(CAMERA_WIDTH, CAMERA_HEIGHT, OpenCvCameraRotation.UPRIGHT)); //set up camera stream
      }
 
     /**

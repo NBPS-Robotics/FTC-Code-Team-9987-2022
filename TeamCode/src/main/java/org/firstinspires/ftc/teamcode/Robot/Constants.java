@@ -11,12 +11,8 @@ public class Constants {
     public static final double baseVoltage = 13.5; //EDIT THIS TO CHANGE THE BASE VOLTAGE
     public static double speed = 1; //Speed Control
     public static double targetSpinnerPower = 0.48;    //EDIT THIS TO CHANGE THE POWER OF THE SHOOTER
-    public static final double targetShotPower = 0.39; //EDIT THIS TO CHANGE THE POWER OF THE SHOOTER FOR THE POWER SHOT
     public static final double turnPower = 0.7; //Turning Power
-    public static final double powerConstant = baseVoltage*targetSpinnerPower;
-    public static final double shotConstant = baseVoltage*targetShotPower;
-    public static final double powerShotTurn = 5.5;
-    public static final double spinnerSpeed = 0.5;
+    public static final double spinnerConstant = baseVoltage*targetSpinnerPower;
 
     //Arm Motor PIDF
     public static double KP_arm = 0.002;
