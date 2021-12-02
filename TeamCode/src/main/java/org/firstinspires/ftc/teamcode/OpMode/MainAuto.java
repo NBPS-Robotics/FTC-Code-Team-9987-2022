@@ -17,12 +17,9 @@ public class MainAuto extends LinearOpMode {
     @Override
     public void runOpMode(){
         Robot.initAuto(hardwareMap, telemetry);
+        while(!opModeIsActive()) Robot.update(telemetry);
         waitForStart();
-        //Autocode.moveLeft();
-        Drivetrain.fieldCentricDrive(0,0.5,0);
-        Robot.wait(3000);
-
-        Drivetrain.stop();
+        Autocode.moveLeft();
     }
 }
 

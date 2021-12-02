@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Trajectories;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.trajectory.constraints.AngularVelocityConstraint;
@@ -16,13 +17,8 @@ import java.util.Arrays;
 
 public class Navigation {
     public static void moveLeft(){
-        Trajectory trajectory = Robot.drive.trajectoryBuilder(Coordinates.shoot)
-                .strafeLeft(25, new MinVelocityConstraint(
-                        Arrays.asList(
-                                new AngularVelocityConstraint(DriveConstants.MAX_ANG_VEL),
-                                new MecanumVelocityConstraint(15, DriveConstants.TRACK_WIDTH)
-                        )
-                ), new ProfileAccelerationConstraint(DriveConstants.MAX_ACCEL))
+        Trajectory trajectory = Robot.drive.trajectoryBuilder(Coordinates.start)
+                .strafeRight(75)
                 .build();
 
         Robot.drive.followTrajectory(trajectory);
