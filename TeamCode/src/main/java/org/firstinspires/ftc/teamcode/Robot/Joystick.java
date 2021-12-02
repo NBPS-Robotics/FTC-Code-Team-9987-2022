@@ -9,7 +9,7 @@ public class Joystick {
      */
     public static void teleopControl(Gamepad gamepad1){
         //drive the robot
-        Drivetrain.fieldCentricDrive(gamepad1.right_stick_x* Constants.turnPower, gamepad1.right_stick_y, gamepad1.left_stick_x);
+        Drivetrain.fieldCentricDrive(gamepad1.right_stick_x* Constants.turnPower, gamepad1.right_stick_y, -gamepad1.left_stick_x);
 
         if (gamepad1.left_bumper) Drivetrain.speedControl(0.4); //drivetrain speed control
 
@@ -27,7 +27,11 @@ public class Joystick {
 
         if(gamepad1.a) Arm.pickUp();
 
-        if(gamepad1.y) Arm.score();
+        if(gamepad1.x) Arm.scoreBottom();
+
+        if(gamepad1.b) Arm.scoreMiddle();
+
+        if(gamepad1.y) Arm.scoreTop();
     }
     /**
      * This function processes all the outputs of the gamepad in order to control the robot during the Testing OpMode.

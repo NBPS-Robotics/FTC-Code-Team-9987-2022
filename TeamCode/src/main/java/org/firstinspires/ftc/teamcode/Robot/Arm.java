@@ -68,9 +68,21 @@ public class Arm {
         elbowPose = -5;
     }
 
-    public static void score(){
-        armPose = -2650;
-        elbowPose = 650;
+    public static void scoreTop(){
+        armPose = Constants.arm3;
+        elbowPose = Constants.elbow3;
+    }
+    public static void scoreMiddle(){
+        armPose = Constants.arm2;
+        elbowPose = Constants.elbow2;
+    }
+    public static void scoreBottom(){
+        armPose = Constants.arm1;
+        elbowPose = Constants.elbow1;
+    }
+
+    public static void setElbowUp(){
+        setElbow(Constants.autoElbowPose);
     }
     public static int getArmPose(){
         return mArm.getCurrentPosition();
@@ -87,6 +99,19 @@ public class Arm {
 
     public static void correctElbow(){
         mElbow.setPower(elbowPid.calculate(getElbowPose(),elbowPose));
+    }
+    public static void armUpAuto(Telemetry telemetry){
+        Arm.scoreTop();
+        while(Arm.getArmPose()>=-2700){
+            Arm.update(telemetry);
+        }
+    }
+    public static void armDownAuto(Telemetry telemetry){
+        Arm.pickUp();
+
+        while(Arm.getArmPose()<=-100){
+            Arm.update(telemetry);
+        }
     }
 
 }
