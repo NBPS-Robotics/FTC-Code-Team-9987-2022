@@ -59,13 +59,13 @@ public class Drivetrain {
      * This function uses navigation to move the robot to the shooting position.
      * Keep in mind that the position of the robot has to be updated after the function runs in order to reduce error over time.
      */
-    /*ublic static void alignToShoot(){
-        Trajectory trajectory = Robot.drive.trajectoryBuilder(Robot.myLocalizer.getPoseEstimate())
+    public static void alignToShoot(){
+        /*Trajectory trajectory = Robot.drive.trajectoryBuilder(Robot.myLocalizer.getPoseEstimate())
                 .splineTo(new Vector2d(Coordinates.shoot.getX(), Coordinates.shoot.getY()), Coordinates.shoot.getHeading())
                 .build();
         Robot.drive.followTrajectory(trajectory);
-
-    }*/
+*/
+    }
     /**
      * This function reports the current position of the robot on the field to the telemetry.
      */
