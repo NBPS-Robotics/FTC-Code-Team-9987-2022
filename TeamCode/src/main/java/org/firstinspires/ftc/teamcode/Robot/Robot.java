@@ -36,7 +36,7 @@ public class Robot {
         Camera.init(hardwareMap, telemetry); //initialize the camera
         init(hardwareMap, telemetry); //initialize the robot
         Claw.close(); //close the arm grippers
-        drive.setPoseEstimate(Coordinates.start); //set initial position for Road Runner
+        drive.setPoseEstimate(Coordinates.redStart1); //set initial position for Road Runner
         telemetry.addLine();
         telemetry.addData(">", "Press Play to start op mode"); //telemetry confirmation
         telemetry.update();
@@ -64,7 +64,7 @@ public class Robot {
     public static void initTest(HardwareMap hardwareMap, Telemetry telemetry){
         init(hardwareMap, telemetry); //initialize the robot
         Claw.close(); //close the arm grippers
-        drive.setPoseEstimate(Coordinates.start); //set the initial position for Road Runner
+        drive.setPoseEstimate(Coordinates.redStart1); //set the initial position for Road Runner
         telemetry.addLine();
         telemetry.addData(">", "Press Play to start op mode"); //telemetry confirmation
         telemetry.update();

@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 
 @Config
 public class Constants {
@@ -42,4 +43,8 @@ public class Constants {
     public static double armCPR = 4200;
     public static double elbowCPR = 288;
     public static double CPR_multiplier = armCPR/elbowCPR;
+
+    //Auto Constants
+
+
 }

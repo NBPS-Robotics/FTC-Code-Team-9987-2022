@@ -2,51 +2,53 @@ package org.firstinspires.ftc.teamcode.Trajectories;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Robot.Drivetrain;
-import org.firstinspires.ftc.teamcode.Vision.Camera;
 
 public class Autocode {
     public static void moveLeft(){
-        Navigation.moveLeft();
+        Navigation.moveLeft(Coordinates.redStart1);
     }
-    public static void a(Telemetry telemetry){
-        telemetry.addData("Target Zone", "A");
+
+    public static void Red1(Telemetry telemetry){
+        telemetry.addData("Read Alliance Starting Zone 1", ">>>");
         telemetry.update();
-        Camera.in();
-        Navigation.goToShoot();
-        Navigation.goToZone(0);
-        Navigation.getWobble(0);
-        Navigation.bringWobble(0);
-        Navigation.goToLine(0);
+        Navigation.goToGoal(Coordinates.redStart1,Coordinates.redGoalWall,Coordinates.redGoal);
+        //add code to score element
+        Navigation.goToCarousel(Coordinates.redGoal,Coordinates.redSpinnerWall,Coordinates.redSpinner);
+        //add code to spin
+        Navigation.goToStorage(Coordinates.redSpinner,Coordinates.redStorage);
         Drivetrain.setEndPose();
     }
-    public static void b(Telemetry telemetry){
-        telemetry.addData("Target Zone", "B");
+    public static void Red2(Telemetry telemetry){
+        telemetry.addData("Read Alliance Starting Zone 1", ">>>");
         telemetry.update();
-        Camera.in();
-        Navigation.goToShoot();
-        Navigation.shootStack(1);
-        Navigation.goToZone(1);
-        Navigation.getWobble(1);
-        Navigation.bringWobble(1);
-        Navigation.goToLine(1);
+        Navigation.goToGoal(Coordinates.redStart2,Coordinates.redGoalWall,Coordinates.redGoal);
+        //add code to score element
+        Navigation.goToWarehouse(Coordinates.redGoal,Coordinates.redGoalWall,Coordinates.redWarehouse);
         Drivetrain.setEndPose();
     }
-    public static void c(Telemetry telemetry){
-        telemetry.addData("Target Zone", "C");
+    public static void Blue1(Telemetry telemetry){
+        telemetry.addData("Read Alliance Starting Zone 1", ">>>");
         telemetry.update();
-        Camera.in();
-        Navigation.goToShoot();
-        Navigation.shootStack(4);
-        Navigation.goToZone(4);
-        //Navigation.getWobble(4);
-        //Navigation.bringWobble(4);
-        Navigation.goToLine(4);
+        Navigation.goToGoal(Coordinates.blueStart1,Coordinates.blueGoalWall,Coordinates.blueGoal);
+        //add code to score element
+        Navigation.goToCarousel(Coordinates.blueGoal,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
+        //add code to spin
+        Navigation.goToStorage(Coordinates.blueSpinner,Coordinates.blueStorage);
+        Drivetrain.setEndPose();
+    }
+    public static void Blue2(Telemetry telemetry){
+        telemetry.addData("Read Alliance Starting Zone 1", ">>>");
+        telemetry.update();
+        Navigation.goToGoal(Coordinates.blueStart2,Coordinates.blueGoalWall,Coordinates.blueGoal);
+        //add code to score element
+        Navigation.goToWarehouse(Coordinates.blueGoal,Coordinates.blueGoalWall,Coordinates.blueWarehouse);
         Drivetrain.setEndPose();
     }
     public static void test(Telemetry telemetry){
         telemetry.addData("Testing Autonomous", ">>>");
         telemetry.update();
-        Navigation.goToShoot();
+        Navigation.goToGoal(Coordinates.redStart1, Coordinates.redGoalWall, Coordinates.redGoal);
+        //Navigation.goToShoot();
         //Robot.shootStack(1, ExpansionHub1_VoltageSensor.getVoltage());
         //Robot.wait(1000);
         //Robot.ShootOne(ExpansionHub1_VoltageSensor.getVoltage());

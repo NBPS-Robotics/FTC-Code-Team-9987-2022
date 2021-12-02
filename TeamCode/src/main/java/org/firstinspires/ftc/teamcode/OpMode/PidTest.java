@@ -3,13 +3,14 @@ package org.firstinspires.ftc.teamcode.OpMode;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.controller.PIDFController;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp(name = "PidTest", group = "OpModes")
 @Config
-//@Disabled
+@Disabled
 public class PidTest extends LinearOpMode {
     public static double P = 0.01;
     public static double I = 0.0;
