@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -32,11 +33,11 @@ public class Robot {
      * @param hardwareMap HardwareMap object used to initialize the hardware of the robot
      * @param telemetry Telemetry object used to initialize the telemetry to debug the code
      */
-    public static void initAuto(HardwareMap hardwareMap, Telemetry telemetry){
+    public static void initAuto(HardwareMap hardwareMap, Telemetry telemetry, Pose2d startPose){
         Camera.init(hardwareMap, telemetry); //initialize the camera
         init(hardwareMap, telemetry); //initialize the robot
         Claw.close(); //close the arm grippers
-        drive.setPoseEstimate(Coordinates.redStart1); //set initial position for Road Runner
+        drive.setPoseEstimate(startPose); //set initial position for Road Runner
         telemetry.addLine();
         telemetry.addData(">", "Press Play to start op mode"); //telemetry confirmation
         telemetry.update();
