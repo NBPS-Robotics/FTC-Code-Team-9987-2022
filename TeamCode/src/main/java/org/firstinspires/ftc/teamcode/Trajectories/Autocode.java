@@ -15,7 +15,7 @@ public class Autocode {
     public static void Red1(Telemetry telemetry){
         telemetry.addData("Read Alliance Starting Zone 1", ">>>");
         telemetry.update();
-        Navigation.goToGoal(Coordinates.redStart1,Coordinates.redGoalWall,Coordinates.redGoal);
+        Navigation.goToGoal(Coordinates.redStart1,Coordinates.redGoalPoint1,Coordinates.redGoal);
         scoreElement(telemetry);
         Navigation.goToCarousel(Coordinates.redGoal,Coordinates.redSpinnerWall,Coordinates.redSpinner);
         spinner(1);
@@ -25,7 +25,7 @@ public class Autocode {
     public static void Red2(Telemetry telemetry){
         telemetry.addData("Read Alliance Starting Zone 1", ">>>");
         telemetry.update();
-        Navigation.goToGoal(Coordinates.redStart2,Coordinates.redGoalWall,Coordinates.redGoal);
+        Navigation.goToGoal(Coordinates.redStart2,Coordinates.redGoalPoint2,Coordinates.redGoal);
         scoreElement(telemetry);
         Navigation.goToWarehouse(Coordinates.redGoal,Coordinates.redGoalWall2,Coordinates.redWarehouse);
         Drivetrain.setEndPose();
@@ -33,7 +33,7 @@ public class Autocode {
     public static void Blue1(Telemetry telemetry){
         telemetry.addData("Read Alliance Starting Zone 1", ">>>");
         telemetry.update();
-        Navigation.goToGoal(Coordinates.blueStart1,Coordinates.blueGoalWall,Coordinates.blueGoal);
+        Navigation.goToGoal(Coordinates.blueStart1,Coordinates.blueGoalPoint1,Coordinates.blueGoal);
         scoreElement(telemetry);
         Navigation.goToCarousel(Coordinates.blueGoal,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
         spinner(-1);
@@ -43,7 +43,7 @@ public class Autocode {
     public static void Blue2(Telemetry telemetry){
         telemetry.addData("Read Alliance Starting Zone 1", ">>>");
         telemetry.update();
-        Navigation.goToGoal(Coordinates.blueStart2,Coordinates.blueGoalWall,Coordinates.blueGoal);
+        Navigation.goToGoal(Coordinates.blueStart2,Coordinates.blueGoalPoint2,Coordinates.blueGoal);
         scoreElement(telemetry);
         Navigation.goToWarehouse(Coordinates.blueGoal,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
         Drivetrain.setEndPose();
@@ -65,7 +65,7 @@ public class Autocode {
     }
     public static void spinner(double value){
         Spinner.spin(value);
-        Robot.wait(2000);
+        Robot.wait(3000);
         Spinner.stop();
     }
     public static void scoreElement(Telemetry telemetry){
@@ -79,6 +79,9 @@ public class Autocode {
         Arm.update(telemetry);
         Robot.wait(1000);
         Arm.armDownAuto(telemetry);
+        Claw.close();
+        Claw.update(telemetry);
+        Robot.wait(500);
         Arm.stop();
     }
 }

@@ -23,19 +23,19 @@ public class Navigation {
 
         Robot.drive.followTrajectory(trajectory);
     }
-    public static void goToGoal(Pose2d start,Pose2d goalWall, Pose2d goal){
+    public static void goToGoal(Pose2d start,Pose2d goalPoint, Pose2d goal){
         Robot.drive.setPoseEstimate(start);
         Trajectory trajectory = Robot.drive.trajectoryBuilder(start)
-                .lineTo(new Vector2d(goalWall.getX(), goalWall.getY()))
+                .lineToLinearHeading(goalPoint)
                 .build();
-        Trajectory trajectory2 = Robot.drive.trajectoryBuilder(goalWall)
-                .strafeTo(new Vector2d(goal.getX(), goal.getY()))
+        Trajectory trajectory2 = Robot.drive.trajectoryBuilder(goalPoint)
+                .lineToLinearHeading(goal)
                 .build();
         Robot.drive.followTrajectory(trajectory);
         Robot.drive.followTrajectory(trajectory2);
     }
     public static void goToWarehouse(Pose2d goal,Pose2d goalWall, Pose2d warehouse){
-        Robot.drive.setPoseEstimate(goal);
+        //Robot.drive.setPoseEstimate(goal);
         Trajectory trajectory = Robot.drive.trajectoryBuilder(goal)
                 .lineToLinearHeading(goalWall)
                 .build();
@@ -46,7 +46,7 @@ public class Navigation {
         Robot.drive.followTrajectory(trajectory2);
     }
     public static void goToCarousel(Pose2d goal, Pose2d spinnerWall, Pose2d spinner){
-        Robot.drive.setPoseEstimate(goal);
+        //Robot.drive.setPoseEstimate(goal);
         if(goal.getHeading()==0) Robot.drive.turn(Math.toRadians(90));
         else Robot.drive.turn(Math.toRadians(-90));
         Trajectory trajectory = Robot.drive.trajectoryBuilder(new Pose2d(goal.getX(),goal.getY(), Coordinates.redSpinnerWall.getHeading()))
@@ -59,7 +59,7 @@ public class Navigation {
         Robot.drive.followTrajectory(trajectory2);
     }
     public static void goToStorage(Pose2d spinner, Pose2d storage){
-        Robot.drive.setPoseEstimate(spinner);
+        //Robot.drive.setPoseEstimate(spinner);
         Trajectory trajectory = Robot.drive.trajectoryBuilder(spinner)
                 .lineToLinearHeading(storage)
                 .build();
