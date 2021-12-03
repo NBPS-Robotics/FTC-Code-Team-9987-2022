@@ -69,8 +69,13 @@ public class Autocode {
         Spinner.stop();
     }
     public static void scoreElement(Telemetry telemetry){
-        Arm.armUpAuto(telemetry);
+        Arm.scoreTop();
+        for(int i=0;i<50;i++){
+            Arm.update(telemetry);
+            Robot.wait(30);
+        }
         Claw.open();
+        Claw.update(telemetry);
         Arm.update(telemetry);
         Robot.wait(1000);
         Arm.armDownAuto(telemetry);

@@ -5,16 +5,17 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name = "OpenCV Test", group = "OpModes")
-@Disabled
+//@Disabled
 public class OpenCvTest extends LinearOpMode {
     @Override
     public void runOpMode() {
         Camera.init(hardwareMap, telemetry); //initialize the camera
+        telemetry.addData("Camera Ready", ""); //report stack height
+        telemetry.update();
         waitForStart();
         if (opModeIsActive()) {
-            Camera.out(); //move the camera out
             while (opModeIsActive()) {
-                telemetry.addData("[Ring Stack] >>", Camera.getHeight()); //report stack height
+                telemetry.addData("Duck Position", Camera.getPosition(telemetry)); //report stack height
                 telemetry.update();
             }
         }

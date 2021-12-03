@@ -36,8 +36,8 @@ public class Robot {
     public static void initAuto(HardwareMap hardwareMap, Telemetry telemetry, Pose2d startPose){
         Camera.init(hardwareMap, telemetry); //initialize the camera
         init(hardwareMap, telemetry); //initialize the robot
-        Arm.elbowPose = Constants.autoElbowPose;
         Claw.close(); //close the arm grippers
+        Claw.update(telemetry);
         drive.setPoseEstimate(startPose); //set initial position for Road Runner
         telemetry.addLine();
         telemetry.addData(">", "Press Play to start op mode"); //telemetry confirmation

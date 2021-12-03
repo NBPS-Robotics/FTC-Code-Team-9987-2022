@@ -16,7 +16,7 @@ public class Constants {
     public static final double spinnerConstant = baseVoltage*targetSpinnerPower;
 
     //Arm positions
-    public static int arm3 = -2700;
+    public static int arm3 = -2600;
     public static int elbow3 = 700;
     public static int arm2 = -3000;
     public static int elbow2 = 1100;
@@ -53,6 +53,6 @@ public class Constants {
     public static double CPR_multiplier = armCPR/elbowCPR;
 
     //Auto Constants
-    public static int autoElbowPose = -1900;
+    public static int autoElbowPose = -1600;
 
 }

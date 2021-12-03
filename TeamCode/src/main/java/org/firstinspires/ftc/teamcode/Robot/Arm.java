@@ -82,7 +82,7 @@ public class Arm {
     }
 
     public static void setElbowUp(){
-        setElbow(Constants.autoElbowPose);
+        elbowPose = Constants.autoElbowPose;
     }
     public static int getArmPose(){
         return mArm.getCurrentPosition();
@@ -102,8 +102,11 @@ public class Arm {
     }
     public static void armUpAuto(Telemetry telemetry){
         Arm.scoreTop();
-        while(Arm.getArmPose()>=-2700){
-            Arm.update(telemetry);
+        while (!armPid.atSetPoint()) {
+            double output = armPid.calculate(
+                    mArm.getCurrentPosition()  // the measured value
+            );
+            mArm.setPower(output);
         }
     }
     public static void armDownAuto(Telemetry telemetry){
