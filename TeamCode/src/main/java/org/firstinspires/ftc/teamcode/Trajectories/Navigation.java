@@ -47,7 +47,9 @@ public class Navigation {
     }
     public static void goToCarousel(Pose2d goal, Pose2d spinnerWall, Pose2d spinner){
         Robot.drive.setPoseEstimate(goal);
-        Trajectory trajectory = Robot.drive.trajectoryBuilder(goal)
+        if(goal.getHeading()==0) Robot.drive.turn(Math.toRadians(90));
+        else Robot.drive.turn(Math.toRadians(-90));
+        Trajectory trajectory = Robot.drive.trajectoryBuilder(new Pose2d(goal.getX(),goal.getY(), Coordinates.redSpinnerWall.getHeading()))
                 .lineToLinearHeading(spinnerWall)
                 .build();
         Trajectory trajectory2 = Robot.drive.trajectoryBuilder(spinnerWall)
