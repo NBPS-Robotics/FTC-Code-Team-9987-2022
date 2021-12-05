@@ -26,6 +26,8 @@ public class Coordinates {
 
     public static Pose2d redWarehouse = new Pose2d(50,-65,Math.toRadians(90));
 
+    public static Pose2d redWarehousePoint = new Pose2d(50,-45,Math.toRadians(90));
+
     //BLUE ALLIANCE
     public static Pose2d blueStart1 = new Pose2d(-35,60,Math.toRadians(180));
 
@@ -48,6 +50,8 @@ public class Coordinates {
     public static Pose2d blueGoalWall2 = new Pose2d(-10,65,Math.toRadians(90));
 
     public static Pose2d blueWarehouse = new Pose2d(50,65,Math.toRadians(90));
+
+    public static Pose2d blueWarehousePoint = new Pose2d(50,45,Math.toRadians(90));
 
     public static Pose2d end = new Pose2d();
 }

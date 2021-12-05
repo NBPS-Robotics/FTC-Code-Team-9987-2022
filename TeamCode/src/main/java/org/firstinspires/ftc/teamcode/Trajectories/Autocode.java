@@ -12,8 +12,8 @@ public class Autocode {
         Navigation.moveLeft(Coordinates.redStart1);
     }
 
-    public static void Red1(Telemetry telemetry){
-        telemetry.addData("Read Alliance Starting Zone 1", ">>>");
+    public static void Red1(Telemetry telemetry){ //Red1 - Score, Duck, Storage
+        telemetry.addData("Red Alliance Starting Zone 1", "");
         telemetry.update();
         Navigation.goToGoal(Coordinates.redStart1,Coordinates.redGoalPoint1,Coordinates.redGoal);
         scoreElement(telemetry);
@@ -22,16 +22,35 @@ public class Autocode {
         Navigation.goToStorage(Coordinates.redSpinner,Coordinates.redStorage);
         Drivetrain.setEndPose();
     }
-    public static void Red2(Telemetry telemetry){
-        telemetry.addData("Read Alliance Starting Zone 1", ">>>");
+    public static void Red2(Telemetry telemetry){ //Red2 - Score, Warehouse
+        telemetry.addData("Red Alliance Starting Zone 2", "");
         telemetry.update();
         Navigation.goToGoal(Coordinates.redStart2,Coordinates.redGoalPoint2,Coordinates.redGoal);
         scoreElement(telemetry);
         Navigation.goToWarehouse(Coordinates.redGoal,Coordinates.redGoalWall2,Coordinates.redWarehouse);
         Drivetrain.setEndPose();
     }
-    public static void Blue1(Telemetry telemetry){
-        telemetry.addData("Read Alliance Starting Zone 1", ">>>");
+    public static void Red2ClearWarehouse(Telemetry telemetry){ //Red2 - Score, Warehouse, Clear Warehouse
+        telemetry.addData("Red Alliance Starting Zone 2(Clear Warehouse)", "");
+        telemetry.update();
+        Navigation.goToGoal(Coordinates.redStart2,Coordinates.redGoalPoint2,Coordinates.redGoal);
+        scoreElement(telemetry);
+        Navigation.goToWarehouse(Coordinates.redGoal,Coordinates.redGoalWall2,Coordinates.redWarehouse);
+        Navigation.clearWarehouse(Coordinates.redWarehouse, Coordinates.redWarehousePoint);
+        Drivetrain.setEndPose();
+    }
+    public static void Red1Warehouse(Telemetry telemetry){ //Red1 - Score, Duck, Warehouse
+        telemetry.addData("Red Alliance Starting Zone 1(Warehouse)", "");
+        telemetry.update();
+        Navigation.goToGoal(Coordinates.redStart1,Coordinates.redGoalPoint1,Coordinates.redGoal);
+        scoreElement(telemetry);
+        Navigation.goToCarousel(Coordinates.redGoal,Coordinates.redSpinnerWall,Coordinates.redSpinner);
+        spinner(1);
+        Navigation.goToWarehouseFromCarousel(Coordinates.redSpinner,Coordinates.redSpinnerWall,Coordinates.redGoalWall,Coordinates.redWarehouse);
+        Drivetrain.setEndPose();
+    }
+    public static void Blue1(Telemetry telemetry){ //Blue1 - Score, Duck, Storage
+        telemetry.addData("Blue Alliance Starting Zone 1", "");
         telemetry.update();
         Navigation.goToGoal(Coordinates.blueStart1,Coordinates.blueGoalPoint1,Coordinates.blueGoal);
         scoreElement(telemetry);
@@ -40,16 +59,35 @@ public class Autocode {
         Navigation.goToStorage(Coordinates.blueSpinner,Coordinates.blueStorage);
         Drivetrain.setEndPose();
     }
-    public static void Blue2(Telemetry telemetry){
-        telemetry.addData("Read Alliance Starting Zone 1", ">>>");
+    public static void Blue2(Telemetry telemetry){ //Blue2 - Score, Warehouse
+        telemetry.addData("Blue Alliance Starting Zone 2", "");
         telemetry.update();
         Navigation.goToGoal(Coordinates.blueStart2,Coordinates.blueGoalPoint2,Coordinates.blueGoal);
         scoreElement(telemetry);
         Navigation.goToWarehouse(Coordinates.blueGoal,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
         Drivetrain.setEndPose();
     }
+    public static void Blue1Warehouse(Telemetry telemetry){ //Blue1 - Score, Duck, Warehouse
+        telemetry.addData("Blue Alliance Starting Zone 1(Warehouse)", "");
+        telemetry.update();
+        Navigation.goToGoal(Coordinates.blueStart1,Coordinates.blueGoalPoint1,Coordinates.blueGoal);
+        scoreElement(telemetry);
+        Navigation.goToCarousel(Coordinates.blueGoal,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
+        spinner(1);
+        Navigation.goToWarehouseFromCarousel(Coordinates.blueSpinner,Coordinates.blueSpinnerWall,Coordinates.blueGoalWall,Coordinates.blueWarehouse);
+        Drivetrain.setEndPose();
+    }
+    public static void Blue2ClearWarehouse(Telemetry telemetry){ //Blue2 - Score, Warehouse, Clear Warehouse
+        telemetry.addData("Red Alliance Starting Zone 2(Clear Warehouse)", "");
+        telemetry.update();
+        Navigation.goToGoal(Coordinates.blueStart2,Coordinates.blueGoalPoint2,Coordinates.blueGoal);
+        scoreElement(telemetry);
+        Navigation.goToWarehouse(Coordinates.blueGoal,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
+        Navigation.clearWarehouse(Coordinates.blueWarehouse, Coordinates.blueWarehousePoint);
+        Drivetrain.setEndPose();
+    }
     public static void test(Telemetry telemetry){
-        telemetry.addData("Testing Autonomous", ">>>");
+        telemetry.addData("Testing Autonomous", "");
         telemetry.update();
         Navigation.goToGoal(Coordinates.blueStart1, Coordinates.blueGoalWall, Coordinates.blueGoal);
         //Navigation.goToShoot();
