@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.Robot.Robot;
 import org.firstinspires.ftc.teamcode.Trajectories.Autocode;
 import org.firstinspires.ftc.teamcode.Trajectories.Coordinates;
 
-@Autonomous(name = "Auto Blue1 - Score, Duck, Storage", group = "!Blue Alliance")
+@Autonomous(name = "Auto Blue1 - Score, Duck, Warehouse", group = "!Blue Alliance")
 public class Auto_Blue1_Score_Duck_Warehouse extends LinearOpMode {
     @SuppressLint("DefaultLocale")
     @Override
