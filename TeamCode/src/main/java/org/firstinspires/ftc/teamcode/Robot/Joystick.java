@@ -36,12 +36,16 @@ public class Joystick {
         if(gamepad1.right_bumper) Arm.capElement();
     }
     public static void splitTeleopControl(Gamepad gamepad1, Gamepad gamepad2){
+
+        //GAMEPAD 1
         //drive the robot
         Drivetrain.fieldCentricDrive(gamepad1.right_stick_x* Constants.turnPower, gamepad1.right_stick_y, -gamepad1.left_stick_x);
 
         if (gamepad1.left_bumper) Drivetrain.speedControl(1); //drivetrain speed control
 
         else Drivetrain.speedControl(0.4);
+
+        //GAMEPAD 2
 
         Spinner.spin(-gamepad2.left_trigger+gamepad2.right_trigger);
 
