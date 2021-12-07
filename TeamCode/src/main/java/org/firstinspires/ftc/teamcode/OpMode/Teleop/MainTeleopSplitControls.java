@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.OpMode;
+package org.firstinspires.ftc.teamcode.OpMode.Teleop;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -7,15 +7,15 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Robot.Joystick;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
-@TeleOp(name = "MainTeleOp", group = "OpModes")
-public class MainTeleOp extends LinearOpMode {
+@TeleOp(name = "MainTeleOp - Split Controls", group = "OpModes")
+public class MainTeleopSplitControls extends LinearOpMode {
     @Override
     public void runOpMode() {
         Robot.initTeleOp(hardwareMap, telemetry);
         waitForStart();
-            while (opModeIsActive()) {
-                Robot.update(telemetry);
-                Joystick.teleopControl(gamepad1);
-            }
+        while (opModeIsActive()) {
+            Robot.update(telemetry);
+            Joystick.splitTeleopControl(gamepad1, gamepad2);
+        }
     }
 }

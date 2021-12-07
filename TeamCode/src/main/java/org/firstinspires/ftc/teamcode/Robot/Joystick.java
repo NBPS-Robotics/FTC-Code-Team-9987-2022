@@ -32,6 +32,36 @@ public class Joystick {
         if(gamepad1.b) Arm.scoreMiddle();
 
         if(gamepad1.y) Arm.scoreTop();
+
+        if(gamepad1.right_bumper) Arm.capElement();
+    }
+    public static void splitTeleopControl(Gamepad gamepad1, Gamepad gamepad2){
+        //drive the robot
+        Drivetrain.fieldCentricDrive(gamepad1.right_stick_x* Constants.turnPower, gamepad1.right_stick_y, -gamepad1.left_stick_x);
+
+        if (gamepad1.left_bumper) Drivetrain.speedControl(1); //drivetrain speed control
+
+        else Drivetrain.speedControl(0.4);
+
+        Spinner.spin(-gamepad2.left_trigger+gamepad2.right_trigger);
+
+        if (gamepad2.dpad_down) Arm.setArm(10); //arm up
+
+        else if (gamepad2.dpad_up) Arm.setArm(-10); //arm down
+
+        if (gamepad2.dpad_right) Claw.close(); //close the grabbers
+
+        if (gamepad2.dpad_left) Claw.open(); //open the grabbers
+
+        if(gamepad2.a) Arm.pickUp();
+
+        if(gamepad2.x) Arm.scoreBottom();
+
+        if(gamepad2.b) Arm.scoreMiddle();
+
+        if(gamepad2.y) Arm.scoreTop();
+
+        if(gamepad2.right_bumper) Arm.capElement();
     }
     /**
      * This function processes all the outputs of the gamepad in order to control the robot during the Testing OpMode.

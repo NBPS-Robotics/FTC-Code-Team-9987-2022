@@ -68,6 +68,10 @@ public class Arm {
         elbowPose = -5;
     }
 
+    public static void capElement(){
+        armPose = Constants.armCap;
+        elbowPose = Constants.elbowCap;
+    }
     public static void scoreTop(){
         armPose = Constants.arm3;
         elbowPose = Constants.elbow3;
