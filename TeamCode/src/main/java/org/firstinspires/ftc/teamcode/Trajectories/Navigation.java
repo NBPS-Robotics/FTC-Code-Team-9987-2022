@@ -23,15 +23,17 @@ public class Navigation {
 
         Robot.drive.followTrajectory(trajectory);
     }
-    public static void goToGoal(Pose2d start,Pose2d goalPoint, Pose2d goal){
+    public static void goToGoalPoint(Pose2d start,Pose2d goalPoint){
         Robot.drive.setPoseEstimate(start);
         Trajectory trajectory = Robot.drive.trajectoryBuilder(start)
                 .lineToLinearHeading(goalPoint)
                 .build();
+        Robot.drive.followTrajectory(trajectory);
+    }
+    public static void goToGoal(Pose2d goalPoint, Pose2d goal){
         Trajectory trajectory2 = Robot.drive.trajectoryBuilder(goalPoint)
                 .lineToLinearHeading(goal)
                 .build();
-        Robot.drive.followTrajectory(trajectory);
         Robot.drive.followTrajectory(trajectory2);
     }
     public static void goToCarousel(Pose2d goal, Pose2d spinnerWall, Pose2d spinner){

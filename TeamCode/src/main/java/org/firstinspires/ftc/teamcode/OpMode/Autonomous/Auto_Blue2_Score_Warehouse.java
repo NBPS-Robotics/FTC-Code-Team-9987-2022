@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 import org.firstinspires.ftc.teamcode.Trajectories.Autocode;
 import org.firstinspires.ftc.teamcode.Trajectories.Coordinates;
+import org.firstinspires.ftc.teamcode.Vision.Camera;
 
 @Autonomous(name = "Auto Blue2 - Score, Warehouse", group = "!Blue Alliance")
 public class Auto_Blue2_Score_Warehouse extends LinearOpMode {
@@ -14,6 +15,10 @@ public class Auto_Blue2_Score_Warehouse extends LinearOpMode {
     public void runOpMode(){
         Robot.initAuto(hardwareMap, telemetry, Coordinates.blueStart2);
         waitForStart();
-        Autocode.Blue2(telemetry);
+        Robot.wait(1000);
+        String position = Camera.getTeamElementPosition("Left");
+        telemetry.addData("Position", position);
+        telemetry.update();
+        Autocode.Blue2(telemetry, position);
     }
 }

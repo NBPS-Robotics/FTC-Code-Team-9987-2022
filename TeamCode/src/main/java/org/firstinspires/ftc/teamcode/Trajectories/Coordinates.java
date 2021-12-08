@@ -8,7 +8,11 @@ public class Coordinates {
 
     public static Pose2d redStart2 = new Pose2d(15,-60,Math.toRadians(0));
 
-    public static Pose2d redGoal = new Pose2d(-10,-44,Math.toRadians(0));
+    public static Pose2d redGoalTop = new Pose2d(-10,-44,Math.toRadians(0));
+
+    public static Pose2d redGoalMiddle = new Pose2d(-10,-42,Math.toRadians(0));
+
+    public static Pose2d redGoalBottom = new Pose2d(-10,-41,Math.toRadians(0));
 
     public static Pose2d redGoalPoint1 = new Pose2d(-35,-48,Math.toRadians(0));
 
@@ -33,7 +37,11 @@ public class Coordinates {
 
     public static Pose2d blueStart2 = new Pose2d(15,60,Math.toRadians(180));
 
-    public static Pose2d blueGoal = new Pose2d(-10,44,Math.toRadians(180));
+    public static Pose2d blueGoalTop = new Pose2d(-10,44,Math.toRadians(180));
+
+    public static Pose2d blueGoalMiddle = new Pose2d(-10,42,Math.toRadians(180));
+
+    public static Pose2d blueGoalBottom = new Pose2d(-10,41,Math.toRadians(180));
 
     public static Pose2d blueGoalPoint1 = new Pose2d(-35,48,Math.toRadians(180));
 

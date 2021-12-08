@@ -54,13 +54,30 @@ public class Camera {
             // (typically 16/9).
             tfod.setZoom(1, 16.0/9.0);
         }
+        telemetry.addData("Camera Ready", ""); //report camera working
+        telemetry.update();
      }
 
-    /**
-     * This function returns the height of the stack the camera detects
-     * @return height of the stack
-     */
-     public static double getPosition(Telemetry telemetry){
+
+     public static String getTeamElementPosition(String position){
+        String duck = getPosition();
+        if(position == "Left"){
+            if(duck.equals("Left")) return "Left";
+
+            else if(duck.equals("Right")) return "Center";
+
+            else return "Right";
+        }
+         else if(position == "Right"){
+             if(duck.equals("Left")) return "Center";
+
+             else if(duck.equals("Right")) return "Right";
+
+             else return "Left";
+         }
+        else return null;
+     }
+     public static String getPosition(){
          if (tfod != null) {
              // getUpdatedRecognitions() will return null if no new information is available since
              // the last time that call was made.
@@ -70,15 +87,21 @@ public class Camera {
                  int i = 0;
                  for (Recognition recognition : updatedRecognitions) {
                      if(recognition.getLabel().equals("Duck")){
-                         telemetry.addData("Pose:", recognition.getLeft());
-                         return (double) recognition.getLeft();
+                         boolean pose = checkPose(recognition.getLeft());
+                         if(pose) return "Right";
+                         else return "Left";
                      }
 
                      i++;
                  }
              }
          }
-         return -1;
+        return "None";
+    }
+
+     public static boolean checkPose(double pixel){
+         if(pixel >= 180) return true; // on the right
+         else return false; //on the left
      }
     private static void initVuforia(HardwareMap hardwareMap) {
         /*
