@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
 import com.arcrobotics.ftclib.controller.PIDFController;
+import com.arcrobotics.ftclib.controller.wpilibcontroller.ArmFeedforward;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -15,6 +16,9 @@ public class Arm {
 
     static PIDFController armPid = new PIDFController(Constants.KP_arm, Constants.KI_arm, Constants.KD_arm, Constants.KF_arm);
     static PIDFController elbowPid = new PIDFController(Constants.KP_elbow, Constants.KI_elbow, Constants.KD_elbow, Constants.KF_elbow);
+
+    static ArmFeedforward armff = new ArmFeedforward(Constants.kS_Arm,Constants.kCos_Arm,Constants.kV_Arm,Constants.kA_Arm);
+    static ArmFeedforward elbowff = new ArmFeedforward(Constants.kS_Elbow,Constants.kCos_Elbow,Constants.kV_Elbow,Constants.kA_Elbow);
     /**
      * This function initializes all components of the Arm subsystem, including all motors and sensors.
      * @param hardwareMap HardwareMap object used to initialize the hardware of the robot.
@@ -96,13 +100,23 @@ public class Arm {
         return (int) (mElbow.getCurrentPosition()*Constants.CPR_multiplier);
     }
 
-
     public static void correctArm(){
-        mArm.setPower(armPid.calculate(getArmPose(),armPose));
+        double power = armPid.calculate(getArmPose(),armPose);
+        if (power > Constants.armPowerDown) power = Constants.armPowerDown;
+        else if (power < - Constants.armPowerUp) power = - Constants.armPowerUp;
+        mArm.setPower(power);
     }
 
     public static void correctElbow(){
         mElbow.setPower(elbowPid.calculate(getElbowPose(),elbowPose));
+    }
+
+    public static void armFF(){
+        mArm.setPower(armff.calculate(armPose/1000, Constants.armMaxVelo));
+    }
+
+    public static void elbowFF() {
+        mElbow.setPower(elbowff.calculate(elbowPose / 500, Constants.elbowMaxVelo));
     }
     public static void armUpAuto(Telemetry telemetry){
         Arm.scoreTop();

@@ -14,9 +14,10 @@ public class OpenCvTest extends LinearOpMode {
         telemetry.update();
         waitForStart();
         if (opModeIsActive()) {
+            telemetry.addData("Duck Position", Camera.getPosition(telemetry)); //report stack height
+            telemetry.update();
             while (opModeIsActive()) {
-                telemetry.addData("Duck Position", Camera.getPosition(telemetry)); //report stack height
-                telemetry.update();
+
             }
         }
     }
