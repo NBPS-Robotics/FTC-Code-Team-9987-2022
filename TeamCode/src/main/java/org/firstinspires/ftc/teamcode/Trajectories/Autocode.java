@@ -114,10 +114,7 @@ public class Autocode {
                 break;
             }
         }
-        for(int i=0;i<50;i++){
-            Arm.update(telemetry);
-            Robot.wait(30);
-        }
+        Arm.armUpAuto(telemetry);
         Arm.update(telemetry);
         Robot.wait(100);
     }

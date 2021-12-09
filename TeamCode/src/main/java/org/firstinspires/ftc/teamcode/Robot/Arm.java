@@ -119,7 +119,7 @@ public class Arm {
         mElbow.setPower(elbowff.calculate(elbowPose / 500, Constants.elbowMaxVelo));
     }
     public static void armUpAuto(Telemetry telemetry){
-        Arm.scoreTop();
+        armPid.setSetPoint(armPose);
         while (!armPid.atSetPoint()) {
             double output = armPid.calculate(
                     mArm.getCurrentPosition()  // the measured value
