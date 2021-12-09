@@ -15,6 +15,6 @@ public class AutoArmTest extends LinearOpMode {
     public void runOpMode(){
         Robot.initAuto(hardwareMap, telemetry, Coordinates.blueStart1);
         waitForStart();
-        Autocode.scoreElement(telemetry);
+        Autocode.raiseArm("Right", telemetry);
     }
 }

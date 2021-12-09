@@ -22,7 +22,7 @@ public class Coordinates {
 
     public static Pose2d redSpinnerWall = new Pose2d(-64,-40,Math.toRadians(90));
 
-    public static Pose2d redSpinner = new Pose2d(-64,-57,Math.toRadians(90));
+    public static Pose2d redSpinner = new Pose2d(-64,-55,Math.toRadians(90));
 
     public static Pose2d redStorage = new Pose2d(-69,-33,Math.toRadians(90));
 
@@ -51,7 +51,7 @@ public class Coordinates {
 
     public static Pose2d blueSpinnerWall = new Pose2d(-64,40,Math.toRadians(90));
 
-    public static Pose2d blueSpinner = new Pose2d(-64,57,Math.toRadians(90));
+    public static Pose2d blueSpinner = new Pose2d(-64,55,Math.toRadians(90));
 
     public static Pose2d blueStorage = new Pose2d(-69,33,Math.toRadians(90));
 

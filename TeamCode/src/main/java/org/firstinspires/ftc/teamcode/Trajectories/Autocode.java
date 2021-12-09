@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Trajectories;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
+
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Robot.Arm;
 import org.firstinspires.ftc.teamcode.Robot.Claw;
@@ -8,6 +10,7 @@ import org.firstinspires.ftc.teamcode.Robot.Robot;
 import org.firstinspires.ftc.teamcode.Robot.Spinner;
 
 public class Autocode {
+    static Pose2d goalPose;
     public static void moveLeft(){
         Navigation.moveLeft(Coordinates.redStart1);
     }
@@ -16,8 +19,8 @@ public class Autocode {
         telemetry.addData("Red Alliance Starting Zone 1", "");
         telemetry.update();
         Navigation.goToGoalPoint(Coordinates.redStart1, Coordinates.redGoalPoint1);
-        scoreGoalRed(pose, telemetry);
-        Navigation.goToCarousel(Coordinates.redGoalTop,Coordinates.redSpinnerWall,Coordinates.redSpinner);
+        goalPose = scoreGoalRed(pose, telemetry);
+        Navigation.goToCarousel(goalPose,Coordinates.redSpinnerWall,Coordinates.redSpinner);
         spinner(1);
         Navigation.goToStorage(Coordinates.redSpinner,Coordinates.redStorage);
         Drivetrain.setEndPose();
@@ -26,17 +29,16 @@ public class Autocode {
         telemetry.addData("Red Alliance Starting Zone 2", "");
         telemetry.update();
         Navigation.goToGoalPoint(Coordinates.redStart2, Coordinates.redGoalPoint2);
-        scoreGoalRed(pose, telemetry);
-        scoreElement(telemetry);
-        Navigation.goToWarehouse(Coordinates.redGoalTop,Coordinates.redGoalWall2,Coordinates.redWarehouse);
+        goalPose = scoreGoalRed(pose, telemetry);
+        Navigation.goToWarehouse(goalPose,Coordinates.redGoalWall2,Coordinates.redWarehouse);
         Drivetrain.setEndPose();
     }
     public static void Red2ClearWarehouse(Telemetry telemetry, String pose){ //Red2 - Score, Warehouse, Clear Warehouse
         telemetry.addData("Red Alliance Starting Zone 2(Clear Warehouse)", "");
         telemetry.update();
         Navigation.goToGoalPoint(Coordinates.redStart2, Coordinates.redGoalPoint2);
-        scoreGoalRed(pose, telemetry);
-        Navigation.goToWarehouse(Coordinates.redGoalTop,Coordinates.redGoalWall2,Coordinates.redWarehouse);
+        goalPose = scoreGoalRed(pose, telemetry);
+        Navigation.goToWarehouse(goalPose,Coordinates.redGoalWall2,Coordinates.redWarehouse);
         Navigation.clearWarehouse(Coordinates.redWarehouse, Coordinates.redWarehousePoint);
         Drivetrain.setEndPose();
     }
@@ -44,8 +46,8 @@ public class Autocode {
         telemetry.addData("Red Alliance Starting Zone 1(Warehouse)", "");
         telemetry.update();
         Navigation.goToGoalPoint(Coordinates.redStart1, Coordinates.redGoalPoint1);
-        scoreGoalRed(pose, telemetry);
-        Navigation.goToCarousel(Coordinates.redGoalTop,Coordinates.redSpinnerWall,Coordinates.redSpinner);
+        goalPose = scoreGoalRed(pose, telemetry);
+        Navigation.goToCarousel(goalPose,Coordinates.redSpinnerWall,Coordinates.redSpinner);
         spinner(1);
         Navigation.goToWarehouseFromCarousel(Coordinates.redSpinner,Coordinates.redSpinnerWall,Coordinates.redGoalWall,Coordinates.redWarehouse);
         Drivetrain.setEndPose();
@@ -54,8 +56,8 @@ public class Autocode {
         telemetry.addData("Blue Alliance Starting Zone 1", "");
         telemetry.update();
         Navigation.goToGoalPoint(Coordinates.blueStart1, Coordinates.blueGoalPoint1);
-        scoreGoalBlue(pose, telemetry);
-        Navigation.goToCarousel(Coordinates.blueGoalTop,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
+        goalPose = scoreGoalBlue(pose, telemetry);
+        Navigation.goToCarousel(goalPose,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
         spinner(-1);
         Navigation.goToStorage(Coordinates.blueSpinner,Coordinates.blueStorage);
         Drivetrain.setEndPose();
@@ -64,16 +66,16 @@ public class Autocode {
         telemetry.addData("Blue Alliance Starting Zone 2", "");
         telemetry.update();
         Navigation.goToGoalPoint(Coordinates.blueStart2, Coordinates.blueGoalPoint2);
-        scoreGoalBlue(pose, telemetry);
-        Navigation.goToWarehouse(Coordinates.blueGoalTop,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
+        goalPose = scoreGoalBlue(pose, telemetry);
+        Navigation.goToWarehouse(goalPose,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
         Drivetrain.setEndPose();
     }
     public static void Blue1Warehouse(Telemetry telemetry, String pose){ //Blue1 - Score, Duck, Warehouse
         telemetry.addData("Blue Alliance Starting Zone 1(Warehouse)", "");
         telemetry.update();
         Navigation.goToGoalPoint(Coordinates.blueStart1, Coordinates.blueGoalPoint1);
-        scoreGoalBlue(pose, telemetry);
-        Navigation.goToCarousel(Coordinates.blueGoalTop,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
+        goalPose = scoreGoalBlue(pose, telemetry);
+        Navigation.goToCarousel(goalPose,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
         spinner(1);
         Navigation.goToWarehouseFromCarousel(Coordinates.blueSpinner,Coordinates.blueSpinnerWall,Coordinates.blueGoalWall,Coordinates.blueWarehouse);
         Drivetrain.setEndPose();
@@ -82,8 +84,8 @@ public class Autocode {
         telemetry.addData("Red Alliance Starting Zone 2(Clear Warehouse)", "");
         telemetry.update();
         Navigation.goToGoalPoint(Coordinates.blueStart2, Coordinates.blueGoalPoint2);
-        scoreGoalBlue(pose, telemetry);
-        Navigation.goToWarehouse(Coordinates.blueGoalTop,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
+        goalPose = scoreGoalBlue(pose, telemetry);
+        Navigation.goToWarehouse(goalPose,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
         Navigation.clearWarehouse(Coordinates.blueWarehouse, Coordinates.blueWarehousePoint);
         Drivetrain.setEndPose();
     }
@@ -116,6 +118,8 @@ public class Autocode {
             Arm.update(telemetry);
             Robot.wait(30);
         }
+        Arm.update(telemetry);
+        Robot.wait(100);
     }
     public static void scoreElement(Telemetry telemetry){
         Claw.open();
@@ -128,44 +132,46 @@ public class Autocode {
         Robot.wait(500);
         Arm.stop();
     }
-    public static void scoreGoalRed(String pose, Telemetry telemetry){
+    public static Pose2d scoreGoalRed(String pose, Telemetry telemetry){
         raiseArm(pose, telemetry);
         switch (pose){
             case "Left":{
                 Navigation.goToGoal(Coordinates.redGoalPoint1, Coordinates.redGoalBottom);
                 scoreElement(telemetry);
-                break;
+                return Coordinates.redGoalBottom;
             }
             case "Center":{
                 Navigation.goToGoal(Coordinates.redGoalPoint1, Coordinates.redGoalMiddle);
                 scoreElement(telemetry);
-                break;
+                return Coordinates.redGoalMiddle;
             }
             case "Right":{
                 Navigation.goToGoal(Coordinates.redGoalPoint1, Coordinates.redGoalTop);
                 scoreElement(telemetry);
-                break;
+                return Coordinates.redGoalTop;
             }
         }
+        return null;
     }
-    public static void scoreGoalBlue(String pose, Telemetry telemetry){
+    public static Pose2d scoreGoalBlue(String pose, Telemetry telemetry){
         raiseArm(pose, telemetry);
         switch (pose){
             case "Left":{
                 Navigation.goToGoal(Coordinates.blueGoalPoint1, Coordinates.blueGoalBottom);
                 scoreElement(telemetry);
-                break;
+                return Coordinates.blueGoalBottom;
             }
             case "Center":{
                 Navigation.goToGoal(Coordinates.blueGoalPoint1, Coordinates.blueGoalMiddle);
                 scoreElement(telemetry);
-                break;
+                return Coordinates.blueGoalMiddle;
             }
             case "Right":{
                 Navigation.goToGoal(Coordinates.blueGoalPoint1, Coordinates.blueGoalTop);
                 scoreElement(telemetry);
-                break;
+                return Coordinates.blueGoalTop;
             }
         }
+        return null;
     }
 }
