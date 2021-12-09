@@ -11,8 +11,8 @@ import org.firstinspires.ftc.teamcode.Robot.Spinner;
 
 public class Autocode {
     static Pose2d goalPose;
-    public static void moveLeft(){
-        Navigation.moveLeft(Coordinates.redStart1);
+    public static void moveLeft(Telemetry telemetry){
+        Navigation.moveLeft(Coordinates.redStart1, telemetry);
     }
 
     public static void Red1(Telemetry telemetry, String pose){ //Red1 - Score, Duck, Storage
@@ -92,6 +92,8 @@ public class Autocode {
     public static void test(Telemetry telemetry){
         telemetry.addData("Testing Autonomous", "");
         telemetry.update();
+        Arm.scoreTop();
+        Navigation.moveLeft(Coordinates.redStart1,telemetry);
         Drivetrain.setEndPose();
     }
     public static void spinner(double value){

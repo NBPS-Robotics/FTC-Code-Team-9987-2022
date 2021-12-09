@@ -112,7 +112,7 @@ public class Arm {
     }
 
     public static void armFF(){
-        mArm.setPower(armff.calculate(armPose/1000, Constants.armMaxVelo));
+        mArm.setPower(armff.calculate(armPose, Constants.armMaxVelo));
     }
 
     public static void elbowFF() {
@@ -120,11 +120,18 @@ public class Arm {
     }
     public static void armUpAuto(Telemetry telemetry){
         armPid.setSetPoint(armPose);
+        elbowPid.setSetPoint(elbowPose);
         while (!armPid.atSetPoint()) {
             double output = armPid.calculate(
                     mArm.getCurrentPosition()  // the measured value
             );
             mArm.setPower(output);
+        }
+        while (!elbowPid.atSetPoint()) {
+            double output = elbowPid.calculate(
+                    mElbow.getCurrentPosition()  // the measured value
+            );
+            mElbow.setPower(output);
         }
     }
     public static void armDownAuto(Telemetry telemetry){

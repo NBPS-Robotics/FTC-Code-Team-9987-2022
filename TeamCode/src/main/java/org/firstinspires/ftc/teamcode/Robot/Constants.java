@@ -28,8 +28,8 @@ public class Constants {
     public static int elbowCap = 750;
 
     //Arm Motor FF
-    public static double kV_Arm = 0;
-    public static double kS_Arm = 0;
+    public static double kV_Arm = 0.05;
+    public static double kS_Arm = 0.01;
     public static double kA_Arm = 0;
     public static double kCos_Arm = 0;
     public static double armMaxVelo = 5;

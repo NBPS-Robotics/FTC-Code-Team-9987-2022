@@ -8,6 +8,7 @@ import com.acmerobotics.roadrunner.trajectory.constraints.MecanumVelocityConstra
 import com.acmerobotics.roadrunner.trajectory.constraints.MinVelocityConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationConstraint;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.Robot.Claw;
 import org.firstinspires.ftc.teamcode.Robot.Arm;
@@ -16,12 +17,16 @@ import org.firstinspires.ftc.teamcode.Robot.Robot;
 import java.util.Arrays;
 
 public class Navigation {
-    public static void moveLeft(Pose2d start){
+    public static void moveLeft(Pose2d start, Telemetry telemetry){
         Trajectory trajectory = Robot.drive.trajectoryBuilder(start)
                 .strafeRight(75)
                 .build();
 
-        Robot.drive.followTrajectory(trajectory);
+        Robot.drive.followTrajectoryAsync(trajectory);
+        while(Robot.drive.isBusy()){
+            Robot.drive.update();
+            Robot.update(telemetry);
+        }
     }
     public static void goToGoalPoint(Pose2d start,Pose2d goalPoint){
         Robot.drive.setPoseEstimate(start);
