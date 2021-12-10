@@ -37,11 +37,11 @@ public class Arm {
         setElbow(0);
     }
 
-    public static void update(Telemetry telemetry){
+    public static void update(){
         correctArm();
         correctElbow();
-        telemetry.addData("Arm", Arm.getArmPose());
-        telemetry.addData("Elbow", Arm.getElbowPose());
+        Robot.tele.addData("Arm", Arm.getArmPose());
+        Robot.tele.addData("Elbow", Arm.getElbowPose());
     }
     /**
      * This function stops the intake from running.
@@ -118,27 +118,21 @@ public class Arm {
     public static void elbowFF() {
         mElbow.setPower(elbowff.calculate(elbowPose / 500, Constants.elbowMaxVelo));
     }
-    public static void armUpAuto(Telemetry telemetry){
+    public static void armUpAuto(){
         armPid.setSetPoint(armPose);
         elbowPid.setSetPoint(elbowPose);
         while (!armPid.atSetPoint()) {
-            double output = armPid.calculate(
-                    mArm.getCurrentPosition()  // the measured value
-            );
-            mArm.setPower(output);
+            correctArm();
         }
         while (!elbowPid.atSetPoint()) {
-            double output = elbowPid.calculate(
-                    mElbow.getCurrentPosition()  // the measured value
-            );
-            mElbow.setPower(output);
+            correctElbow();
         }
     }
-    public static void armDownAuto(Telemetry telemetry){
+    public static void armDownAuto(){
         Arm.pickUp();
 
         while(Arm.getArmPose()<=-100){
-            Arm.update(telemetry);
+            Arm.update();
         }
     }
 

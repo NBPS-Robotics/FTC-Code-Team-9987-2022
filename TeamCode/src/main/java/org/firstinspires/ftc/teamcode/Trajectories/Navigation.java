@@ -17,15 +17,14 @@ import org.firstinspires.ftc.teamcode.Robot.Robot;
 import java.util.Arrays;
 
 public class Navigation {
-    public static void moveLeft(Pose2d start, Telemetry telemetry){
+    public static void moveLeft(Pose2d start){
         Trajectory trajectory = Robot.drive.trajectoryBuilder(start)
-                .strafeRight(75)
+                .strafeRight(25)
                 .build();
 
         Robot.drive.followTrajectoryAsync(trajectory);
         while(Robot.drive.isBusy()){
-            Robot.drive.update();
-            Robot.update(telemetry);
+            Robot.update();
         }
     }
     public static void goToGoalPoint(Pose2d start,Pose2d goalPoint){

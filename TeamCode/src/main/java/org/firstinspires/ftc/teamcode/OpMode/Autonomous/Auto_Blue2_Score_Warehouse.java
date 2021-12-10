@@ -19,6 +19,6 @@ public class Auto_Blue2_Score_Warehouse extends LinearOpMode {
         String position = Camera.getTeamElementPosition("Left");
         telemetry.addData("Position", position);
         telemetry.update();
-        Autocode.Blue2(telemetry, position);
+        Autocode.Blue2(position);
     }
 }

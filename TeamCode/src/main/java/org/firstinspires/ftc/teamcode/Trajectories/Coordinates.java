@@ -10,9 +10,9 @@ public class Coordinates {
 
     public static Pose2d redGoalTop = new Pose2d(-10,-44,Math.toRadians(0));
 
-    public static Pose2d redGoalMiddle = new Pose2d(-10,-42,Math.toRadians(0));
+    public static Pose2d redGoalMiddle = new Pose2d(-10,-41,Math.toRadians(0));
 
-    public static Pose2d redGoalBottom = new Pose2d(-10,-41,Math.toRadians(0));
+    public static Pose2d redGoalBottom = new Pose2d(-10,-40,Math.toRadians(0));
 
     public static Pose2d redGoalPoint1 = new Pose2d(-35,-48,Math.toRadians(0));
 
@@ -22,7 +22,7 @@ public class Coordinates {
 
     public static Pose2d redSpinnerWall = new Pose2d(-64,-40,Math.toRadians(90));
 
-    public static Pose2d redSpinner = new Pose2d(-64,-55,Math.toRadians(90));
+    public static Pose2d redSpinner = new Pose2d(-64,-54,Math.toRadians(90));
 
     public static Pose2d redStorage = new Pose2d(-69,-33,Math.toRadians(90));
 
@@ -39,9 +39,9 @@ public class Coordinates {
 
     public static Pose2d blueGoalTop = new Pose2d(-10,44,Math.toRadians(180));
 
-    public static Pose2d blueGoalMiddle = new Pose2d(-10,42,Math.toRadians(180));
+    public static Pose2d blueGoalMiddle = new Pose2d(-10,41,Math.toRadians(180));
 
-    public static Pose2d blueGoalBottom = new Pose2d(-10,41,Math.toRadians(180));
+    public static Pose2d blueGoalBottom = new Pose2d(-10,40,Math.toRadians(180));
 
     public static Pose2d blueGoalPoint1 = new Pose2d(-35,48,Math.toRadians(180));
 
@@ -51,7 +51,7 @@ public class Coordinates {
 
     public static Pose2d blueSpinnerWall = new Pose2d(-64,40,Math.toRadians(90));
 
-    public static Pose2d blueSpinner = new Pose2d(-64,55,Math.toRadians(90));
+    public static Pose2d blueSpinner = new Pose2d(-64,54,Math.toRadians(90));
 
     public static Pose2d blueStorage = new Pose2d(-69,33,Math.toRadians(90));
 

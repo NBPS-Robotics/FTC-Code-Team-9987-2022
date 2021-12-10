@@ -37,7 +37,7 @@ public class Robot {
         Camera.init(hardwareMap, telemetry); //initialize the camera
         init(hardwareMap, telemetry); //initialize the robot
         Claw.close(); //close the arm grippers
-        Claw.update(telemetry);
+        Claw.update();
         drive.setPoseEstimate(startPose); //set initial position for Road Runner
         telemetry.addLine();
         telemetry.addData(">", "Press Play to start op mode"); //telemetry confirmation
@@ -64,8 +64,10 @@ public class Robot {
      * @param telemetry Telemetry object used to initialize the telemetry to debug the code
      */
     public static void initTest(HardwareMap hardwareMap, Telemetry telemetry){
+        Camera.init(hardwareMap, telemetry); //initialize the camera
         init(hardwareMap, telemetry); //initialize the robot
         Claw.close(); //close the arm grippers
+        Claw.update();
         drive.setPoseEstimate(Coordinates.redStart1); //set the initial position for Road Runner
         telemetry.addLine();
         telemetry.addData(">", "Press Play to start op mode"); //telemetry confirmation
@@ -89,14 +91,13 @@ public class Robot {
     /**
      * This function runs necessary updates for all systems of the robot such as the localizer and the telemetry.
      * This command should run at the end of every cycle of a continuous OpMode.
-     * @param telemetry Telemetry object
      */
-    public static void update(Telemetry telemetry){
-        telemetry.update(); //update the telemetry
+    public static void update(){
+        Robot.tele.update(); //update the telemetry
         Robot.drive.update(); //update the robot's position
         Drivetrain.reportPose(); //report the current robot position to telemetry
-        Arm.update(telemetry);
-        Claw.update(telemetry);
+        Arm.update();
+        Claw.update();
     }
 }
 

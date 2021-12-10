@@ -14,7 +14,7 @@ public class MainTeleOp extends LinearOpMode {
         Robot.initTeleOp(hardwareMap, telemetry);
         waitForStart();
             while (opModeIsActive()) {
-                Robot.update(telemetry);
+                Robot.update();
                 Joystick.teleopControl(gamepad1);
             }
     }

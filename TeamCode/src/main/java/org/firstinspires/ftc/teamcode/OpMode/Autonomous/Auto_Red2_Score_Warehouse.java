@@ -23,6 +23,6 @@ public class Auto_Red2_Score_Warehouse extends LinearOpMode {
         String position = Camera.getTeamElementPosition("Right");
         telemetry.addData("Position", position);
         telemetry.update();
-        Autocode.Red2(telemetry, position);
+        Autocode.Red2(position);
     }
 }

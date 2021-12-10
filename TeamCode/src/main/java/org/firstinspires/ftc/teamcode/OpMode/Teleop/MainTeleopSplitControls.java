@@ -14,7 +14,7 @@ public class MainTeleopSplitControls extends LinearOpMode {
         Robot.initTeleOp(hardwareMap, telemetry);
         waitForStart();
         while (opModeIsActive()) {
-            Robot.update(telemetry);
+            Robot.update();
             Joystick.splitTeleopControl(gamepad1, gamepad2);
         }
     }

@@ -19,18 +19,18 @@ public class Claw {
     }
 
     public static void close(){
-        clawPose = -80;
+        clawPose = -120;
     }
 
     public static void open(){
         clawPose = 40;
     }
 
-    public static void update(Telemetry telemetry){
+    public static void update(){
         //if(clawPose) m_claw.setPower(-0.5);
         //else m_claw.setPower(0.3);
         correctClaw();
-        telemetry.addData("Claw", Claw.getClawPose());
+        Robot.tele.addData("Claw", Claw.getClawPose());
     }
 
     public static void setClaw(int targetPose){

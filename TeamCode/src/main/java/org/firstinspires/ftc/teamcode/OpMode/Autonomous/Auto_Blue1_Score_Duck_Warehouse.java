@@ -19,6 +19,6 @@ public class Auto_Blue1_Score_Duck_Warehouse extends LinearOpMode {
         String position = Camera.getTeamElementPosition("Right");
         telemetry.addData("Position", position);
         telemetry.update();
-        Autocode.Blue1Warehouse(telemetry, position);
+        Autocode.Blue1Warehouse(position);
     }
 }

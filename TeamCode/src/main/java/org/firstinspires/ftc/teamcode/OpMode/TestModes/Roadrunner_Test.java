@@ -19,6 +19,6 @@ public class Roadrunner_Test extends LinearOpMode {
         Robot.initTest(hardwareMap, telemetry);
         waitForStart();
         if (isStopRequested()) return;
-        Autocode.test(telemetry);
+        Autocode.test("Left");
     }
 }

@@ -19,6 +19,6 @@ public class Auto_Blue1_Score_Duck_Storage extends LinearOpMode {
         String position = Camera.getTeamElementPosition("Right");
         telemetry.addData("Position", position);
         telemetry.update();
-        Autocode.Blue1(telemetry, position);
+        Autocode.Blue1(position);
     }
 }
