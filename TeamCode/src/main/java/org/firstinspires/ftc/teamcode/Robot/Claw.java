@@ -19,11 +19,11 @@ public class Claw {
     }
 
     public static void close(){
-        clawPose = -120;
+        clawPose = 120;
     }
 
     public static void open(){
-        clawPose = 40;
+        clawPose = -100;
     }
 
     public static void update(){

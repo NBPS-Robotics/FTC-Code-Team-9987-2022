@@ -11,20 +11,21 @@ public class Constants {
 
     public static final double baseVoltage = 13.5; //EDIT THIS TO CHANGE THE BASE VOLTAGE
     public static double speed = 1; //Speed Control
-    public static double targetSpinnerPower = 0.48;    //EDIT THIS TO CHANGE THE POWER OF THE SHOOTER
-    public static final double turnPower = 0.7; //Turning Power
+    public static double slowSpeed = 0.4;
+    public static double targetSpinnerPower = 0.7;    //EDIT THIS TO CHANGE THE POWER OF THE SHOOTER
+    public static final double turnPower = 0.9; //Turning Power
     public static final double spinnerConstant = baseVoltage*targetSpinnerPower;
 
     public static double armPowerUp = 0.5;
     public static double armPowerDown = 0.7;
     //Arm positions
-    public static int arm3 = -2500;
+    public static int arm3 = 2400;
     public static int elbow3 = 700;
-    public static int arm2 = -3000;
+    public static int arm2 = 3000;
     public static int elbow2 = 1100;
-    public static int arm1 = -3250;
+    public static int arm1 = 3250;
     public static int elbow1 = 790;
-    public static int armCap = -1300;
+    public static int armCap = 1300;
     public static int elbowCap = 750;
 
     //Arm Motor FF

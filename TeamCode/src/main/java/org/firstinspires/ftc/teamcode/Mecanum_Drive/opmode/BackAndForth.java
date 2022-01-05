@@ -26,7 +26,7 @@ import org.firstinspires.ftc.teamcode.Mecanum_Drive.MyMecanumDrive;
  * is recommended that you use the FollowerPIDTuner opmode for further fine tuning.
  */
 @Config
-@Disabled
+//@Disabled
 @Autonomous(group = "roadrunner_calibration")
 public class BackAndForth extends LinearOpMode {
 

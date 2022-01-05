@@ -9,17 +9,17 @@ public class Joystick {
      */
     public static void teleopControl(Gamepad gamepad1){
         //drive the robot
-        Drivetrain.fieldCentricDrive(gamepad1.right_stick_x* Constants.turnPower, gamepad1.right_stick_y, -gamepad1.left_stick_x);
+        Drivetrain.fieldCentricDrive(gamepad1.right_stick_x* Constants.turnPower, -gamepad1.right_stick_y, -gamepad1.left_stick_x);
 
         if (gamepad1.left_bumper) Drivetrain.speedControl(1); //drivetrain speed control
 
-        else Drivetrain.speedControl(0.4);
+        else Drivetrain.speedControl(Constants.slowSpeed);
 
         Spinner.spin(-gamepad1.left_trigger+gamepad1.right_trigger);
 
-        if (gamepad1.dpad_down) Arm.setArm(10); //arm up
+        if (gamepad1.dpad_down) Arm.setArm(-10); //arm down
 
-        else if (gamepad1.dpad_up) Arm.setArm(-10); //arm down
+        else if (gamepad1.dpad_up) Arm.setArm(10); //arm up
 
         if (gamepad1.dpad_right) Claw.close(); //close the grabbers
 
@@ -39,19 +39,19 @@ public class Joystick {
 
         //GAMEPAD 1
         //drive the robot
-        Drivetrain.fieldCentricDrive(gamepad1.right_stick_x* Constants.turnPower, gamepad1.right_stick_y, -gamepad1.left_stick_x);
+        Drivetrain.fieldCentricDrive(gamepad1.right_stick_x* Constants.turnPower, -gamepad1.right_stick_y, -gamepad1.left_stick_x);
 
         if (gamepad1.left_bumper) Drivetrain.speedControl(1); //drivetrain speed control
 
-        else Drivetrain.speedControl(0.4);
+        else Drivetrain.speedControl(Constants.slowSpeed);
 
         //GAMEPAD 2
 
         Spinner.spin(-gamepad2.left_trigger+gamepad2.right_trigger);
 
-        if (gamepad2.dpad_down) Arm.setArm(10); //arm up
+        if (gamepad2.dpad_down) Arm.setArm(-10); //arm down
 
-        else if (gamepad2.dpad_up) Arm.setArm(-10); //arm down
+        else if (gamepad2.dpad_up) Arm.setArm(10); //arm up
 
         if (gamepad2.dpad_right) Claw.close(); //close the grabbers
 

@@ -52,7 +52,7 @@ import static org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants.kV;
  */
 
 @Config
-@Disabled
+//@Disabled
 @Autonomous(group = "roadrunner_calibration")
 public class DriveVelocityPIDTuner extends LinearOpMode {
     public static double DISTANCE = 72; // in
