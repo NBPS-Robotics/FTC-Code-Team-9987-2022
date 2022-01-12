@@ -17,8 +17,6 @@ public class Arm {
     static PIDFController armPid = new PIDFController(Constants.KP_arm, Constants.KI_arm, Constants.KD_arm, Constants.KF_arm);
     static PIDFController elbowPid = new PIDFController(Constants.KP_elbow, Constants.KI_elbow, Constants.KD_elbow, Constants.KF_elbow);
 
-    static ArmFeedforward armff = new ArmFeedforward(Constants.kS_Arm,Constants.kCos_Arm,Constants.kV_Arm,Constants.kA_Arm);
-    static ArmFeedforward elbowff = new ArmFeedforward(Constants.kS_Elbow,Constants.kCos_Elbow,Constants.kV_Elbow,Constants.kA_Elbow);
     /**
      * This function initializes all components of the Arm subsystem, including all motors and sensors.
      * @param hardwareMap HardwareMap object used to initialize the hardware of the robot.
@@ -68,8 +66,8 @@ public class Arm {
     }
 
     public static void pickUp(){
-        armPose = -20;
-        elbowPose = -5;
+        armPose = -130;
+        elbowPose = -50;
     }
 
     public static void capElement(){
@@ -111,13 +109,6 @@ public class Arm {
         mElbow.setPower(elbowPid.calculate(getElbowPose(),elbowPose));
     }
 
-    public static void armFF(){
-        mArm.setPower(armff.calculate(armPose, Constants.armMaxVelo));
-    }
-
-    public static void elbowFF() {
-        mElbow.setPower(elbowff.calculate(elbowPose / 500, Constants.elbowMaxVelo));
-    }
     public static void armUpAuto(){
         armPid.setSetPoint(armPose);
         elbowPid.setSetPoint(elbowPose);

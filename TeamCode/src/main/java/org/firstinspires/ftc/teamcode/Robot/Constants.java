@@ -28,20 +28,6 @@ public class Constants {
     public static int armCap = 1300;
     public static int elbowCap = 750;
 
-    //Arm Motor FF
-    public static double kV_Arm = 0.05;
-    public static double kS_Arm = 0.01;
-    public static double kA_Arm = 0;
-    public static double kCos_Arm = 0;
-    public static double armMaxVelo = 5;
-
-    //Elbow Motor FF
-    public static double kV_Elbow = 0;
-    public static double kS_Elbow = 0;
-    public static double kA_Elbow = 0;
-    public static double kCos_Elbow = 0;
-    public static double elbowMaxVelo = 5;
-
     //Arm Motor PIDF
     public static double KP_arm = 0.002;
     public static double KD_arm = 0.0001;
@@ -49,10 +35,10 @@ public class Constants {
     public static double KF_arm = 0;
 
     //Elbow Motor PIDF
-    public static double KP_elbow = 0.02;
-    public static double KD_elbow = 0.0005;
-    public static double KI_elbow = 0.0001;
-    public static double KF_elbow = 0.0;
+    public static double KP_elbow = 0.01;
+    public static double KD_elbow = 0.001;
+    public static double KI_elbow = 0.005;
+    public static double KF_elbow = 0.001;
 
     //Spinner Motor PIDF
     public static double KP_spinner = 0;
