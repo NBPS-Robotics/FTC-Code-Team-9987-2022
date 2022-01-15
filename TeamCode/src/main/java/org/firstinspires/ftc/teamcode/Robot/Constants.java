@@ -19,14 +19,15 @@ public class Constants {
     public static double armPowerUp = 0.5;
     public static double armPowerDown = 0.7;
     //Arm positions
-    public static int arm3 = 2400;
-    public static int elbow3 = 700;
-    public static int arm2 = 3000;
-    public static int elbow2 = 1100;
+    public static int arm3 = 2300;
+    public static int elbow3 = 650;
+    public static int arm2 = 2770;
+    public static int elbow2 = 900;
     public static int arm1 = 3250;
-    public static int elbow1 = 790;
+    public static int elbow1 = 1000;
     public static int armCap = 1300;
     public static int elbowCap = 750;
+    public static int elbowUp = -1400;
 
     //Arm Motor PIDF
     public static double KP_arm = 0.002;
@@ -41,10 +42,10 @@ public class Constants {
     public static double KF_elbow = 0.001;
 
     //Spinner Motor PIDF
-    public static double KP_spinner = 0;
-    public static double KD_spinner = 0;
-    public static double KI_spinner = 0;
-    public static double KF_spinner = 0;
+    //public static double KP_spinner = 0;
+    //public static double KD_spinner = 0;
+    //public static double KI_spinner = 0;
+    //public static double KF_spinner = 0;
 
     //Spinner Motor PIDF
     public static double KP_claw = 0.005;
@@ -57,7 +58,5 @@ public class Constants {
     public static double elbowCPR = 288;
     public static double CPR_multiplier = armCPR/elbowCPR;
 
-    //Auto Constants
-    public static int autoElbowPose = -1600;
 
 }

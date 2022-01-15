@@ -53,6 +53,8 @@ public class Joystick {
 
         else if (gamepad2.dpad_up) Arm.setArm(10); //arm up
 
+        Arm.setArm((int)gamepad2.left_stick_y*-30);
+
         if (gamepad2.dpad_right) Claw.close(); //close the grabbers
 
         if (gamepad2.dpad_left) Claw.open(); //open the grabbers

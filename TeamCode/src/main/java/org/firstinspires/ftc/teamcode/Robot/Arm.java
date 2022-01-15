@@ -66,8 +66,8 @@ public class Arm {
     }
 
     public static void pickUp(){
-        armPose = -130;
-        elbowPose = -50;
+        armPose = -100;
+        elbowPose = 0;
     }
 
     public static void capElement(){
@@ -87,9 +87,6 @@ public class Arm {
         elbowPose = Constants.elbow1;
     }
 
-    public static void setElbowUp(){
-        elbowPose = Constants.autoElbowPose;
-    }
     public static int getArmPose(){
         return mArm.getCurrentPosition();
     }
@@ -112,10 +109,8 @@ public class Arm {
     public static void armUpAuto(){
         armPid.setSetPoint(armPose);
         elbowPid.setSetPoint(elbowPose);
-        while (!armPid.atSetPoint()) {
+        while (!armPid.atSetPoint() && !elbowPid.atSetPoint()) {
             correctArm();
-        }
-        while (!elbowPid.atSetPoint()) {
             correctElbow();
         }
     }
@@ -127,4 +122,7 @@ public class Arm {
         }
     }
 
+    public static void elbowUpAuto(){
+        elbowPose = Constants.elbowUp;
+    }
 }

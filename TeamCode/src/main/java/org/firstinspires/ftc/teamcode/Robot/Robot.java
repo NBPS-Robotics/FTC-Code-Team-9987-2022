@@ -52,7 +52,7 @@ public class Robot {
     public static void initTeleOp(HardwareMap hardwareMap, Telemetry telemetry){
         init(hardwareMap, telemetry); //initialize the robot
         drive.setPoseEstimate(Coordinates.end); //set the initial position for Road Runner
-        Claw.close(); // open the arm grippers
+        Claw.open(); // open the arm grippers
         telemetry.addLine();
         telemetry.addData(">", "Press Play to start op mode"); //telemetry confirmation
         telemetry.update();

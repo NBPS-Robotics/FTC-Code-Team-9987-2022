@@ -38,13 +38,19 @@ public class Navigation {
         Trajectory trajectory2 = Robot.drive.trajectoryBuilder(goalPoint)
                 .lineToLinearHeading(goal)
                 .build();
-        Robot.drive.followTrajectory(trajectory2);
+        Robot.drive.followTrajectoryAsync(trajectory2);
     }
-    public static void goToCarousel(Pose2d goal, Pose2d spinnerWall, Pose2d spinner){
+    public static void backfromGoal(Pose2d goal, Pose2d goalBack){
+        Trajectory trajectory = Robot.drive.trajectoryBuilder(goal)
+                .lineToLinearHeading(goalBack)
+                .build();
+        Robot.drive.followTrajectory(trajectory);
+        if(goal.getHeading()==0) Robot.drive.turn(Math.toRadians(-90));
+        else Robot.drive.turn(Math.toRadians(90));
+    }
+    public static void goToCarousel(Pose2d goalBack, Pose2d spinnerWall, Pose2d spinner){
         //Robot.drive.setPoseEstimate(goal);
-        if(goal.getHeading()==0) Robot.drive.turn(Math.toRadians(90));
-        else Robot.drive.turn(Math.toRadians(-90));
-        Trajectory trajectory = Robot.drive.trajectoryBuilder(new Pose2d(goal.getX(),goal.getY(), Coordinates.redSpinnerWall.getHeading()))
+        Trajectory trajectory = Robot.drive.trajectoryBuilder(new Pose2d(goalBack.getX(),goalBack.getY(), Coordinates.redSpinnerWall.getHeading()))
                 .lineToLinearHeading(spinnerWall)
                 .build();
         Trajectory trajectory2 = Robot.drive.trajectoryBuilder(spinnerWall)
@@ -74,7 +80,7 @@ public class Navigation {
     public static void goToWarehouseFromCarousel(Pose2d spinner, Pose2d spinnerWall,Pose2d goalWall, Pose2d warehouse){
         //Robot.drive.setPoseEstimate(spinner);
         Trajectory trajectory = Robot.drive.trajectoryBuilder(spinner)
-                .lineToLinearHeading(goalWall)
+                .lineToLinearHeading(spinnerWall)
                 .build();
         Trajectory trajectory2 = Robot.drive.trajectoryBuilder(spinnerWall)
                 .lineToLinearHeading(goalWall)

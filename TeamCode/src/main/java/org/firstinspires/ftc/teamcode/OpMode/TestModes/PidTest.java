@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Robot.Arm;
+import org.firstinspires.ftc.teamcode.Robot.Joystick;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
 @TeleOp(name = "PidTest", group = "OpModes")
@@ -35,8 +36,9 @@ public class PidTest extends LinearOpMode {
         waitForStart();
         while (opModeIsActive()) {
             motor.setPower(pidf.calculate(Arm.getElbowPose(),setpoint));
+            Joystick.teleopControl(gamepad1);
             telemetry.addData("Position", Arm.getElbowPose());
-            telemetry.update();
+            Robot.update();
         }
     }
 }

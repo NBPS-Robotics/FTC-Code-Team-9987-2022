@@ -23,6 +23,7 @@ public class Autocode {
         Navigation.goToCarousel(goalPose,Coordinates.redSpinnerWall,Coordinates.redSpinner);
         spinner(1);
         Navigation.goToStorage(Coordinates.redSpinner,Coordinates.redStorage);
+        raiseElbow();
         Drivetrain.setEndPose();
     }
     public static void Red2(String pose){ //Red2 - Score, Warehouse
@@ -49,7 +50,7 @@ public class Autocode {
         goalPose = scoreGoalRed(pose);
         Navigation.goToCarousel(goalPose,Coordinates.redSpinnerWall,Coordinates.redSpinner);
         spinner(1);
-        Navigation.goToWarehouseFromCarousel(Coordinates.redSpinner,Coordinates.redSpinnerWall,Coordinates.redGoalWall,Coordinates.redWarehouse);
+        Navigation.goToWarehouseFromCarousel(Coordinates.redSpinner,Coordinates.redSpinnerWall,Coordinates.redGoalWall2,Coordinates.redWarehouse);
         Drivetrain.setEndPose();
     }
     public static void Blue1(String pose){ //Blue1 - Score, Duck, Storage
@@ -60,6 +61,7 @@ public class Autocode {
         Navigation.goToCarousel(goalPose,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
         spinner(-1);
         Navigation.goToStorage(Coordinates.blueSpinner,Coordinates.blueStorage);
+        raiseElbow();
         Drivetrain.setEndPose();
     }
     public static void Blue2(String pose){ //Blue2 - Score, Warehouse
@@ -77,7 +79,7 @@ public class Autocode {
         goalPose = scoreGoalBlue(pose);
         Navigation.goToCarousel(goalPose,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
         spinner(1);
-        Navigation.goToWarehouseFromCarousel(Coordinates.blueSpinner,Coordinates.blueSpinnerWall,Coordinates.blueGoalWall,Coordinates.blueWarehouse);
+        Navigation.goToWarehouseFromCarousel(Coordinates.blueSpinner,Coordinates.blueSpinnerWall,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
         Drivetrain.setEndPose();
     }
     public static void Blue2ClearWarehouse(String pose){ //Blue2 - Score, Warehouse, Clear Warehouse
@@ -99,7 +101,7 @@ public class Autocode {
         Drivetrain.setEndPose();
     }
     public static void spinner(double value){
-        Spinner.spin(value);
+        Spinner.spin(value*0.8);
         Robot.wait(3000);
         Spinner.stop();
     }
@@ -119,18 +121,47 @@ public class Autocode {
             }
         }
         Arm.armUpAuto();
-        Arm.update();
-        Robot.wait(2000);
+        for(int x =0; x<100; x++){
+            Arm.update();
+            Robot.wait(10);
+        }
+
     }
-    public static void scoreElement(){
+    public static void raiseElbow(){
+        Claw.open();
+        for(int y = 0; y<50; y++){
+            Claw.update();
+            Robot.wait(10);
+        }
+        Arm.elbowUpAuto();
+        for(int y = 0; y<300; y++){
+            Arm.correctElbow();
+            Robot.wait(10);
+        }
+    }
+    public static void scoreElement(Pose2d goal, Pose2d goalBack){
+        while(Robot.drive.isBusy()){
+            Arm.update();
+            Robot.drive.update();
+            Robot.wait(10);
+        }
+        Arm.update();
         Claw.open();
         Claw.update();
         Arm.update();
-        Robot.wait(1000);
+        for(int x =0; x<100; x++){
+            Arm.update();
+            Claw.update();
+            Robot.wait(10);
+        }
+        Navigation.backfromGoal(goal, goalBack);
         Arm.armDownAuto();
         Claw.close();
-        Claw.update();
-        Robot.wait(500);
+        for(int x =0; x<100; x++){
+            Arm.update();
+            Claw.update();
+            Robot.wait(10);
+        }
         Arm.stop();
     }
     public static Pose2d scoreGoalRed(String pose){
@@ -138,18 +169,18 @@ public class Autocode {
         switch (pose){
             case "Left":{
                 Navigation.goToGoal(Coordinates.redGoalPoint1, Coordinates.redGoalBottom);
-                scoreElement();
-                return Coordinates.redGoalBottom;
+                scoreElement(Coordinates.redGoalBottom, Coordinates.redGoalBack);
+                return Coordinates.redGoalBack;
             }
             case "Center":{
                 Navigation.goToGoal(Coordinates.redGoalPoint1, Coordinates.redGoalMiddle);
-                scoreElement();
-                return Coordinates.redGoalMiddle;
+                scoreElement(Coordinates.redGoalMiddle, Coordinates.redGoalBack);
+                return Coordinates.redGoalBack;
             }
             case "Right":{
                 Navigation.goToGoal(Coordinates.redGoalPoint1, Coordinates.redGoalTop);
-                scoreElement();
-                return Coordinates.redGoalTop;
+                scoreElement(Coordinates.redGoalTop, Coordinates.redGoalBack);
+                return Coordinates.redGoalBack;
             }
         }
         return null;
@@ -159,18 +190,18 @@ public class Autocode {
         switch (pose){
             case "Left":{
                 Navigation.goToGoal(Coordinates.blueGoalPoint1, Coordinates.blueGoalBottom);
-                scoreElement();
-                return Coordinates.blueGoalBottom;
+                scoreElement(Coordinates.blueGoalBottom, Coordinates.blueGoalBack);
+                return Coordinates.blueGoalBack;
             }
             case "Center":{
                 Navigation.goToGoal(Coordinates.blueGoalPoint1, Coordinates.blueGoalMiddle);
-                scoreElement();
-                return Coordinates.blueGoalMiddle;
+                scoreElement(Coordinates.blueGoalMiddle, Coordinates.blueGoalBack);
+                return Coordinates.blueGoalBack;
             }
             case "Right":{
                 Navigation.goToGoal(Coordinates.blueGoalPoint1, Coordinates.blueGoalTop);
-                scoreElement();
-                return Coordinates.blueGoalTop;
+                scoreElement(Coordinates.blueGoalTop, Coordinates.blueGoalBack);
+                return Coordinates.blueGoalBack;
             }
         }
         return null;
