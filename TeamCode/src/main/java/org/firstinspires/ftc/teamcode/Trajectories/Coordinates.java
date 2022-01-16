@@ -8,9 +8,9 @@ public class Coordinates {
 
     public static Pose2d redStart2 = new Pose2d(15,-60,Math.toRadians(-90));
 
-    public static Pose2d redGoalTop = new Pose2d(-5,-43,Math.toRadians(-90));
+    public static Pose2d redGoalTop = new Pose2d(-5,-42,Math.toRadians(-90));
 
-    public static Pose2d redGoalMiddle = new Pose2d(-5,-46,Math.toRadians(-90));
+    public static Pose2d redGoalMiddle = new Pose2d(-5,-45,Math.toRadians(-90));
 
     public static Pose2d redGoalBottom = new Pose2d(-5,-44,Math.toRadians(-90));
 

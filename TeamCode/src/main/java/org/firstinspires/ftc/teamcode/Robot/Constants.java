@@ -21,8 +21,8 @@ public class Constants {
     //Arm positions
     public static int arm3 = 2300;
     public static int elbow3 = 650;
-    public static int arm2 = 2770;
-    public static int elbow2 = 900;
+    public static int arm2 = 2900;
+    public static int elbow2 = 1100;
     public static int arm1 = 3250;
     public static int elbow1 = 1000;
     public static int armCap = 1300;
@@ -37,9 +37,9 @@ public class Constants {
 
     //Elbow Motor PIDF
     public static double KP_elbow = 0.01;
-    public static double KD_elbow = 0.001;
+    public static double KD_elbow = 0.003;
     public static double KI_elbow = 0.005;
-    public static double KF_elbow = 0.001;
+    public static double KF_elbow = 0.002;
 
     //Spinner Motor PIDF
     //public static double KP_spinner = 0;
