@@ -27,6 +27,7 @@ public class Arm {
         mArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         mElbow.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        mElbow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         mElbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armPose = 0;

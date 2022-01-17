@@ -23,7 +23,7 @@ public class PidTest extends LinearOpMode {
 
     public static double setpoint = 700;
 
-    PIDFController pidf = new PIDFController(P, I, D, F);
+
 
     @Override
     public void runOpMode() {
@@ -35,10 +35,13 @@ public class PidTest extends LinearOpMode {
         motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         waitForStart();
         while (opModeIsActive()) {
+            PIDFController pidf = new PIDFController(P, I, D, F);
+            pidf.setTolerance(10);
             motor.setPower(pidf.calculate(Arm.getElbowPose(),setpoint));
-            Joystick.teleopControl(gamepad1);
+            //Joystick.teleopControl(gamepad1);
             telemetry.addData("Position", Arm.getElbowPose());
-            Robot.update();
+            telemetry.update();
+            //Robot.update();
         }
     }
 }
