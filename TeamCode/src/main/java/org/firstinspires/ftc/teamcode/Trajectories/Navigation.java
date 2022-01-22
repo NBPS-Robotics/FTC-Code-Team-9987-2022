@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Mecanum_Drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.Robot.Claw;
 import org.firstinspires.ftc.teamcode.Robot.Arm;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
-
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import java.util.Arrays;
 
 public class Navigation {
@@ -50,7 +50,7 @@ public class Navigation {
     }
     public static void goToCarousel(Pose2d goalBack, Pose2d spinnerWall, Pose2d spinner){
         //Robot.drive.setPoseEstimate(goal);
-        TrajectorySequence trajectory = Robot.drive.trajectoryBuilder(new Pose2d(goalBack.getX(),goalBack.getY(), Coordinates.redSpinnerWall.getHeading()))
+        TrajectorySequence trajectory = Robot.drive.trajectorySequenceBuilder(new Pose2d(goalBack.getX(),goalBack.getY(), Coordinates.redSpinnerWall.getHeading()))
                 .lineToLinearHeading(spinnerWall)
                 .lineToLinearHeading(spinner)
                 .build();
@@ -65,29 +65,20 @@ public class Navigation {
     }
     public static void goToWarehouse(Pose2d goal,Pose2d goalWall, Pose2d warehouse){
         //Robot.drive.setPoseEstimate(goal);
-        Trajectory trajectory = Robot.drive.trajectoryBuilder(goal)
+        TrajectorySequence trajectory = Robot.drive.trajectorySequenceBuilder(goal)
                 .lineToLinearHeading(goalWall)
-                .build();
-        Trajectory trajectory2 = Robot.drive.trajectoryBuilder(goalWall)
                 .lineToLinearHeading(warehouse)
                 .build();
-        Robot.drive.followTrajectory(trajectory);
-        Robot.drive.followTrajectory(trajectory2);
+        Robot.drive.followTrajectorySequence(trajectory);
     }
     public static void goToWarehouseFromCarousel(Pose2d spinner, Pose2d spinnerWall,Pose2d goalWall, Pose2d warehouse){
         //Robot.drive.setPoseEstimate(spinner);
-        Trajectory trajectory = Robot.drive.trajectoryBuilder(spinner)
+        TrajectorySequence trajectory = Robot.drive.trajectorySequenceBuilder(spinner)
                 .lineToLinearHeading(spinnerWall)
-                .build();
-        Trajectory trajectory2 = Robot.drive.trajectoryBuilder(spinnerWall)
                 .lineToLinearHeading(goalWall)
-                .build();
-        Trajectory trajectory3 = Robot.drive.trajectoryBuilder(goalWall)
                 .lineToLinearHeading(warehouse)
                 .build();
-        Robot.drive.followTrajectory(trajectory);
-        Robot.drive.followTrajectory(trajectory2);
-        Robot.drive.followTrajectory(trajectory3);
+        Robot.drive.followTrajectorySequence(trajectory);
     }
     public static void clearWarehouse(Pose2d warehouse,Pose2d warehousePoint){
         //Robot.drive.setPoseEstimate(goal);

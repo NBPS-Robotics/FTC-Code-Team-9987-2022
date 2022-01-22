@@ -47,6 +47,9 @@ import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigu
 
 import org.firstinspires.ftc.teamcode.RoadRunner_Utilities.DashboardUtil;
 import org.firstinspires.ftc.teamcode.RoadRunner_Utilities.LynxModuleUtil;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -66,6 +69,8 @@ public class MyMecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDri
     public static double VX_WEIGHT = 1;
     public static double VY_WEIGHT = 1;
     public static double OMEGA_WEIGHT = 1;
+
+    private TrajectorySequenceRunner trajectorySequenceRunner;
 
     public static int POSE_HISTORY_LIMIT = 100;
 
@@ -172,6 +177,7 @@ public class MyMecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDri
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
         //setLocalizer(new StandardTrackingWheelLocalizer(hardwareMap));
+        trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
@@ -184,6 +190,14 @@ public class MyMecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDri
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose, double startHeading) {
         return new TrajectoryBuilder(startPose, startHeading, velConstraint, accelConstraint);
+    }
+
+    public TrajectorySequenceBuilder trajectorySequenceBuilder(Pose2d startPose) {
+        return new TrajectorySequenceBuilder(
+                startPose,
+                velConstraint, accelConstraint,
+                MAX_ANG_VEL, MAX_ANG_ACCEL
+        );
     }
 
     public void turnAsync(double angle) {
@@ -214,6 +228,15 @@ public class MyMecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDri
 
     public void followTrajectory(Trajectory trajectory) {
         followTrajectoryAsync(trajectory);
+        waitForIdle();
+    }
+
+    public void followTrajectorySequenceAsync(TrajectorySequence trajectorySequence) {
+        trajectorySequenceRunner.followTrajectorySequenceAsync(trajectorySequence);
+    }
+
+    public void followTrajectorySequence(TrajectorySequence trajectorySequence) {
+        followTrajectorySequenceAsync(trajectorySequence);
         waitForIdle();
     }
 
@@ -403,5 +426,16 @@ public class MyMecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDri
 
     public Double getExternalHeadingVelocity(){
         return (double) imu.getAngularVelocity().zRotationRate;
+    }
+
+    public static TrajectoryVelocityConstraint getVelocityConstraint(double maxVel, double maxAngularVel, double trackWidth) {
+        return new MinVelocityConstraint(Arrays.asList(
+                new AngularVelocityConstraint(maxAngularVel),
+                new MecanumVelocityConstraint(maxVel, trackWidth)
+        ));
+    }
+
+    public static TrajectoryAccelerationConstraint getAccelerationConstraint(double maxAccel) {
+        return new ProfileAccelerationConstraint(maxAccel);
     }
 }
