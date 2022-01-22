@@ -67,8 +67,8 @@ public class Arm {
     }
 
     public static void pickUp(){
-        armPose = -100;
-        elbowPose = 0;
+        armPose = Constants.armDown;
+        elbowPose = Constants.elbowDown;
     }
 
     public static void capElement(){
@@ -104,7 +104,8 @@ public class Arm {
     }
 
     public static void correctElbow(){
-        mElbow.setPower(elbowPid.calculate(getElbowPose(),elbowPose));
+        if(getElbowPose() < 50 && getElbowPose() > -50) mElbow.setPower(0);
+        else mElbow.setPower(elbowPid.calculate(getElbowPose(),elbowPose));
     }
 
     public static void armUpAuto(){

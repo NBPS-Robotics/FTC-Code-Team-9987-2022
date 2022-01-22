@@ -149,7 +149,7 @@ public class Autocode {
         Claw.open();
         Claw.update();
         Arm.update();
-        for(int x =0; x<100; x++){
+        for(int x =0; x<50; x++){
             Arm.update();
             Claw.update();
             Robot.wait(10);
@@ -157,7 +157,7 @@ public class Autocode {
         Navigation.backfromGoal(goal, goalBack);
         Arm.armDownAuto();
         Claw.close();
-        for(int x =0; x<100; x++){
+        for(int x =0; x<50; x++){
             Arm.update();
             Claw.update();
             Robot.wait(10);

@@ -99,10 +99,10 @@ public class DriveConstants {
      
      */
 
-    public static double MAX_VEL = 40; //TODO: TRY A LOWER VELOCITY AND SEE IF IT MAKES SPLINES BETTER
-    public static double MAX_ACCEL = 40;
-    public static double MAX_ANG_VEL = 4; //TODO: TRY A LOWER VELOCITY AND SEE IF IT MAKES SPLINES BETTER
-    public static double MAX_ANG_ACCEL = 4;
+    public static double MAX_VEL = 60;
+    public static double MAX_ACCEL = 60;
+    public static double MAX_ANG_VEL = 7;
+    public static double MAX_ANG_ACCEL = 7;
 
 
     public static double encoderTicksToInches(double ticks) {

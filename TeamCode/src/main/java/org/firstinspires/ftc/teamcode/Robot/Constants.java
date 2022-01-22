@@ -20,14 +20,16 @@ public class Constants {
     public static double armPowerDown = 0.7;
     //Arm positions
     public static int arm3 = 2300;
-    public static int elbow3 = 650;
+    public static int elbow3 = 350;
     public static int arm2 = 2900;
-    public static int elbow2 = 1100;
+    public static int elbow2 = 800;
     public static int arm1 = 3250;
     public static int elbow1 = 1000;
     public static int armCap = 1300;
     public static int elbowCap = 750;
     public static int elbowUp = -1400;
+    public static int armDown = -20;
+    public static int elbowDown = 5;
 
     //Arm Motor PIDF
     public static double KP_arm = 0.002;

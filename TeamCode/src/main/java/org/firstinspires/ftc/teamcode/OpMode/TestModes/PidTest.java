@@ -33,6 +33,7 @@ public class PidTest extends LinearOpMode {
         DcMotor motor = hardwareMap.dcMotor.get("mElbow");
         motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         waitForStart();
         while (opModeIsActive()) {
             PIDFController pidf = new PIDFController(P, I, D, F);
