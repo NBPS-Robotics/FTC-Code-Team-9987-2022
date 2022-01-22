@@ -50,14 +50,11 @@ public class Navigation {
     }
     public static void goToCarousel(Pose2d goalBack, Pose2d spinnerWall, Pose2d spinner){
         //Robot.drive.setPoseEstimate(goal);
-        Trajectory trajectory = Robot.drive.trajectoryBuilder(new Pose2d(goalBack.getX(),goalBack.getY(), Coordinates.redSpinnerWall.getHeading()))
+        TrajectorySequence trajectory = Robot.drive.trajectoryBuilder(new Pose2d(goalBack.getX(),goalBack.getY(), Coordinates.redSpinnerWall.getHeading()))
                 .lineToLinearHeading(spinnerWall)
-                .build();
-        Trajectory trajectory2 = Robot.drive.trajectoryBuilder(spinnerWall)
                 .lineToLinearHeading(spinner)
                 .build();
-        Robot.drive.followTrajectory(trajectory);
-        Robot.drive.followTrajectory(trajectory2);
+        Robot.drive.followTrajectorySequence(trajectory);
     }
     public static void goToStorage(Pose2d spinner, Pose2d storage){
         //Robot.drive.setPoseEstimate(spinner);
