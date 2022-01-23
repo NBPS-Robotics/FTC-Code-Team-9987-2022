@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Trajectories;
+package com.example.mymeepmeep;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 
@@ -24,13 +24,13 @@ public class Coordinates {
 
     public static Pose2d redSpinnerWall = new Pose2d(-62,-40,Math.toRadians(0));
 
-    public static Pose2d redSpinner = new Pose2d(-62,-53,Math.toRadians(0));
+    public static Pose2d redSpinner = new Pose2d(-55,-56,Math.toRadians(0));
 
     public static Pose2d redStorage = new Pose2d(-69,-33,Math.toRadians(0));
 
     public static Pose2d redGoalWall2 = new Pose2d(-10,-65,Math.toRadians(0));
 
-    public static Pose2d redWarehouse = new Pose2d(45,-68,Math.toRadians(0));
+    public static Pose2d redWarehouse = new Pose2d(45,-70,Math.toRadians(0));
 
     public static Pose2d redWarehousePoint = new Pose2d(40,-45,Math.toRadians(0));
 

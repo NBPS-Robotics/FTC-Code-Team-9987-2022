@@ -15,23 +15,13 @@ public class MyMeepMeep {
 
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Required: Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                .setConstraints(60, 60, 7, 7, 13.4)
+                .setConstraints(50, 50, 5, 5, 13.4)
                 // Option: Set theme. Default = ColorSchemeRedDark()
                 .setColorScheme(new ColorSchemeRedDark())
                 .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(0, 0, 0))
-                                .forward(30)
-                                .turn(Math.toRadians(90))
-                                .forward(30)
-                                .addDisplacementMarker(() -> {
-                                    /* Everything in the marker callback should be commented out */
-
-                                    // bot.shooter.shoot()
-                                    // bot.wobbleArm.lower()
-                                })
-                                .turn(Math.toRadians(90))
-                                .splineTo(new Vector2d(10, 15), 0)
-                                .turn(Math.toRadians(90))
+                        drive.trajectorySequenceBuilder(Coordinates.redStart1)
+                                .splineTo(new Vector2d(Coordinates.redGoalPoint1.getX(), Coordinates.redGoalPoint1.getY()), Coordinates.redGoalPoint1.getHeading())
+                                .lineToLinearHeading(Coordinates.redGoalTop)
                                 .build()
                 );
 

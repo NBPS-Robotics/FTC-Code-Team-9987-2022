@@ -104,7 +104,7 @@ public class Arm {
     }
 
     public static void correctElbow(){
-        if(getElbowPose() < 50 && getElbowPose() > -50) mElbow.setPower(0);
+        if(getElbowPose() < 30 && getElbowPose() > -30) mElbow.setPower(0);
         else mElbow.setPower(elbowPid.calculate(getElbowPose(),elbowPose));
     }
 

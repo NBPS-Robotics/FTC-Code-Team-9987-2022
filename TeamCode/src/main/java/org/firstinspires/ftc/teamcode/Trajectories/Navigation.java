@@ -50,11 +50,11 @@ public class Navigation {
     }
     public static void goToCarousel(Pose2d goalBack, Pose2d spinnerWall, Pose2d spinner){
         //Robot.drive.setPoseEstimate(goal);
-        TrajectorySequence trajectory = Robot.drive.trajectorySequenceBuilder(new Pose2d(goalBack.getX(),goalBack.getY(), Coordinates.redSpinnerWall.getHeading()))
-                .lineToLinearHeading(spinnerWall)
-                .lineToLinearHeading(spinner)
+        Trajectory trajectory = Robot.drive.trajectoryBuilder(new Pose2d(goalBack.getX(),goalBack.getY(), Coordinates.redSpinnerWall.getHeading()))
+                .splineToConstantHeading(new Vector2d(spinnerWall.getX(), spinnerWall.getY()), spinnerWall.getHeading())
+                .splineToConstantHeading(new Vector2d(spinner.getX(), spinner.getY()), spinner.getHeading())
                 .build();
-        Robot.drive.followTrajectorySequence(trajectory);
+        Robot.drive.followTrajectory(trajectory);
     }
     public static void goToStorage(Pose2d spinner, Pose2d storage){
         //Robot.drive.setPoseEstimate(spinner);
@@ -65,20 +65,20 @@ public class Navigation {
     }
     public static void goToWarehouse(Pose2d goal,Pose2d goalWall, Pose2d warehouse){
         //Robot.drive.setPoseEstimate(goal);
-        TrajectorySequence trajectory = Robot.drive.trajectorySequenceBuilder(goal)
-                .lineToLinearHeading(goalWall)
-                .lineToLinearHeading(warehouse)
+        Trajectory trajectory = Robot.drive.trajectoryBuilder(goal)
+                .splineToConstantHeading(new Vector2d(goalWall.getX(), goalWall.getY()), goalWall.getHeading())
+                .splineToConstantHeading(new Vector2d(warehouse.getX(), warehouse.getY()), warehouse.getHeading())
                 .build();
-        Robot.drive.followTrajectorySequence(trajectory);
+        Robot.drive.followTrajectory(trajectory);
     }
     public static void goToWarehouseFromCarousel(Pose2d spinner, Pose2d spinnerWall,Pose2d goalWall, Pose2d warehouse){
         //Robot.drive.setPoseEstimate(spinner);
-        TrajectorySequence trajectory = Robot.drive.trajectorySequenceBuilder(spinner)
-                .lineToLinearHeading(spinnerWall)
-                .lineToLinearHeading(goalWall)
-                .lineToLinearHeading(warehouse)
+        Trajectory trajectory = Robot.drive.trajectoryBuilder(spinner)
+                .splineToConstantHeading(new Vector2d(spinnerWall.getX(), spinnerWall.getY()), spinnerWall.getHeading())
+                .splineToConstantHeading(new Vector2d(goalWall.getX(), goalWall.getY()), goalWall.getHeading())
+                .splineToConstantHeading(new Vector2d(warehouse.getX(), warehouse.getY()), warehouse.getHeading())
                 .build();
-        Robot.drive.followTrajectorySequence(trajectory);
+        Robot.drive.followTrajectory(trajectory);
     }
     public static void clearWarehouse(Pose2d warehouse,Pose2d warehousePoint){
         //Robot.drive.setPoseEstimate(goal);

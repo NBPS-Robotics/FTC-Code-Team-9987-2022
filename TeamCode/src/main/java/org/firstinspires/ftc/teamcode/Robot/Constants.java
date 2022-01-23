@@ -20,7 +20,7 @@ public class Constants {
     public static double armPowerDown = 0.7;
     //Arm positions
     public static int arm3 = 2300;
-    public static int elbow3 = 350;
+    public static int elbow3 = 550;
     public static int arm2 = 2900;
     public static int elbow2 = 800;
     public static int arm1 = 3250;

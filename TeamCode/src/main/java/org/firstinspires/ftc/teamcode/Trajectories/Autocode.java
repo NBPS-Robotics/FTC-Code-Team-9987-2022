@@ -157,7 +157,7 @@ public class Autocode {
         Navigation.backfromGoal(goal, goalBack);
         Arm.armDownAuto();
         Claw.close();
-        for(int x =0; x<50; x++){
+        for(int x =0; x<100; x++){
             Arm.update();
             Claw.update();
             Robot.wait(10);
