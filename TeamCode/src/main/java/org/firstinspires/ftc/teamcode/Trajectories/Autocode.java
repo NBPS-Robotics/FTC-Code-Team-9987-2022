@@ -155,6 +155,12 @@ public class Autocode {
             Robot.wait(10);
         }
         Navigation.backfromGoal(goal, goalBack);
+        while(Robot.drive.isBusy()){
+            Arm.update();
+            Robot.drive.update();
+            Robot.wait(10);
+        }
+        Navigation.turnfromGoal(goal);
         Arm.armDownAuto();
         Claw.close();
         for(int x =0; x<100; x++){
