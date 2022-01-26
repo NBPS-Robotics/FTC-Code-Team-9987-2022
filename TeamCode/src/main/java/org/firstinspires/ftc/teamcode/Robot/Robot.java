@@ -109,11 +109,11 @@ public class Robot {
      * This command should run at the end of every cycle of a continuous OpMode.
      */
     public static void update(){
-        Robot.tele.update(); //update the telemetry
         Robot.drive.update(); //update the robot's position
         Drivetrain.reportPose(); //report the current robot position to telemetry
         Arm.update();
         Claw.update();
+        Robot.tele.update(); //update the telemetry
     }
 }
 

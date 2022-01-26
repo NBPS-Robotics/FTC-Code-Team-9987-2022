@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
+import com.acmerobotics.roadrunner.drive.Drive;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 public class Joystick {
@@ -44,6 +45,8 @@ public class Joystick {
         if (gamepad1.left_bumper) Drivetrain.speedControl(1); //drivetrain speed control
 
         else Drivetrain.speedControl(Constants.slowSpeed);
+
+        if(gamepad1.a) Drivetrain.aligntoScore();
 
         //GAMEPAD 2
 
