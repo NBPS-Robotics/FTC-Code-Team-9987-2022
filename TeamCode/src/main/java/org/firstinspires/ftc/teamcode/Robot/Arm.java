@@ -103,16 +103,18 @@ public class Arm {
     }
 
     public static void correctArm(){
+        /*
         armProfile = MotionProfileGenerator.generateSimpleMotionProfile(new MotionState(0,0,0), new MotionState(armPose,0, 0), Constants.armMaxVelocity, Constants.armMaxAcceleration, Constants.armMaxJerk);
         armState = armProfile.get(Robot.timeSeconds());
         newArmPid.setTargetPosition(armState.getX());
         newArmPid.setTargetVelocity(armState.getV());
         newArmPid.setTargetAcceleration(armState.getA());
         mArm.setPower(newArmPid.update(getArmPose()));
-        /*double power = armPid.calculate(getArmPose(),armPose);
+        */
+        double power = armPid.calculate(getArmPose(),armPose);
         if (power > Constants.armPowerDown) power = Constants.armPowerDown;
         else if (power < - Constants.armPowerUp) power = - Constants.armPowerUp;
-        mArm.setPower(power);*/
+        mArm.setPower(power);
     }
 
     public static void correctElbow(){
