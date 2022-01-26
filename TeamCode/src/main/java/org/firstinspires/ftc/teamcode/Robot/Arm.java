@@ -1,11 +1,12 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
+import com.acmerobotics.roadrunner.control.PIDCoefficients;
+import com.acmerobotics.roadrunner.profile.MotionProfile;
+import com.acmerobotics.roadrunner.profile.MotionProfileGenerator;
+import com.acmerobotics.roadrunner.profile.MotionState;
 import com.arcrobotics.ftclib.controller.PIDFController;
-import com.arcrobotics.ftclib.controller.wpilibcontroller.ArmFeedforward;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Arm {
     //initialize the intake motor object
@@ -17,7 +18,12 @@ public class Arm {
     static PIDFController armPid = new PIDFController(Constants.KP_arm, Constants.KI_arm, Constants.KD_arm, Constants.KF_arm);
     static PIDFController elbowPid = new PIDFController(Constants.KP_elbow, Constants.KI_elbow, Constants.KD_elbow, Constants.KF_elbow);
 
-    /**
+    static com.acmerobotics.roadrunner.control.PIDFController newArmPid = new com.acmerobotics.roadrunner.control.PIDFController(new PIDCoefficients(Constants.KP_arm, Constants.KI_arm, Constants.KD_arm));
+
+    static MotionProfile armProfile;
+
+    static MotionState armState;
+    /**;
      * This function initializes all components of the Arm subsystem, including all motors and sensors.
      * @param hardwareMap HardwareMap object used to initialize the hardware of the robot.
      */
@@ -97,10 +103,16 @@ public class Arm {
     }
 
     public static void correctArm(){
-        double power = armPid.calculate(getArmPose(),armPose);
+        armProfile = MotionProfileGenerator.generateSimpleMotionProfile(new MotionState(0,0,0), new MotionState(armPose,0, 0), Constants.armMaxVelocity, Constants.armMaxAcceleration, Constants.armMaxJerk);
+        armState = armProfile.get(Robot.timeSeconds());
+        newArmPid.setTargetPosition(armState.getX());
+        newArmPid.setTargetVelocity(armState.getV());
+        newArmPid.setTargetAcceleration(armState.getA());
+        mArm.setPower(newArmPid.update(getArmPose()));
+        /*double power = armPid.calculate(getArmPose(),armPose);
         if (power > Constants.armPowerDown) power = Constants.armPowerDown;
         else if (power < - Constants.armPowerUp) power = - Constants.armPowerUp;
-        mArm.setPower(power);
+        mArm.setPower(power);*/
     }
 
     public static void correctElbow(){

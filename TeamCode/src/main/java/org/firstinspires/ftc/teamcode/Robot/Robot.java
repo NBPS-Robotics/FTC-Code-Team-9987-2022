@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Robot;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Mecanum_Drive.MyMecanumDrive;
@@ -13,12 +14,15 @@ public class Robot {
     public static MyMecanumDrive drive;
     //create the telemetry object to use for debugging with telemetry
     public static Telemetry tele;
+
+    public static ElapsedTime clock  = new ElapsedTime();
     /**
      * This function initializes all parts of the robot by configuring the HardwareMap and making necessary object assignments.
      * @param hardwareMap HardwareMap object used to initialize the hardware of the robot
      * @param telemetry Telemetry object used to initialize the telemetry to debug the code
      */
     private static void init(HardwareMap hardwareMap, Telemetry telemetry) {
+        clock.reset();
         tele = telemetry; //assign the telemetry object
         Drivetrain.init(hardwareMap); //initialize the drivetrain
         Arm.init(hardwareMap); //initialize the arm
@@ -87,6 +91,18 @@ public class Robot {
         {
             Thread.currentThread().interrupt(); //this exception is useful to remove the glitches and errors of the thread.sleep()
         }
+    }
+
+    public static double timeSeconds(){
+        return clock.seconds();
+    }
+
+    public static double timeMilliseconds(){
+        return clock.milliseconds();
+    }
+
+    public static double timeNanoseconds(){
+        return clock.nanoseconds();
     }
     /**
      * This function runs necessary updates for all systems of the robot such as the localizer and the telemetry.
