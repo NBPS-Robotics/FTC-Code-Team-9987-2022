@@ -6,7 +6,6 @@ repositories {
     flatDir {
         dirs rootProject.file('libs')
     }
-
 }
 
 dependencies {
@@ -25,8 +24,4 @@ dependencies {
     implementation 'com.acmerobotics.roadrunner:core:0.5.4'
     implementation 'com.acmerobotics.dashboard:dashboard:0.4.3'
 }
-
-/*implementation('com.acmerobotics.dashboard:dashboard:0.4.3') {
-    exclude group: 'org.firstinspires.ftc'
-}*/
 
