@@ -46,7 +46,7 @@ public class Joystick {
 
         else Drivetrain.speedControl(Constants.slowSpeed);
 
-        if(gamepad1.a) Drivetrain.aligntoScore();
+        //if(gamepad1.a) Drivetrain.aligntoScore(); UNSTABLE
 
         //GAMEPAD 2
 

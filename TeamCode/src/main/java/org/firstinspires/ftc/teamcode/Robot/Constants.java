@@ -16,16 +16,21 @@ public class Constants {
     public static final double turnPower = 0.9; //Turning Power
     public static final double spinnerConstant = baseVoltage*targetSpinnerPower;
 
-    public static double armMaxVelocity = 50;
-    public static double armMaxAcceleration = 20;
+    public static double armMaxVelocity = 100;
+    public static double armMaxAcceleration = 5;
     public static double armMaxJerk = 10;
+
+    public static double elbowMaxVelocity = 50;
+    public static double elbowMaxAcceleration = 20;
+    public static double elbowMaxJerk = 10;
+
     public static double armPowerUp = 0.5;
     public static double armPowerDown = 0.7;
     //Arm positions
     public static int arm3 = 2300;
-    public static int elbow3 = 550;
-    public static int arm2 = 2900;
-    public static int elbow2 = 800;
+    public static int elbow3 = 500;
+    public static int arm2 = 2850;
+    public static int elbow2 = 700;
     public static int arm1 = 3250;
     public static int elbow1 = 1000;
     public static int armCap = 1300;

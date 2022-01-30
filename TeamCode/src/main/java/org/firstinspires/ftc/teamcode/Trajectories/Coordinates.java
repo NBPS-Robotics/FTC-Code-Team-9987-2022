@@ -26,7 +26,7 @@ public class Coordinates {
 
     public static Pose2d redSpinner = new Pose2d(-60,-53,Math.toRadians(0));
 
-    public static Pose2d redStorage = new Pose2d(-69,-33,Math.toRadians(0));
+    public static Pose2d redStorage = new Pose2d(-65,-33,Math.toRadians(0));
 
     public static Pose2d redGoalWall2 = new Pose2d(-10,-65,Math.toRadians(0));
 
@@ -53,11 +53,11 @@ public class Coordinates {
 
     public static Pose2d blueGoalBack = new Pose2d(-10,55,Math.toRadians(90));
 
-    public static Pose2d blueSpinnerWall = new Pose2d(-62,40,Math.toRadians(0));
+    public static Pose2d blueSpinnerWall = new Pose2d(-60,40,Math.toRadians(0));
 
-    public static Pose2d blueSpinner = new Pose2d(-62,53,Math.toRadians(0));
+    public static Pose2d blueSpinner = new Pose2d(-60,53,Math.toRadians(0));
 
-    public static Pose2d blueStorage = new Pose2d(-69,33,Math.toRadians(0));
+    public static Pose2d blueStorage = new Pose2d(-65,33,Math.toRadians(0));
 
     public static Pose2d blueGoalWall2 = new Pose2d(-10,65,Math.toRadians(0));
 

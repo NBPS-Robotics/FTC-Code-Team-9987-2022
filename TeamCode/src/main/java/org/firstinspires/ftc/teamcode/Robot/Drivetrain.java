@@ -65,16 +65,16 @@ public class Drivetrain {
         if(getAlliance() == "RED"){
             Trajectory trajectory = Robot.drive.trajectoryBuilder(Robot.drive.getPoseEstimate())
                     .lineToLinearHeading(Coordinates.redWarehouse)
-                    .back(15)
-                    .lineToLinearHeading(Coordinates.redGoalTop)
+                    //.back(15)
+                    //.lineToLinearHeading(Coordinates.redGoalTop)
                     .build();
             Robot.drive.followTrajectoryAsync(trajectory);
         }
         else{
             Trajectory trajectory = Robot.drive.trajectoryBuilder(Robot.drive.getPoseEstimate())
                     .lineToLinearHeading(Coordinates.blueWarehouse)
-                    .back(15)
-                    .lineToLinearHeading(Coordinates.blueGoalTop)
+                    //.back(15)
+                    //.lineToLinearHeading(Coordinates.blueGoalTop)
                     .build();
             Robot.drive.followTrajectoryAsync(trajectory);
         }
