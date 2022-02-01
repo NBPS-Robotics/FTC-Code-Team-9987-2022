@@ -24,8 +24,8 @@ public class Constants {
     public static double elbowMaxAcceleration = 20;
     public static double elbowMaxJerk = 10;
 
-    public static double armPowerUp = 0.5;
-    public static double armPowerDown = 0.7;
+    public static double armPowerUp = 0.7;
+    public static double armPowerDown = 0.9;
     //Arm positions
     public static int arm3 = 2300;
     public static int elbow3 = 500;

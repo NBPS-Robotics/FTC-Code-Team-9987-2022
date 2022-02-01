@@ -17,6 +17,13 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import java.util.Arrays;
 
 public class Navigation {
+    public static void test(Pose2d start){
+        TrajectorySequence trajectory = Robot.drive.trajectorySequenceBuilder(start)
+                .strafeRight(25)
+                .forward(25)
+                .build();
+        Robot.drive.followTrajectorySequence(trajectory);
+    }
     public static void moveLeft(Pose2d start){
         Trajectory trajectory = Robot.drive.trajectoryBuilder(start)
                 .strafeRight(25)

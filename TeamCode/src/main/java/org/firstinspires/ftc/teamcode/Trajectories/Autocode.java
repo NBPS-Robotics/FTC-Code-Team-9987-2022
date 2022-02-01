@@ -92,11 +92,12 @@ public class Autocode {
         Drivetrain.setEndPose();
     }
     public static void test(String pose){
-        Robot.tele.addData("Testing Autonomous", "");
-        Robot.tele.update();
-        Navigation.goToGoalPoint(Coordinates.redStart1, Coordinates.redGoalPoint1);
-        goalPose = scoreGoalRed(pose);
-        Arm.update();
+        Navigation.test(Coordinates.redStart1);
+        //Robot.tele.addData("Testing Autonomous", "");
+        //Robot.tele.update();
+        //Navigation.goToGoalPoint(Coordinates.redStart1, Coordinates.redGoalPoint1);
+        //goalPose = scoreGoalRed(pose);
+        //Arm.update();
 
         Drivetrain.setEndPose();
     }
