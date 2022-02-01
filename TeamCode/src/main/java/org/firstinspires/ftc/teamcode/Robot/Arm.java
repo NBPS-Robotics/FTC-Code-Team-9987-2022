@@ -107,32 +107,32 @@ public class Arm {
 
     public static void correctArm(){
 
-        armProfile = MotionProfileGenerator.generateSimpleMotionProfile(new MotionState(0,0,0), new MotionState(armPose,0, 0), Constants.armMaxVelocity, Constants.armMaxAcceleration, Constants.armMaxJerk);
+        /*armProfile = MotionProfileGenerator.generateSimpleMotionProfile(new MotionState(0,0,0), new MotionState(armPose,0, 0), Constants.armMaxVelocity, Constants.armMaxAcceleration, Constants.armMaxJerk);
         armState = armProfile.get(Robot.timeSeconds());
         newArmPid.setTargetPosition(armState.getX());
         newArmPid.setTargetVelocity(armState.getV());
         newArmPid.setTargetAcceleration(armState.getA());
-        mArm.setPower(newArmPid.update(getArmPose()));
+        mArm.setPower(newArmPid.update(getArmPose()));*/
 
 
-        /*double power = armPid.calculate(getArmPose(),armPose);
+        double power = armPid.calculate(getArmPose(),armPose);
         if (power > Constants.armPowerDown) power = Constants.armPowerDown;
         else if (power < - Constants.armPowerUp) power = - Constants.armPowerUp;
         mArm.setPower(power);
 
-         */
+
     }
 
     public static void correctElbow(){
         if(getElbowPose() < 30 && getElbowPose() > -30) mElbow.setPower(0);
         else {
-            //mElbow.setPower(elbowPid.calculate(getElbowPose(),elbowPose));
-            elbowProfile = MotionProfileGenerator.generateSimpleMotionProfile(new MotionState(0,0,0), new MotionState(elbowPose,0, 0), Constants.elbowMaxVelocity, Constants.elbowMaxAcceleration, Constants.elbowMaxJerk);
+            mElbow.setPower(elbowPid.calculate(getElbowPose(),elbowPose));
+            /*elbowProfile = MotionProfileGenerator.generateSimpleMotionProfile(new MotionState(0,0,0), new MotionState(elbowPose,0, 0), Constants.elbowMaxVelocity, Constants.elbowMaxAcceleration, Constants.elbowMaxJerk);
             elbowState = elbowProfile.get(Robot.timeSeconds());
             newElbowPid.setTargetPosition(elbowState.getX());
             newElbowPid.setTargetVelocity(elbowState.getV());
             newElbowPid.setTargetAcceleration(elbowState.getA());
-            mElbow.setPower(newElbowPid.update(getElbowPose()));
+            mElbow.setPower(newElbowPid.update(getElbowPose()));*/
         }
     }
 
