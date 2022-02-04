@@ -63,7 +63,7 @@ public class Navigation {
                 .lineToLinearHeading(spinnerWall)
                 .lineToLinearHeading(spinner)
                 .build();
-        Robot.drive.followTrajectorySequence(trajectory);
+        Robot.drive.followTrajectorySequenceAsync(trajectory);
     }
     public static void goToStorage(Pose2d spinner, Pose2d storage){
         //Robot.drive.setPoseEstimate(spinner);
@@ -78,7 +78,7 @@ public class Navigation {
                 .lineToLinearHeading(goalWall)
                 .lineToLinearHeading(warehouse)
                 .build();
-        Robot.drive.followTrajectorySequence(trajectory);
+        Robot.drive.followTrajectorySequenceAsync(trajectory);
     }
     public static void goToWarehouseFromCarousel(Pose2d spinner, Pose2d spinnerWall,Pose2d goalWall, Pose2d warehouse){
         //Robot.drive.setPoseEstimate(spinner);

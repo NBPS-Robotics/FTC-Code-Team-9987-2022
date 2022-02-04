@@ -1,9 +1,5 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
-import com.acmerobotics.roadrunner.control.PIDCoefficients;
-import com.acmerobotics.roadrunner.profile.MotionProfile;
-import com.acmerobotics.roadrunner.profile.MotionProfileGenerator;
-import com.acmerobotics.roadrunner.profile.MotionState;
 import com.arcrobotics.ftclib.controller.PIDFController;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -25,23 +21,23 @@ public class Arm {
     public static void init(HardwareMap hardwareMap){
         mArm = hardwareMap.dcMotor.get("mArm"); //arm motor assignment
         mElbow = hardwareMap.dcMotor.get("mElbow"); //arm motor assignment
-        mArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        mElbow.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //mArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //mElbow.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         mArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mElbow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        mArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        mElbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //mArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //mElbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armPid.setTolerance(10);
         elbowPid.setTolerance(5);
+
+    }
+
+    public static void resetPose(){
         armPose = 0;
         elbowPose = 0;
         setArm(0);
         setElbow(0);
-    }
-
-    public static void resetPose(){
-
     }
 
     public static void update(){

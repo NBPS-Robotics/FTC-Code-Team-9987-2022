@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Trajectories;
 
+import com.acmerobotics.roadrunner.drive.Drive;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 
 import org.firstinspires.ftc.teamcode.Robot.Arm;
@@ -19,7 +20,7 @@ public class Autocode {
         Robot.tele.update();
         Navigation.goToGoalPoint(Coordinates.redStart1, Coordinates.redGoalPoint1);
         goalPose = scoreGoalRed(pose);
-        Navigation.goToCarousel(goalPose,Coordinates.redSpinnerWall,Coordinates.redSpinner);
+        goToCarousel(goalPose,Coordinates.redSpinnerWall,Coordinates.redSpinner);
         spinner(0.8);
         Navigation.goToStorage(Coordinates.redSpinner,Coordinates.redStorage);
         raiseElbow();
@@ -30,7 +31,7 @@ public class Autocode {
         Robot.tele.update();
         Navigation.goToGoalPoint(Coordinates.redStart2, Coordinates.redGoalPoint2);
         goalPose = scoreGoalRed(pose);
-        Navigation.goToWarehouse(goalPose,Coordinates.redGoalWall2,Coordinates.redWarehouse);
+        goToWarehouse(goalPose,Coordinates.redGoalWall2,Coordinates.redWarehouse);
         Drivetrain.setEndPose();
     }
     public static void Red2ClearWarehouse(String pose){ //Red2 - Score, Warehouse, Clear Warehouse
@@ -38,7 +39,7 @@ public class Autocode {
         Robot.tele.update();
         Navigation.goToGoalPoint(Coordinates.redStart2, Coordinates.redGoalPoint2);
         goalPose = scoreGoalRed(pose);
-        Navigation.goToWarehouse(goalPose,Coordinates.redGoalWall2,Coordinates.redWarehouse);
+        goToWarehouse(goalPose,Coordinates.redGoalWall2,Coordinates.redWarehouse);
         Navigation.clearWarehouse(Coordinates.redWarehouse, Coordinates.redWarehousePoint);
         Drivetrain.setEndPose();
     }
@@ -47,7 +48,7 @@ public class Autocode {
         Robot.tele.update();
         Navigation.goToGoalPoint(Coordinates.redStart1, Coordinates.redGoalPoint1);
         goalPose = scoreGoalRed(pose);
-        Navigation.goToCarousel(goalPose,Coordinates.redSpinnerWall,Coordinates.redSpinner);
+        goToCarousel(goalPose,Coordinates.redSpinnerWall,Coordinates.redSpinner);
         spinner(0.8);
         Navigation.goToWarehouseFromCarousel(Coordinates.redSpinner,Coordinates.redSpinnerWall,Coordinates.redGoalWall2,Coordinates.redWarehouse);
         Drivetrain.setEndPose();
@@ -57,7 +58,7 @@ public class Autocode {
         Robot.tele.update();
         Navigation.goToGoalPoint(Coordinates.blueStart1, Coordinates.blueGoalPoint1);
         goalPose = scoreGoalBlue(pose);
-        Navigation.goToCarousel(goalPose,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
+        goToCarousel(goalPose,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
         spinner(-1);
         Navigation.goToStorage(Coordinates.blueSpinner,Coordinates.blueStorage);
         raiseElbow();
@@ -68,7 +69,7 @@ public class Autocode {
         Robot.tele.update();
         Navigation.goToGoalPoint(Coordinates.blueStart2, Coordinates.blueGoalPoint2);
         goalPose = scoreGoalBlue(pose);
-        Navigation.goToWarehouse(goalPose,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
+        goToWarehouse(goalPose,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
         Drivetrain.setEndPose();
     }
     public static void Blue1Warehouse(String pose){ //Blue1 - Score, Duck, Warehouse
@@ -76,7 +77,7 @@ public class Autocode {
         Robot.tele.update();
         Navigation.goToGoalPoint(Coordinates.blueStart1, Coordinates.blueGoalPoint1);
         goalPose = scoreGoalBlue(pose);
-        Navigation.goToCarousel(goalPose,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
+        goToCarousel(goalPose,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
         spinner(-1);
         Navigation.goToWarehouseFromCarousel(Coordinates.blueSpinner,Coordinates.blueSpinnerWall,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
         Drivetrain.setEndPose();
@@ -86,7 +87,7 @@ public class Autocode {
         Robot.tele.update();
         Navigation.goToGoalPoint(Coordinates.blueStart2, Coordinates.blueGoalPoint2);
         goalPose = scoreGoalBlue(pose);
-        Navigation.goToWarehouse(goalPose,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
+        goToWarehouse(goalPose,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
         Navigation.clearWarehouse(Coordinates.blueWarehouse, Coordinates.blueWarehousePoint);
         Drivetrain.setEndPose();
     }
@@ -169,9 +170,24 @@ public class Autocode {
         Navigation.turnFromGoal(goal);
         Arm.armDownAuto();
         Claw.close();
-        for(int x =0; x<100; x++){
+    }
+    public static void goToCarousel(Pose2d goalBack, Pose2d spinnerWall, Pose2d  spinner){
+        Navigation.goToCarousel(goalBack, spinnerWall, spinner);
+        while(Robot.drive.isBusy()){
             Arm.update();
             Claw.update();
+            Robot.drive.update();
+            Robot.wait(10);
+        }
+        Arm.stop();
+    }
+
+    public static void goToWarehouse(Pose2d goalBack, Pose2d goalWall, Pose2d  warehouse){
+        Navigation.goToWarehouse(goalBack, goalWall, warehouse);
+        while(Robot.drive.isBusy()){
+            Arm.update();
+            Claw.update();
+            Robot.drive.update();
             Robot.wait(10);
         }
         Arm.stop();
