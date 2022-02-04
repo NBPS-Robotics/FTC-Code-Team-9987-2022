@@ -12,20 +12,12 @@ public class Arm {
     //initialize the intake motor object
     static DcMotor mArm;
     static DcMotor mElbow;
-    static int armPose = 0;
-    static int elbowPose = 0;
+    static int armPose;
+    static int elbowPose;
 
     static PIDFController armPid = new PIDFController(Constants.KP_arm, Constants.KI_arm, Constants.KD_arm, Constants.KF_arm);
     static PIDFController elbowPid = new PIDFController(Constants.KP_elbow, Constants.KI_elbow, Constants.KD_elbow, Constants.KF_elbow);
 
-    static com.acmerobotics.roadrunner.control.PIDFController newArmPid = new com.acmerobotics.roadrunner.control.PIDFController(new PIDCoefficients(Constants.KP_arm, Constants.KI_arm, Constants.KD_arm));
-    static com.acmerobotics.roadrunner.control.PIDFController newElbowPid = new com.acmerobotics.roadrunner.control.PIDFController(new PIDCoefficients(Constants.KP_elbow, Constants.KI_elbow, Constants.KD_elbow));
-
-    static MotionProfile armProfile;
-    static MotionProfile elbowProfile;
-
-    static MotionState armState;
-    static MotionState elbowState;
     /**;
      * This function initializes all components of the Arm subsystem, including all motors and sensors.
      * @param hardwareMap HardwareMap object used to initialize the hardware of the robot.
@@ -36,13 +28,20 @@ public class Arm {
         mArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         mElbow.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        mArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mElbow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         mElbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armPid.setTolerance(10);
+        elbowPid.setTolerance(5);
         armPose = 0;
         elbowPose = 0;
         setArm(0);
         setElbow(0);
+    }
+
+    public static void resetPose(){
+
     }
 
     public static void update(){
@@ -107,14 +106,6 @@ public class Arm {
 
     public static void correctArm(){
 
-        /*armProfile = MotionProfileGenerator.generateSimpleMotionProfile(new MotionState(0,0,0), new MotionState(armPose,0, 0), Constants.armMaxVelocity, Constants.armMaxAcceleration, Constants.armMaxJerk);
-        armState = armProfile.get(Robot.timeSeconds());
-        newArmPid.setTargetPosition(armState.getX());
-        newArmPid.setTargetVelocity(armState.getV());
-        newArmPid.setTargetAcceleration(armState.getA());
-        mArm.setPower(newArmPid.update(getArmPose()));*/
-
-
         double power = armPid.calculate(getArmPose(),armPose);
         if (power > Constants.armPowerDown) power = Constants.armPowerDown;
         else if (power < - Constants.armPowerUp) power = - Constants.armPowerUp;
@@ -127,12 +118,6 @@ public class Arm {
         if(getElbowPose() < 30 && getElbowPose() > -30) mElbow.setPower(0);
         else {
             mElbow.setPower(elbowPid.calculate(getElbowPose(),elbowPose));
-            /*elbowProfile = MotionProfileGenerator.generateSimpleMotionProfile(new MotionState(0,0,0), new MotionState(elbowPose,0, 0), Constants.elbowMaxVelocity, Constants.elbowMaxAcceleration, Constants.elbowMaxJerk);
-            elbowState = elbowProfile.get(Robot.timeSeconds());
-            newElbowPid.setTargetPosition(elbowState.getX());
-            newElbowPid.setTargetVelocity(elbowState.getV());
-            newElbowPid.setTargetAcceleration(elbowState.getA());
-            mElbow.setPower(newElbowPid.update(getElbowPose()));*/
         }
     }
 
@@ -153,6 +138,10 @@ public class Arm {
     }
 
     public static void elbowUpAuto(){
-        elbowPose = Constants.elbowUp;
+        mElbow.setPower(-0.9);
+    }
+
+    public static void elbowDownTeleOp(){
+        mElbow.setPower(0.9);
     }
 }

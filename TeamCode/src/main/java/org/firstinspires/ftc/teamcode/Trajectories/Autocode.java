@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Trajectories;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Robot.Arm;
 import org.firstinspires.ftc.teamcode.Robot.Claw;
 import org.firstinspires.ftc.teamcode.Robot.Drivetrain;
@@ -21,7 +20,7 @@ public class Autocode {
         Navigation.goToGoalPoint(Coordinates.redStart1, Coordinates.redGoalPoint1);
         goalPose = scoreGoalRed(pose);
         Navigation.goToCarousel(goalPose,Coordinates.redSpinnerWall,Coordinates.redSpinner);
-        spinner(1);
+        spinner(0.8);
         Navigation.goToStorage(Coordinates.redSpinner,Coordinates.redStorage);
         raiseElbow();
         Drivetrain.setEndPose();
@@ -49,7 +48,7 @@ public class Autocode {
         Navigation.goToGoalPoint(Coordinates.redStart1, Coordinates.redGoalPoint1);
         goalPose = scoreGoalRed(pose);
         Navigation.goToCarousel(goalPose,Coordinates.redSpinnerWall,Coordinates.redSpinner);
-        spinner(1);
+        spinner(0.8);
         Navigation.goToWarehouseFromCarousel(Coordinates.redSpinner,Coordinates.redSpinnerWall,Coordinates.redGoalWall2,Coordinates.redWarehouse);
         Drivetrain.setEndPose();
     }
@@ -78,7 +77,7 @@ public class Autocode {
         Navigation.goToGoalPoint(Coordinates.blueStart1, Coordinates.blueGoalPoint1);
         goalPose = scoreGoalBlue(pose);
         Navigation.goToCarousel(goalPose,Coordinates.blueSpinnerWall,Coordinates.blueSpinner);
-        spinner(1);
+        spinner(-1);
         Navigation.goToWarehouseFromCarousel(Coordinates.blueSpinner,Coordinates.blueSpinnerWall,Coordinates.blueGoalWall2,Coordinates.blueWarehouse);
         Drivetrain.setEndPose();
     }
@@ -102,7 +101,7 @@ public class Autocode {
         Drivetrain.setEndPose();
     }
     public static void spinner(double value){
-        Spinner.spin(value*0.8);
+        Spinner.spin(value);
         Robot.wait(3000);
         Spinner.stop();
     }
@@ -129,16 +128,22 @@ public class Autocode {
 
     }
     public static void raiseElbow(){
-        Claw.open();
+        /*Claw.close();
         for(int y = 0; y<50; y++){
             Claw.update();
             Robot.wait(10);
         }
-        Arm.elbowUpAuto();
         for(int y = 0; y<300; y++){
-            Arm.correctElbow();
+            Arm.elbowUpAuto();
             Robot.wait(10);
         }
+        Arm.stop();
+        Claw.open();
+        for(int y = 0; y<50; y++){
+            Claw.update();
+            Robot.wait(10);
+        }*/
+
     }
     public static void scoreElement(Pose2d goal, Pose2d goalBack){
         while(Robot.drive.isBusy()){
@@ -155,13 +160,13 @@ public class Autocode {
             Claw.update();
             Robot.wait(10);
         }
-        Navigation.backfromGoal(goal, goalBack);
+        Navigation.backFromGoal(goal, goalBack);
         while(Robot.drive.isBusy()){
             Arm.update();
             Robot.drive.update();
             Robot.wait(10);
         }
-        Navigation.turnfromGoal(goal);
+        Navigation.turnFromGoal(goal);
         Arm.armDownAuto();
         Claw.close();
         for(int x =0; x<100; x++){

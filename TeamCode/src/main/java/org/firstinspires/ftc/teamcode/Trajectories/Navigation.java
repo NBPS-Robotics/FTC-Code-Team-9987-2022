@@ -47,14 +47,14 @@ public class Navigation {
                 .build();
         Robot.drive.followTrajectoryAsync(trajectory2);
     }
-    public static void backfromGoal(Pose2d goal, Pose2d goalBack){
+    public static void backFromGoal(Pose2d goal, Pose2d goalBack){
         Trajectory trajectory = Robot.drive.trajectoryBuilder(goal)
                 .lineToLinearHeading(goalBack)
                 .build();
         Robot.drive.followTrajectoryAsync(trajectory);
     }
-    public static void turnfromGoal(Pose2d goal){
-        if(goal.getHeading()==0) Robot.drive.turn(Math.toRadians(-90));
+    public static void turnFromGoal(Pose2d goal){
+        if(goal.getHeading()==Math.toRadians(90)) Robot.drive.turn(Math.toRadians(-90));
         else Robot.drive.turn(Math.toRadians(90));
     }
     public static void goToCarousel(Pose2d goalBack, Pose2d spinnerWall, Pose2d spinner){

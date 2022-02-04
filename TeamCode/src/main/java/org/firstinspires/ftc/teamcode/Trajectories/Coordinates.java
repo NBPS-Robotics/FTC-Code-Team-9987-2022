@@ -26,7 +26,7 @@ public class Coordinates {
 
     public static Pose2d redSpinner = new Pose2d(-60,-53,Math.toRadians(0));
 
-    public static Pose2d redStorage = new Pose2d(-65,-33,Math.toRadians(0));
+    public static Pose2d redStorage = new Pose2d(-60,-35,Math.toRadians(0));
 
     public static Pose2d redGoalWall2 = new Pose2d(-10,-65,Math.toRadians(0));
 
@@ -39,15 +39,15 @@ public class Coordinates {
 
     public static Pose2d blueStart2 = new Pose2d(15,60,Math.toRadians(90));
 
-    public static Pose2d blueGoalTop = new Pose2d(-5,43,Math.toRadians(90));
+    public static Pose2d blueGoalTop = new Pose2d(-5,44,Math.toRadians(90));
 
-    public static Pose2d blueGoalMiddle = new Pose2d(-5,46,Math.toRadians(90));
+    public static Pose2d blueGoalMiddle = new Pose2d(-5,47,Math.toRadians(90));
 
-    public static Pose2d blueGoalBottom = new Pose2d(-5,44,Math.toRadians(90));
+    public static Pose2d blueGoalBottom = new Pose2d(-5,46,Math.toRadians(90));
 
-    public static Pose2d blueGoalPoint1 = new Pose2d(-35,50,Math.toRadians(90));
+    public static Pose2d blueGoalPoint1 = new Pose2d(-35,46,Math.toRadians(90));
 
-    public static Pose2d blueGoalPoint2 = new Pose2d(-15,50,Math.toRadians(90));
+    public static Pose2d blueGoalPoint2 = new Pose2d(15,50,Math.toRadians(90));
 
     public static Pose2d blueGoalWall = new Pose2d(-10,65,Math.toRadians(90));
 
@@ -55,13 +55,13 @@ public class Coordinates {
 
     public static Pose2d blueSpinnerWall = new Pose2d(-60,40,Math.toRadians(0));
 
-    public static Pose2d blueSpinner = new Pose2d(-60,53,Math.toRadians(0));
+    public static Pose2d blueSpinner = new Pose2d(-60,58,Math.toRadians(0));
 
-    public static Pose2d blueStorage = new Pose2d(-65,33,Math.toRadians(0));
+    public static Pose2d blueStorage = new Pose2d(-60,35,Math.toRadians(0));
 
     public static Pose2d blueGoalWall2 = new Pose2d(-10,65,Math.toRadians(0));
 
-    public static Pose2d blueWarehouse = new Pose2d(40,65,Math.toRadians(0));
+    public static Pose2d blueWarehouse = new Pose2d(40,68,Math.toRadians(0));
 
     public static Pose2d blueWarehousePoint = new Pose2d(40,45,Math.toRadians(0));
 

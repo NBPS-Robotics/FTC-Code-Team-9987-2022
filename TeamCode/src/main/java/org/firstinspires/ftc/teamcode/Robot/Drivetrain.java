@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Trajectories.Coordinates;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 public class Drivetrain {
     //initialize drivetrain motor objects
@@ -61,22 +62,42 @@ public class Drivetrain {
      * This function uses navigation to move the robot to the shooting position.
      * Keep in mind that the position of the robot has to be updated after the function runs in order to reduce error over time.
      */
-    public static void aligntoScore(){
+    public static void alignToScore(){
         if(getAlliance() == "RED"){
-            Trajectory trajectory = Robot.drive.trajectoryBuilder(Robot.drive.getPoseEstimate())
+            TrajectorySequence trajectory = Robot.drive.trajectorySequenceBuilder(Robot.drive.getPoseEstimate())
                     .lineToLinearHeading(Coordinates.redWarehouse)
-                    //.back(15)
-                    //.lineToLinearHeading(Coordinates.redGoalTop)
+                    .back(15)
+                    .lineToLinearHeading(Coordinates.redGoalTop)
                     .build();
-            Robot.drive.followTrajectoryAsync(trajectory);
+            Robot.drive.followTrajectorySequenceAsync(trajectory);
         }
         else{
-            Trajectory trajectory = Robot.drive.trajectoryBuilder(Robot.drive.getPoseEstimate())
+            TrajectorySequence trajectory = Robot.drive.trajectorySequenceBuilder(Robot.drive.getPoseEstimate())
                     .lineToLinearHeading(Coordinates.blueWarehouse)
-                    //.back(15)
-                    //.lineToLinearHeading(Coordinates.blueGoalTop)
+                    .back(15)
+                    .lineToLinearHeading(Coordinates.blueGoalTop)
                     .build();
-            Robot.drive.followTrajectoryAsync(trajectory);
+            Robot.drive.followTrajectorySequenceAsync(trajectory);
+        }
+    }
+    public static void alignToWarehouse(){
+        if(getAlliance() == "RED"){
+            Robot.drive.turn(Math.toRadians(-90));
+            TrajectorySequence trajectory = Robot.drive.trajectorySequenceBuilder(Robot.drive.getPoseEstimate())
+                    .lineToLinearHeading(Coordinates.redGoalWall)
+                    .forward(15)
+                    .lineToLinearHeading(Coordinates.redWarehouse)
+                    .build();
+            Robot.drive.followTrajectorySequenceAsync(trajectory);
+        }
+        else{
+            Robot.drive.turn(Math.toRadians(90));
+            TrajectorySequence trajectory = Robot.drive.trajectorySequenceBuilder(Robot.drive.getPoseEstimate())
+                    .lineToLinearHeading(Coordinates.blueGoalWall)
+                    .forward(15)
+                    .lineToLinearHeading(Coordinates.blueWarehouse)
+                    .build();
+            Robot.drive.followTrajectorySequenceAsync(trajectory);
         }
     }
     /**

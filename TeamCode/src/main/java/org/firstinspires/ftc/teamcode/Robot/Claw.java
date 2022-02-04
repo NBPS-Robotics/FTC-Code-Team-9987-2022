@@ -8,12 +8,15 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Claw {
-    public static DcMotor m_claw;
+    public static DcMotor mClaw;
     public static double clawPose; //false for open, true for closed
     static PIDFController clawPid = new PIDFController(Constants.KP_claw, Constants.KI_claw, Constants.KD_claw, Constants.KF_claw);
 
     public static void init(HardwareMap hardwareMap){
-        m_claw = hardwareMap.dcMotor.get("mClaw");
+        mClaw = hardwareMap.dcMotor.get("mClaw");
+        //mClaw.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //mClaw.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //mClaw.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         clawPose = 0;
         setClaw(0);
     }
@@ -39,10 +42,10 @@ public class Claw {
         //else elbowPose = -armPose - 2000;
     }
     public static int getClawPose(){
-        return m_claw.getCurrentPosition();
+        return mClaw.getCurrentPosition();
     }
 
     public static void correctClaw(){
-        m_claw.setPower(clawPid.calculate(getClawPose(),clawPose));
+        mClaw.setPower(clawPid.calculate(getClawPose(),clawPose));
     }
 }
