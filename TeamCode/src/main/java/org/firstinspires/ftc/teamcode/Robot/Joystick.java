@@ -71,6 +71,10 @@ public class Joystick {
 
         if(gamepad2.y) Arm.scoreTop();
 
+        if(gamepad2.left_stick_button) Arm.elbowDownTeleOp();
+
+        if(gamepad2.left_bumper) Arm.grabCap();
+
         if(gamepad2.right_bumper) Arm.capElement();
     }
     /**

@@ -129,7 +129,7 @@ public class Autocode {
 
     }
     public static void raiseElbow(){
-        /*Claw.close();
+        Claw.close();
         for(int y = 0; y<50; y++){
             Claw.update();
             Robot.wait(10);
@@ -139,12 +139,6 @@ public class Autocode {
             Robot.wait(10);
         }
         Arm.stop();
-        Claw.open();
-        for(int y = 0; y<50; y++){
-            Claw.update();
-            Robot.wait(10);
-        }*/
-
     }
     public static void scoreElement(Pose2d goal, Pose2d goalBack){
         while(Robot.drive.isBusy()){

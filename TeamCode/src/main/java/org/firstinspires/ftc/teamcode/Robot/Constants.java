@@ -38,6 +38,8 @@ public class Constants {
     public static int elbowUp = -1400;
     public static int armDown = -20;
     public static int elbowDown = 5;
+    public static int armGrabCap = 3300;
+    public static int elbowGrabCap = 700;
 
     //Arm Motor PIDF
     public static double KP_arm = 0.002;

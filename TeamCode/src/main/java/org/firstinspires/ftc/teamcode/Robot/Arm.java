@@ -21,13 +21,13 @@ public class Arm {
     public static void init(HardwareMap hardwareMap){
         mArm = hardwareMap.dcMotor.get("mArm"); //arm motor assignment
         mElbow = hardwareMap.dcMotor.get("mElbow"); //arm motor assignment
-        //mArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //mElbow.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mElbow.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         mArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mElbow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //mArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        //mElbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mElbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armPid.setTolerance(10);
         elbowPid.setTolerance(5);
 
@@ -79,6 +79,12 @@ public class Arm {
         armPose = Constants.armCap;
         elbowPose = Constants.elbowCap;
     }
+
+    public static void grabCap(){
+        armPose = Constants.armGrabCap;
+        elbowPose = Constants.elbowGrabCap;
+    }
+
     public static void scoreTop(){
         armPose = Constants.arm3;
         elbowPose = Constants.elbow3;
@@ -139,5 +145,9 @@ public class Arm {
 
     public static void elbowDownTeleOp(){
         mElbow.setPower(0.9);
+        Robot.wait(1000);
+        mElbow.setPower(0);
+        mElbow.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mElbow.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 }
