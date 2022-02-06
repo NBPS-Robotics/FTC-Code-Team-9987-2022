@@ -28,9 +28,9 @@ public class Constants {
     public static double armPowerDown = 0.9;
     //Arm positions
     public static int arm3 = 2300;
-    public static int elbow3 = 500;
+    public static int elbow3 = 430;
     public static int arm2 = 2850;
-    public static int elbow2 = 700;
+    public static int elbow2 = 720;
     public static int arm1 = 3250;
     public static int elbow1 = 1000;
     public static int armCap = 1300;
